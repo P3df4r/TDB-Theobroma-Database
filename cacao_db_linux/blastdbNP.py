@@ -12,7 +12,7 @@ output = input()
 #help(NcbiblastnCommandline)
 
 time_S = time.time()
-code = NcbiblastxCommandline(cmd=blastx1, query=query, subject=nt, strand="plus", evalue=0.001, outfmt=5, out=output)
+code = NcbiblastxCommandline(cmd=blastx1, query=query, db=nt, strand="plus", evalue=0.001, outfmt=5, out=output)
 print("Input code: ", code)
 stdout, stderr = code()
 blast_result = open(output, "r")

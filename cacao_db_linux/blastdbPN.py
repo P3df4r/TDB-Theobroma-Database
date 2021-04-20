@@ -5,14 +5,14 @@ print("Digite o arquivo query: ")
 query = input()
 print("Digite o arquivo do database: ")
 nt = input()
-blastx1 = "/usr/bin/blastx"
+tblastn1 = "/usr/bin/tblastn"
 print("Digite o arquivo de saída: ")
 output = input()
 
 #help(NcbiblastnCommandline)
 
 time_S = time.time()
-code = NcbiblastxCommandline(cmd=blastx1, query=query, subject=nt, strand="plus", evalue=0.001, outfmt=5, out=output)
+code = NcbiblastpCommandline(cmd=tblastn1, query=query, db=nt, strand="plus", evalue=0.001, outfmt=5, out=output)
 print("Input code: ", code)
 stdout, stderr = code()
 blast_result = open(output, "r")
