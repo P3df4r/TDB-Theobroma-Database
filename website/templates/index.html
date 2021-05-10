@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    </head>
+    <body>
+        <div id="Blast">
+            <form method="POST" enctype="multipart/form-data">
+                <select name="modoBlast" id="mBlast">
+                    <option value="BlastN">BlastN</option>
+                    <option value="BlastP">BlastP</option>
+                    <option value="BlastX">BlastX</option>
+                    <option value="tBlastN">tBlastN</option>
+                </select><br>
+                <h3>Sequência</h3>
+                <textarea id="nucleotideo" name="nucleotideo" rows="4" cols="50"></textarea><br>
+                <h3>Ou enviar arquivo</h3><br>
+                <input type="file" name="file">
+                <input type="submit">
+            </form>
+        </div>
+    </body>
+</html>
