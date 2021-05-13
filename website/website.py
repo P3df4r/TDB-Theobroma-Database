@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
 #coding: utf-8
 import os
-import Blast
-from flask import Flask, render_template, request, send_file
+import BlastThread
+from flask import Flask, render_template, request, send_file, flash, redirect
+from flask_socketio import SocketIO, emit
 from werkzeug.utils import secure_filename
 
-HOST_ADDR="localhost"
+HOST_ADDR="192.168.10.68"
 DATABASE="sample.fna"
-XML_NAME="resultado.xml"
 QUERY_DEFAULT="userSeq.txt"
+UPLOADS_FOLDER="uploads/"
+DOWNLOADS_FOLDER="downloads/"
+XML_NAME="resultado.xml"
+BLAST_INST = BlastThread.BlastThread(DATABASE, DOWNLOADS_FOLDER, XML_NAME)
 
 app = Flask(__name__)
 app.secret_key = b'BDk^iUe99W*0r0S!eM9!8A'
-app.config["UPLOAD_FOLDER"] = "./"
+app.config["UPLOAD_FOLDER"] = UPLOADS_FOLDER
+socketio = SocketIO(app)
 
 @app.route("/")
 def home():
@@ -20,35 +25,44 @@ def home():
 
 @app.route("/", methods=["POST"])
 def runBlast():
-    tipoAValor = {}
-    tipoAValor["BlastN"]  = 1
-    tipoAValor["BlastP"]  = 2
-    tipoAValor["BlastX"]  = 3
-    tipoAValor["tBlastN"] = 4
     upFolder = app.config["UPLOAD_FOLDER"]
     mBlast = request.form["modoBlast"]
     uInput = request.form["nucleotideo"]
-    bValor = tipoAValor[mBlast]
-
+    bValor = int(mBlast)
     filename = ""
+
     if "file" in request.files:
         arquivo = request.files["file"]
-        filename = secure_filename(arquivo.filename)
         if arquivo.filename != "":
+            filename = secure_filename(arquivo.filename)
             arquivo.save(os.path.join(upFolder, filename))
     if len(uInput) > 0:
         filename = QUERY_DEFAULT
-        arquivo = open(os.path.join(upFolder, QUERY_DEFAULT), "w")
-        arquivo.write(uInput)
-        arquivo.close
+        with open(os.path.join(upFolder, filename), "w") as arquivo:
+            arquivo.write(uInput)
 
-    print(os.path.join(app.config["UPLOAD_FOLDER"], XML_NAME))
-    #Blast.run(bValor, os.path.join(upFolder, filename), DATABASE, XML_NAME)
-    return render_template("download.html")
+    if filename == "":
+        flash("Não foi fornecido arquivo nem sequência.")
+        return redirect(request.url)
+
+    if BLAST_INST.is_alive():
+        flash("Pedido anterior em processamento.")
+        return redirect(request.url)
+
+    query = os.path.join(upFolder, filename)
+    BLAST_INST.prepare(bValor, query)
+    BLAST_INST.start()
+    flash("Processando...")
+    return redirect(request.url)
 
 @app.route("/download")
 def downloadxml():
-    return send_file(os.path.join(app.config["UPLOAD_FOLDER"], XML_NAME), as_attachment=True)
+    return send_file(
+        os.path.join(DOWNLOADS_FOLDER, XML_NAME), 
+        as_attachment=True, 
+        cache_timeout=0
+    )
+
 
 if __name__ == "__main__":
-    app.run(host=HOST_ADDR, debug=True)
+    socketio.run(app, host=HOST_ADDR, debug=True)

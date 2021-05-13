@@ -8,17 +8,28 @@
         <div id="Blast">
             <form method="POST" enctype="multipart/form-data">
                 <select name="modoBlast" id="mBlast">
-                    <option value="BlastN">BlastN</option>
-                    <option value="BlastP">BlastP</option>
-                    <option value="BlastX">BlastX</option>
-                    <option value="tBlastN">tBlastN</option>
-                </select><br>
+                    <option value="1">BlastN</option>
+                    <option value="2">BlastP</option>
+                    <option value="3">BlastX</option>
+                    <option value="4">tBlastN</option>
+                </select>
+                <br>
                 <h3>Sequência</h3>
-                <textarea id="nucleotideo" name="nucleotideo" rows="4" cols="50"></textarea><br>
-                <h3>Ou enviar arquivo</h3><br>
+                <textarea id="nucleotideo" name="nucleotideo" rows="4" cols="50"></textarea>
+                <br>
+                <h3>Ou enviar arquivo</h3>
+                <br>
                 <input type="file" name="file">
                 <input type="submit">
             </form>
         </div>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </body>
 </html>
