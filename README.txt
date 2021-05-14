@@ -30,7 +30,7 @@ pip install biopython
 -> Arquivo de saída: A critério do usuário. Recomenda-se extensão '.xml' para organismos maiores que 10 mb. Para arquivos menores, '.txt' torna-se interessante
 
 -> Arquivo Blastdb_*.py
-Esse formato de uso do blast é utilizado para multifasta, a qual obtem-se diversos fasta dentro de um único arquivo para a criação do "database". Para realizar a operação com essa variação, utilizar o comando
+Esse formato de uso do blast é utilizado para multifasta, a qual obtem-se diversos fasta dentro de um único arquivo para a criação do "database". Para realizar a operação com essa variação, utilize o arquivo "makeblastdb.exe" 
 
 makeblastdb -in organismo.fasta -dbtype nucl/prot -out organismo_db -title nome_do_db
 
