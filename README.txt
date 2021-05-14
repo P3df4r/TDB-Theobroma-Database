@@ -37,3 +37,5 @@ makeblastdb -in organismo.fasta -dbtype nucl/prot -out organismo_db -title nome_
 Caso ocorra erro devido a instalação do Blast+, utilize o arquivo makeblast.exe.
 
 ATENÇÃO: Caso esteja trabalhando com NUCLEOTÍDIO, utilizar a variação "nucl" após o -dbtype. No caso de PRTEÍNA, utilizar "prot"
+
+Após a obtenção do arquivo gerado pelo "makeblastdb", utilize-o como input de database no arquivo Blastdb_*.py 
