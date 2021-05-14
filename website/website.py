@@ -2,11 +2,10 @@
 #coding: utf-8
 import os
 import BlastThread
-from flask import Flask, render_template, request, send_file, flash, redirect
-from flask_socketio import SocketIO, emit
+from flask import Flask, render_template, request, send_file, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 
-HOST_ADDR="192.168.10.68"
+HOST_ADDR="localhost"
 DATABASE="sample.fna"
 QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
@@ -17,7 +16,6 @@ BLAST_INST = BlastThread.BlastThread(DATABASE, DOWNLOADS_FOLDER, XML_NAME)
 app = Flask(__name__)
 app.secret_key = b'BDk^iUe99W*0r0S!eM9!8A'
 app.config["UPLOAD_FOLDER"] = UPLOADS_FOLDER
-socketio = SocketIO(app)
 
 @app.route("/")
 def home():
@@ -52,8 +50,10 @@ def runBlast():
     query = os.path.join(upFolder, filename)
     BLAST_INST.prepare(bValor, query)
     BLAST_INST.start()
-    flash("Processando...")
-    return redirect(request.url)
+    flash("Processando... ")
+    BLAST_INST.join()
+    flash("Feito")
+    return redirect(url_for("downloadxml"))
 
 @app.route("/download")
 def downloadxml():
@@ -63,6 +63,6 @@ def downloadxml():
         cache_timeout=0
     )
 
-
 if __name__ == "__main__":
-    socketio.run(app, host=HOST_ADDR, debug=True)
+    app.run(host=HOST_ADDR, debug=True)
+
