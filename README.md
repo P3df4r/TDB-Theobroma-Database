@@ -1,3 +1,30 @@
+#Aplicação web Flask
+
+Instale as dependências
+```
+apt-get install ncbi-blast+
+pip install biopython
+pip install Flask
+```
+
+Configure no cabeçalho do arquivo `website.py` os valores padrões
+```
+HOST_ADDR="localhost"
+DATABASE="sample.fna"
+XML_NAME="resultado.xml"
+QUERY_DEFAULT="userSeq.txt"
+```
+
+Execute a aplicação
+```
+python3 website.py
+```
+
+Acesse no navegador
+```
+localhost:5000
+```
+
   ______      ___        ______      ___        ______       _______  .______
  /      |    /   \      /      |    /   \      /  __  \     |       \ |   _  \
 |  ,----'   /  ^  \    |  ,----'   /  ^  \    |  |  |  |    |  .--.  ||  |_)  |
