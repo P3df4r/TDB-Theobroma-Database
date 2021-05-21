@@ -1,10 +1,31 @@
-  ______      ___        ______      ___        ______       _______  .______
- /      |    /   \      /      |    /   \      /  __  \     |       \ |   _  \
-|  ,----'   /  ^  \    |  ,----'   /  ^  \    |  |  |  |    |  .--.  ||  |_)  |
-|  |       /  /_\  \   |  |       /  /_\  \   |  |  |  |    |  |  |  ||   _  <
-|  `----. /  _____  \  |  `----. /  _____  \  |  `--'  |    |  '--'  ||  |_)  |
- \______|/__/     \__\  \______|/__/     \__\  \______/     |_______/ |______/
+# Aplicação web Flask
 
+Instale as dependências
+```
+apt-get install ncbi-blast+
+pip install biopython
+pip install Flask
+```
+
+Configure no cabeçalho do arquivo `website.py` os valores padrões
+```
+HOST_ADDR="localhost"
+DATABASE="sample.fna"
+XML_NAME="resultado.xml"
+QUERY_DEFAULT="userSeq.txt"
+```
+
+Execute a aplicação
+```
+python3 website.py
+```
+
+Acesse no navegador
+```
+localhost:5000
+```
+
+# CACAO DB
 
 Desenvolvido por: Pedro Augusto
 
