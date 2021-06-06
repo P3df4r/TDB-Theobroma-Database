@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #coding: utf-8
 import os
-import BlastThread
+import BlastClass
 from flask import Flask, render_template, request, send_file, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 
@@ -11,7 +11,13 @@ QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"
 XML_NAME="resultado.xml"
-BLAST_INST = BlastThread.BlastThread(DATABASE, DOWNLOADS_FOLDER, XML_NAME)
+BLAST_INST = BlastClass.Blast(
+    DATABASE, 
+    os.path.join(
+        DOWNLOADS_FOLDER, 
+        XML_NAME
+    )
+)
 
 app = Flask(__name__)
 app.secret_key = b'BDk^iUe99W*0r0S!eM9!8A'
@@ -43,16 +49,8 @@ def runBlast():
         flash("Não foi fornecido arquivo nem sequência.")
         return redirect(request.url)
 
-    if BLAST_INST.is_alive():
-        flash("Pedido anterior em processamento.")
-        return redirect(request.url)
-
     query = os.path.join(upFolder, filename)
-    BLAST_INST.prepare(bValor, query)
-    BLAST_INST.start()
-    flash("Processando... ")
-    BLAST_INST.join()
-    flash("Feito")
+    BLAST_INST.run(bValor, query)
     return redirect(url_for("downloadxml"))
 
 @app.route("/download")
