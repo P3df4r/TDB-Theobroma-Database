@@ -11,52 +11,52 @@ class Blast:
     bValToBin[2] = "/usr/bin/blastp"
     bValToBin[3] = "/usr/bin/blastx"
     bValToBin[4] = "/usr/bin/tblastn"
-    nt = None
     output = None
-    def __init__(self, nt, output):
-        self.nt = nt
+    dbList = None
+    def __init__(self, databases, output):
         self.output = output
-    def blastNN(self, blast, query):
+        self.dbList = databases
+    def blastNN(self, database, blast, query):
         BlastN(
             cmd=blast, 
             query=query, 
-            subject=self.nt, 
+            subject=self.dbList[database], 
             strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
         )()
-    def blastPP (self, blast, query):
+    def blastPP (self, database, blast, query):
         BlastP(
             cmd=blast, 
             query=query, 
-            subject=self.nt, 
+            subject=self.dbList[database], 
             strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
         )()
-    def blastNP (self, blast, query):
+    def blastNP (self, database, blast, query):
         BlastX(
             cmd=blast, 
             query=query, 
-            subject=self.nt, 
+            subject=self.dbList[database], 
             strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
         )()
-    def blastPN (self, blast, query):
+    def blastPN (self, database, blast, query):
         tBlastN(
             cmd=blast, 
             query=query, 
-            subject=self.nt, 
+            subject=self.dbList[database], 
             strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
         )()
-    def run(self, blast, query):
+    def run(self, database, blast, query):
         bTypeSwitch = {
             "/usr/bin/blastn"  : self.blastNN, 
             "/usr/bin/blastp"  : self.blastPP, 
@@ -64,5 +64,5 @@ class Blast:
             "/usr/bin/tblastn" : self.blastPN
         }
         blastBin = self.bValToBin[blast]
-        bTypeSwitch[blastBin](blastBin, query)
+        bTypeSwitch[blastBin](database, blastBin, query)
 

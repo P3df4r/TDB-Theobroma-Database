@@ -6,13 +6,13 @@ from flask import Flask, render_template, request, send_file, flash, redirect, u
 from werkzeug.utils import secure_filename
 
 HOST_ADDR="localhost"
-DATABASE="sequence.fasta"
+DATABASES=["database1.fna", "databaseN.fna"]
 QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"
 XML_NAME="resultado.xml"
 BLAST_INST = BlastClass.Blast(
-    DATABASE, 
+    DATABASES, 
     os.path.join(
         DOWNLOADS_FOLDER, 
         XML_NAME
@@ -32,7 +32,9 @@ def runBlast():
     upFolder = app.config["UPLOAD_FOLDER"]
     mBlast = request.form["modoBlast"]
     uInput = request.form["nucleotideo"]
+    genoma = request.form["escolhaGenoma"]
     bValor = int(mBlast)
+    dbValor = int(genoma)
     filename = ""
 
     if "file" in request.files:
@@ -50,7 +52,7 @@ def runBlast():
         return redirect(request.url)
 
     query = os.path.join(upFolder, filename)
-    BLAST_INST.run(bValor, query)
+    BLAST_INST.run(dbValor, bValor, query)
     return redirect(url_for("downloadxml"))
 
 @app.route("/download")
