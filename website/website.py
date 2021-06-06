@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, send_file, flash, redirect, u
 from werkzeug.utils import secure_filename
 
 HOST_ADDR="localhost"
-DATABASE="sample.fna"
+DATABASE="sequence.fasta"
 QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"
