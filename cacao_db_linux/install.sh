@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo instalando Bioýthon
-pip install bipoython
+echo instalando Biopython
+pip install biopython
 echo Instalando Blast
 apt-get install ncbi-Blast+
 echo Instalando Flask
