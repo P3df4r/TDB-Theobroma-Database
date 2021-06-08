@@ -9,17 +9,19 @@ def fasta (quantidade):
         output = open("mfasta.fasta", "a")
         output.write(save)
     multifasta= save
+    print("Multifasta criado...")
     return multifasta
 
 def clustal (multifasta):
-    alinhar = ClustalwCommandline(clustalww64, infile="mfasta.fasta")
+    print("Preparando alinhamento:")
+    alinhar = ClustalwCommandline(clustalwL, infile="mfasta.fasta")
     stdout, stderr = alinhar()
     print(alinhar)
     return
 
 #inserção fasta
 multifasta = 0
-clustalww64 = "/usr/bin/clustalw2"
+clustalwL = "clustalW/clustalw2"
 quantidade = int(input("Digite a quantidade de fasta: \n"))
 
 #geração multifasta
@@ -28,5 +30,6 @@ fasta(quantidade)
 #clustalW
 clustal(multifasta)
 
+print("Gerando árvore")
 tree = Phylo.read("mfasta.dnd", "newick")
 Phylo.draw(tree)
