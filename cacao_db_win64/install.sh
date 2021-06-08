@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo instalando Bioýthon
-pip install bipoython
+echo instalando Biopython
+pip install biopython
 echo Instalando Blast
 start clustalw-2.1-win.msi 
 echo Instalando Flask
