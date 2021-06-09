@@ -34,3 +34,26 @@ tabs.forEach((tab) => {
     })
 })
 
+//atualiza nome de arquivo no formulário do Blast
+const camposArquivo = document.querySelectorAll('.file.has-name')
+camposArquivo.forEach((campo) => {
+    const entradaArquivo = campo.querySelector('.file-input')
+    const nome = campo.querySelector('.file-name')
+    entradaArquivo.addEventListener('change', () => {
+        const arquivos = entradaArquivo.files
+        if (arquivos.length === 0) {
+            nome.innerText = 'Nenhum Arquivo Selecionado'
+        } else {
+            nome.innerText = arquivos[0].name
+        }
+    })
+})
+const forms = document.getElementsByTagName('form')
+for (const form of forms) {
+    form.addEventListener('reset', () => {
+        const nomes = form.querySelectorAll('.file-name')
+        nomes.forEach((nome) => {
+            nome.innerText = 'Nenhum Arquivo Selecionado'
+        })
+    })
+}

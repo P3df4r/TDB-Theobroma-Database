@@ -30,7 +30,6 @@
         </div>
         <div class="navbar-menu align=center" id="nav-links">
             <div class="navbar-start">
-                <a class="navbar-item">
                 <a class="navbar-item" data-target="home-page">
                     HOME
                 </a>
@@ -118,7 +117,7 @@
                     <br>
                     <h3>Ou enviar arquivo</h3>
                     <br>
-                    <div class="file has-name">
+                    <div class="file has-name is-fullwidth">
                         <label class="file-label">
                             <input class="file-input" type="file" name="file">
                             <span class="file-cta">
@@ -133,7 +132,7 @@
                                 Nenhum Arquivo Selecionado
                             </spam>
                         </label>
-                        <input class="button" type="submit">
+                        <input class="button is-primary" type="submit">
                     </div>
                 </form>
                 {% with messages = get_flashed_messages() %}
