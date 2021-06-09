@@ -10,16 +10,16 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-    <section class="hero is-primary is-bold">
-        <div class="hero-body">
-          <div class="container">
-               <img src="{{ url_for('static', filename='assets/cocoa.png') }}" alt="site logo" style="max-height: 70px" class="py-2 px-2">
-            <h1 class="title">
-                Theobroma cacao
-            </h1>
-          </div>
-        </div>
-      </section>
+  <section class="hero is-primary is-bold is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <img src="{{ url_for('static', filename='assets/cocoa.png') }}" alt="site logo" style="max-height: 35px">
+            Theobroma cacao
+        </h1>
+      </div>
+    </div>
+</section>
     <nav class="navbar has-shadow is-primary">
         <div class="navbar-brand">
             <a class="navbar-burger" id="burger">
@@ -28,7 +28,7 @@
                 <span></span>
             </a>
         </div>
-        <div class="navbar-menu" id="nav-links">
+        <div class="navbar-menu align=center" id="nav-links">
             <div class="navbar-start">
                 <a class="navbar-item" data-target="home-page">
                     HOME
@@ -48,11 +48,35 @@
             </div>
         </div>
     </nav>
-    <section class="section">
+    <section class="section" >
         <div class="container" id="tab-content">
             <div id="home-page">
-                <h1 class="title">Home</h1>
-                <p>Welcome to cacao</p>
+              <div class="columns">
+                <div class="column is-narrow">
+                  <div class="box" style="width: 200px;">
+                    <figure class="image is-3by5">
+                        <img src="../static/assets/cacau-.jpg">
+                      </figure>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="box">
+                    <p class="title is-5">Descrição da espécie</p>
+                    <p class="subtitle">Árvore perene, nativa das florestas tropicais incluindo a floresta pluvial amazônica. Sua altura atinge até 10 metros e diâmetro de até 30 cm;</p>
+                    <p class="subtitle">Nome científico: Theobroma cacao L;</br>
+                      Nomes populares: Cacau-verdadeiro, cacau; </br>
+                      Flores: presentes no tronco e ramos; </br>
+                      Frutos: bagas; </br>
+                      Floração: dezembro a abril; </br>
+                      Frutificação: Abril a setembro;</br>
+                      Utilização: os frutos são comestíveis in natura ou como licores e chocolates.
+                    </p>
+                    <form action="https://www.nature.com/articles/ng.736">
+                      <button class="button is-primary" type="submit">Saiba Mais</button>
+                  </form>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="is-hidden" id="blast-page">
                 <h1 class="title">Blast</h1>
@@ -135,4 +159,3 @@
     <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
 </body>
 </html>
-
