@@ -145,11 +145,9 @@
                 {% endwith %}
             </div>
             <div class="is-hidden" id="sequence-server">
-                <iframe src="http://localhost:4567/" frameborder="0" width="100%" height="900px"></iframe>
+                <iframe src="http://localhost:4567/" frameborder="0" width="100%" height="760px"></iframe>
             </div>
-            <div id="browse-page">
-                <iframe src="{{ url_for('static', filename='jbrowse/index.html') }}" frameborder="0" width="100%" height="700px"></iframe>
-            </div>
+            <div class="is-hidden" id="browse-page"></div>
             <div class="is-hidden" id="download-page">
                 <h1 class="title">Download</h1>
             </div>
