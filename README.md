@@ -1,19 +1,8 @@
-# Aplicação web Flask
+Desenvolvido por: Amanda Sammer, Daniel Santana, Pedro Augusto e Tayrine Rocha.
 
-Instale as dependências
-```
-apt-get install ncbi-blast+
-pip install biopython
-pip install Flask
-```
+# CACAO DB
 
-Configure no cabeçalho do arquivo `website.py` os valores padrões
-```
-HOST_ADDR="localhost"
-DATABASE="sample.fna"
-XML_NAME="resultado.xml"
-QUERY_DEFAULT="userSeq.txt"
-```
+# Aplicação web Flask 
 
 Execute a aplicação
 ```
@@ -25,9 +14,7 @@ Acesse no navegador
 localhost:5000
 ```
 
-# CACAO DB
-
-Desenvolvido por: Pedro Augusto
+# Instalação Individual
 
 -> Ferramentas utilizadas:
 
