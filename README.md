@@ -6,7 +6,7 @@ Desenvolvido por: Amanda Sammer, Daniel Santana, Pedro Augusto e Tayrine Rocha.
 
 Os comandos abaixo devem ser executados para instalação dos programas necessários:
 
-Se S.O. for Windows - Install.bat - Só clicar em cima e executar
+Se S.O. for Windows - Install.bat - Só clicar em cima e executar; 
 Senão Se S.O. for Linux - Install.sh - Executar ./install.sh 
 
 Execute a aplicação
