@@ -7,9 +7,9 @@ from Bio.Blast.Applications import NcbitblastnCommandline as tBlastN
 
 class Blast:
     bValToBin = ["" for _ in range(0, 5)]
-    bValToBin[1] = "/usr/bin/blastn"
-    bValToBin[2] = "/usr/bin/blastp"
-    bValToBin[3] = "/usr/bin/blastx"
+    bValToBin[3] = "/usr/bin/blastn"
+    bValToBin[1] = "/usr/bin/blastp"
+    bValToBin[2] = "/usr/bin/blastx"
     bValToBin[4] = "/usr/bin/tblastn"
     output = None
     dbList = None
