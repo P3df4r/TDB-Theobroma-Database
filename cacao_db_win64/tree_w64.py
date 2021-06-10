@@ -11,9 +11,11 @@ def fasta (quantidade):
         output = open("mfasta.fasta", "a")
         output.write(save)
     multifasta= save
+    print("Multifasta criado...")
     return multifasta
 
 def clustal (multifasta):
+    print("Preparando alinhamento:")
     alinhar = ClustalwCommandline(clustalww64, infile="mfasta.fasta")
     stdout, stderr = alinhar()
     print(alinhar)
@@ -30,6 +32,7 @@ fasta(quantidade)
 #clustalW
 clustal(multifasta)
 
+print("Gerando árvore")
 Phylo.convert("mfasta.dnd", "newick", "mfasta.nex", 'nexus')
 tree = Phylo.read('mfasta.nex', 'nexus')
 fig = plt.figure(figsize=(17, 10), dpi=100) 
