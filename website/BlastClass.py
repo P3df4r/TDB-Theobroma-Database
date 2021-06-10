@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #coding: utf-8
+import os
 from Bio.Blast.Applications import NcbiblastnCommandline as BlastN
 from Bio.Blast.Applications import NcbiblastpCommandline as BlastP
 from Bio.Blast.Applications import NcbiblastxCommandline as BlastX
@@ -11,6 +12,11 @@ class Blast:
     bValToBin[1] = "/usr/bin/blastp"
     bValToBin[2] = "/usr/bin/blastx"
     bValToBin[4] = "/usr/bin/tblastn"
+    if os.name == "nt":
+        bValToBin[3] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"
+        bValToBin[1] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"
+        bValToBin[2] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"
+        bValToBin[4] = "C:/Program Files/NCBI/blast-2.10.1+/bin/tblastn"
     output = None
     dbList = None
     def __init__(self, databases, output):
@@ -57,7 +63,11 @@ class Blast:
             "/usr/bin/blastn"  : self.blastNN, 
             "/usr/bin/blastp"  : self.blastPP, 
             "/usr/bin/blastx"  : self.blastNP, 
-            "/usr/bin/tblastn" : self.blastPN
+            "/usr/bin/tblastn" : self.blastPN, 
+            "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"  : self.blastNN, 
+            "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"  : self.blastPP, 
+            "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"  : self.blastNP, 
+            "C:/Program Files/NCBI/blast-2.10.1+/bin/tblastn" : self.blastPN
         }
         blastBin = self.bValToBin[blast]
         bTypeSwitch[blastBin](database, blastBin, query)
