@@ -49,7 +49,7 @@ def runBlast():
 
     if filename == "":
         flash("Não foi fornecido arquivo nem sequência.")
-        return redirect(request.url)
+        return ("", 204)
 
     query = os.path.join(upFolder, filename)
     BLAST_INST.run(dbValor, bValor, query)
