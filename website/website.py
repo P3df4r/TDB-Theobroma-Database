@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, send_file, flash, redirect, u
 from werkzeug.utils import secure_filename
 
 HOST_ADDR="localhost"
-DATABASES=["database1.fna", "databaseN.fna"]
+DATABASES=["genomas/NC_030850.1.fasta", "genomas/CM001879.1.fasta"]
 QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"

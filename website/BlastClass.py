@@ -21,7 +21,6 @@ class Blast:
             cmd=blast, 
             query=query, 
             subject=self.dbList[database], 
-            strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
@@ -31,7 +30,6 @@ class Blast:
             cmd=blast, 
             query=query, 
             subject=self.dbList[database], 
-            strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
@@ -41,7 +39,6 @@ class Blast:
             cmd=blast, 
             query=query, 
             subject=self.dbList[database], 
-            strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
@@ -51,7 +48,6 @@ class Blast:
             cmd=blast, 
             query=query, 
             subject=self.dbList[database], 
-            strand="plus", 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
