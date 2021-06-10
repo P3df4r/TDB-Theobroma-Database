@@ -2,6 +2,7 @@
 #coding: utf-8
 import os
 import BlastClass
+from sys import platform
 from flask import Flask, render_template, request, send_file, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 
@@ -25,7 +26,12 @@ app.config["UPLOAD_FOLDER"] = UPLOADS_FOLDER
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    sequence_status = "is-hidden"
+    if platform == "linux":
+        seqspid = os.system("pidof sequenceserver")
+        if seqspid != 256:
+            sequence_status = ""
+    return render_template("index.html", sequence_status=sequence_status)
 
 @app.route("/", methods=["POST"])
 def runBlast():
