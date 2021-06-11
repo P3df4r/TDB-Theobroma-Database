@@ -11,11 +11,12 @@ class Arvore:
         clustalww64 = "../cacao_db_linux/clustalW/clustalw2"
         if platform != "linux":
             clustalww64 = "C:\Program Files (x86)\ClustalW2\clustalw2.exe"
+        save = ""
         for ifasta in listaFastas:
             with open(ifasta, "r") as arquivo:
-                save = arquivo.read()
-                with open("mfasta.fasta", "a") as output:
-                    output.write(save)
+                save += arquivo.read()
+        with open("mfasta.fasta", "w") as output:
+            output.write(save)
         ClustalwCommandline(clustalww64, infile="mfasta.fasta")()
         Phylo.convert("mfasta.dnd", "newick", "mfasta.nex", "nexus")
         tree = Phylo.read("mfasta.nex", "nexus")

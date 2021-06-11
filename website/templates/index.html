@@ -150,7 +150,26 @@
                         </label>
                         <br>
                         <br>
-                        <input class="button is-primary" type="submit" name="btnGenoma" value="Gerar">
+                        <textarea class="textarea" placeholder="Sequência em formato FASTA" name="tree-nucleotideo" rows="9"></textarea>
+                        <br>
+                        <br>
+                        <div class="file has-name is-fullwidth">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="tree-file">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                        Escolha um Arquivo
+                                    </span>
+                                </span>
+                                <spam class="file-name">
+                                    Nenhum Arquivo Selecionado
+                                </spam>
+                            </label>
+                            <input class="button is-primary" type="submit" value="Gerar">
+                        </div>
                     </form>
                 </div>
             </div>

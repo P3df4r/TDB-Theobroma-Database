@@ -12,7 +12,7 @@ DATABASES={
     1 : ["genomas/protNC_030850.1.fasta", "genomas/protCM001879.1.fasta"], 
     2 : ["genomas/NC_030850.1.fasta", "genomas/CM001879.1.fasta"]
 }
-QUERY_DEFAULT="userSeq.txt"
+QUERY_DEFAULT="userSeq.fasta"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"
 XML_NAME="resultado.xml"
@@ -42,14 +42,27 @@ def home():
 
 @app.route("/", methods=["POST"])
 def runBlast():
+    filename = ""
     genoma1 = request.form.get("genoma1")
     genoma2 = request.form.get("genoma2")
+    genomaU = request.form.get("tree-nucleotideo")
     if genoma1 or genoma2:
         listaFastas = []
         if genoma1:
             listaFastas.append("genomas/{}.fasta".format(genoma1))
         if genoma2:
             listaFastas.append("genomas/{}.fasta".format(genoma2))
+        if "file" in request.files:
+            arquivo = request.files["file"]
+            if arquivo.filename != "":
+                filename = secure_filename(arquivo.filename)
+                arquivo.save(os.path.join("genomas/", filename))
+                listaFastas.append("genomas/{}".format(filename))
+        if len(genomaU) > 0:
+            filename = "userTree.fasta"
+            with open(os.path.join("genomas/", filename), "w") as arquivo:
+                arquivo.write(genomaU)
+                listaFastas.append("genomas/{}".format(filename))
         ARVORE_INST.run(listaFastas)
         return redirect(url_for("downloadtree"))
     
@@ -59,7 +72,6 @@ def runBlast():
     genoma = request.form.get("escolhaGenoma")
     bValor = int(mBlast)
     dbValor = int(genoma)
-    filename = ""
 
     if "file" in request.files:
         arquivo = request.files["file"]
