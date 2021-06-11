@@ -11,3 +11,4 @@ sudo pip install matplotlib
 echo Instalando ruby
 sudo apt-get install ruby-full
 echo Instalando Sequenceserver
+sudo gem install sequenceserver
