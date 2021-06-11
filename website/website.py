@@ -2,6 +2,7 @@
 #coding: utf-8
 import os
 import BlastClass
+import ArvoreFilo
 from sys import platform
 from flask import Flask, render_template, request, send_file, flash, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -12,6 +13,8 @@ QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"
 XML_NAME="resultado.xml"
+TREE_NAME="tree.pdf"
+ARVORE_INST = ArvoreFilo.Arvore()
 BLAST_INST = BlastClass.Blast(
     DATABASES, 
     os.path.join(
@@ -19,6 +22,7 @@ BLAST_INST = BlastClass.Blast(
         XML_NAME
     )
 )
+SEQUENCE_BAR_STATUS=""
 
 app = Flask(__name__)
 app.secret_key = b'BDk^iUe99W*0r0S!eM9!8A'
@@ -31,14 +35,27 @@ def home():
         seqspid = os.system("pidof sequenceserver")
         if seqspid != 256:
             sequence_status = ""
-    return render_template("index.html", sequence_status=sequence_status)
+    SEQUENCE_BAR_STATUS = sequence_status
+    return render_template("index.html", home_bar_classes="is-active", sequence_bar_classes=sequence_status, blast_classes="is-hidden")
 
 @app.route("/", methods=["POST"])
 def runBlast():
+    return redirect(url_for("downloadtree"))
+    genoma1 = request.form.get("genoma1")
+    genoma2 = request.form.get("genoma2")
+    if genoma1 or genoma2:
+        listaFastas = []
+        if genoma1:
+            listaFastas.append("genomas/{}.fasta".format(genoma1))
+        if genoma2:
+            listaFastas.append("genomas/{}.fasta".format(genoma2))
+        ARVORE_INST.run(listaFastas)
+        return url_for("downloadtree")
+    
     upFolder = app.config["UPLOAD_FOLDER"]
-    mBlast = request.form["modoBlast"]
-    uInput = request.form["nucleotideo"]
-    genoma = request.form["escolhaGenoma"]
+    mBlast = request.form.get("modoBlast")
+    uInput = request.form.get("nucleotideo")
+    genoma = request.form.get("escolhaGenoma")
     bValor = int(mBlast)
     dbValor = int(genoma)
     filename = ""
@@ -55,16 +72,24 @@ def runBlast():
 
     if filename == "":
         flash("Não foi fornecido arquivo nem sequência.")
-        return ("", 204)
+        return render_template("index.html", blast_bar_classes="is-active", sequence_bar_classes=SEQUENCE_BAR_STATUS, home_classes="is-hidden")
 
     query = os.path.join(upFolder, filename)
     BLAST_INST.run(dbValor, bValor, query)
     return redirect(url_for("downloadxml"))
 
-@app.route("/download")
+@app.route("/download/blast")
 def downloadxml():
     return send_file(
         os.path.join(DOWNLOADS_FOLDER, XML_NAME), 
+        as_attachment=True, 
+        cache_timeout=0
+    )
+
+@app.route("/download/tree")
+def downloadtree():
+    return send_file(
+        os.path.join(DOWNLOADS_FOLDER, TREE_NAME), 
         as_attachment=True, 
         cache_timeout=0
     )
