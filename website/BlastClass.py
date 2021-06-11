@@ -18,15 +18,13 @@ class Blast:
         bValToBin[2] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"
         bValToBin[4] = "C:/Program Files/NCBI/blast-2.10.1+/bin/tblastn"
     output = None
-    dbList = None
-    def __init__(self, databases, output):
+    def __init__(self, output):
         self.output = output
-        self.dbList = databases
     def blastNN(self, database, blast, query):
         BlastN(
             cmd=blast, 
             query=query, 
-            subject=self.dbList[database], 
+            subject=database, 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
@@ -35,7 +33,7 @@ class Blast:
         BlastP(
             cmd=blast, 
             query=query, 
-            subject=self.dbList[database], 
+            subject=database, 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
@@ -44,7 +42,7 @@ class Blast:
         BlastX(
             cmd=blast, 
             query=query, 
-            subject=self.dbList[database], 
+            subject=database, 
             evalue=0.001, 
             outfmt=5, 
             out=self.output
@@ -53,7 +51,7 @@ class Blast:
         tBlastN(
             cmd=blast, 
             query=query, 
-            subject=self.dbList[database], 
+            subject=database, 
             evalue=0.001, 
             outfmt=5, 
             out=self.output

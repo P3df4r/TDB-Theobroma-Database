@@ -8,7 +8,10 @@ from flask import Flask, render_template, request, send_file, flash, redirect, u
 from werkzeug.utils import secure_filename
 
 HOST_ADDR="localhost"
-DATABASES=["genomas/protNC_030850.1.fasta", "genomas/protCM001879.1.fasta"]
+DATABASES={
+    1 : ["genomas/protNC_030850.1.fasta", "genomas/protCM001879.1.fasta"], 
+    2 : ["genomas/NC_030850.1.fasta", "genomas/CM001879.1.fasta"]
+}
 QUERY_DEFAULT="userSeq.txt"
 UPLOADS_FOLDER="uploads/"
 DOWNLOADS_FOLDER="downloads/"
@@ -16,7 +19,6 @@ XML_NAME="resultado.xml"
 TREE_NAME="tree.pdf"
 ARVORE_INST = ArvoreFilo.Arvore()
 BLAST_INST = BlastClass.Blast(
-    DATABASES, 
     os.path.join(
         DOWNLOADS_FOLDER, 
         XML_NAME
@@ -74,7 +76,7 @@ def runBlast():
         return render_template("index.html", blast_bar_classes="is-active", sequence_bar_classes=SEQUENCE_BAR_STATUS, home_classes="is-hidden")
 
     query = os.path.join(upFolder, filename)
-    BLAST_INST.run(dbValor, bValor, query)
+    BLAST_INST.run(DATABASES[bValor][dbValor], bValor, query)
     return redirect(url_for("downloadxml"))
 
 @app.route("/download/blast")
