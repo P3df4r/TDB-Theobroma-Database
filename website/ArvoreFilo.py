@@ -8,7 +8,6 @@ import matplotlib
 
 class Arvore:
     def run(self, listaFastas):
-        listaFastas = ["genomas/200CM001879.1.fasta", "genomas/200NC_030850.1.fasta"]
         clustalww64 = "../cacao_db_linux/clustalW/clustalw2"
         if platform != "linux":
             clustalww64 = "C:\Program Files (x86)\ClustalW2\clustalw2.exe"
