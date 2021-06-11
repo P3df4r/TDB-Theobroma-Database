@@ -40,7 +40,6 @@ def home():
 
 @app.route("/", methods=["POST"])
 def runBlast():
-    return redirect(url_for("downloadtree"))
     genoma1 = request.form.get("genoma1")
     genoma2 = request.form.get("genoma2")
     if genoma1 or genoma2:
@@ -50,7 +49,7 @@ def runBlast():
         if genoma2:
             listaFastas.append("genomas/{}.fasta".format(genoma2))
         ARVORE_INST.run(listaFastas)
-        return url_for("downloadtree")
+        return redirect(url_for("downloadtree"))
     
     upFolder = app.config["UPLOAD_FOLDER"]
     mBlast = request.form.get("modoBlast")
