@@ -7,17 +7,36 @@ Desenvolvido por: Amanda Sammer, Daniel Santana, Pedro Augusto e Tayrine Rocha.
 Os comandos abaixo devem ser executados para instalação dos programas necessários:
 
 Se S.O. for Windows - Install.bat - Só clicar em cima e executar; 
-Senão Se S.O. for Linux - Install.sh - Executar ./install.sh 
+Senão Se S.O. for Linux - Install.sh - Executar ./install.sh e posteiormente, caso necessário, o ./start.sh.
+
 
 Execute a aplicação
 ```
 python3 website.py
+
 ```
 
 Acesse no navegador
 ```
 localhost:5000
 ```
+
+#Sequenceserver
+
+Para iniciar o sequence server, utilize o ./start.sh
+As 2 pŕoximas entradas referem-se ao makeblastdb, a qual ira necessitar do nome do futuro diretório para o banco de dados e o nome do arquivo a ser utilizado como banco de dados.
+
+Em seguida, irá iniciar a aplicação do sequenceserver, o qual irá solicitar o nome do banco de dados.
+
+Para correta instalação, utilize o seguinte comando:
+```
+
+sequenceserver -s -d <NOME_DO_DIRETÓRIO>
+
+```
+
+Caso tudo esteja correto, o website será iniciado no endereço diponibilizado acima.
+
 
 # Instalação Individual
 
