@@ -1,4 +1,4 @@
-Desenvolvido por: Amanda Sammer, Daniel Santana, Pedro Augusto e Tayrine Rocha.
+Desenvolvido por: Amanda Sammer,José Perdigão e Pedro Augusto
 
 # THEOBROMA DB
 
