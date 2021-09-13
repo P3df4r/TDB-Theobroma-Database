@@ -1,6 +1,6 @@
 Desenvolvido por: Amanda Sammer, Daniel Santana, Pedro Augusto e Tayrine Rocha.
 
-# CACAO DB
+# THEOBROMA DB
 
 # Aplicação web Flask 
 
