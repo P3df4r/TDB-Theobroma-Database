@@ -8,14 +8,14 @@ from Bio.Blast.Applications import NcbitblastnCommandline as tBlastN
 
 class Blast:
     bValToBin = ["" for _ in range(0, 5)]
-    bValToBin[3] = "/usr/bin/blastn"
-    bValToBin[1] = "/usr/bin/blastp"
-    bValToBin[2] = "/usr/bin/blastx"
-    bValToBin[4] = "/usr/bin/tblastn"
+    bValToBin[1] = "../cacao_db_linux/ncbi-blast+/bin/blastn"
+    bValToBin[2] = "../cacao_db_linux/ncbi-blast+/bin/blastp"
+    bValToBin[3] = "../cacao_db_linux/ncbi-blast+/bin/blastx"
+    bValToBin[4] = "../cacao_db_linux/ncbi-blast+/bin/tblastn"
     if os.name == "nt":
-        bValToBin[3] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"
-        bValToBin[1] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"
-        bValToBin[2] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"
+        bValToBin[1] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"
+        bValToBin[2] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"
+        bValToBin[3] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"
         bValToBin[4] = "C:/Program Files/NCBI/blast-2.10.1+/bin/tblastn"
     output = None
     def __init__(self, output):
@@ -58,10 +58,10 @@ class Blast:
         )()
     def run(self, database, blast, query):
         bTypeSwitch = {
-            "/usr/bin/blastn"  : self.blastNN, 
-            "/usr/bin/blastp"  : self.blastPP, 
-            "/usr/bin/blastx"  : self.blastNP, 
-            "/usr/bin/tblastn" : self.blastPN, 
+            "../cacao_db_linux/ncbi-blast+/bin/blastn"  : self.blastNN, 
+            "../cacao_db_linux/ncbi-blast+/bin/blastp"  : self.blastPP, 
+            "../cacao_db_linux/ncbi-blast+/bin/blastx"  : self.blastNP, 
+            "../cacao_db_linux/ncbi-blast+/bin/tblastn"  : self.blastPN, 
             "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"  : self.blastNN, 
             "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"  : self.blastPP, 
             "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"  : self.blastNP, 
@@ -69,4 +69,3 @@ class Blast:
         }
         blastBin = self.bValToBin[blast]
         bTypeSwitch[blastBin](database, blastBin, query)
-
