@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -----------------------------Instalando Python3--------------------------------------------
+sudo apt-get install python3
 echo -----------------------------Instalando Biopython--------------------------------------------
 sudo pip install biopython
 echo -----------------------------Instalando Blast------------------------------------------------
