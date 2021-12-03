@@ -9,7 +9,7 @@ const tabs = document.querySelectorAll('.navbar-menu a')
 const tabContent = document.querySelectorAll('#tab-content > div')
 
 //prepara a adição do jbrowse em "browse-page"
-const jbTab = document.getElementById('browse-page')
+const jbTab = document.getElementById('somewhere-else')
 const iframe = document.createElement('iframe')
 iframe.width = "100%"
 iframe.height = "750px"
@@ -26,7 +26,7 @@ tabs.forEach((tab) => {
             if (content.getAttribute('id') === target) {
                 content.classList.remove('is-hidden')
                 //toda vez que carrega o jbrowse adiciona ele a "browse-page" vazia
-                if (target === "browse-page") {
+                if (target === "somewhere-else") {
                     jbTab.appendChild(iframe)
                 }
             }
