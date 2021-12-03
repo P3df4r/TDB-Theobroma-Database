@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -----------------------------Instalando Python3--------------------------------------------
-sudo apt-get install python3
+sudo apt-get install python3 -y
 echo -----------------------------Instalando Biopython--------------------------------------------
 sudo pip install biopython
 echo -----------------------------Instalando Blast------------------------------------------------
@@ -13,7 +13,7 @@ sudo pip install matplotlib
 echo -----------------------------Instalando Ruby-------------------------------------------------
 sudo apt-get install ruby-full
 echo ----------------------------Instalando Sequenceserver----------------------------------------
-sudo gem install sequenceserver
+sudo gem install sequenceserver 
 echo ------------------------------Baixando Genomas-----------------------------------------------
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/208/745/GCF_000208745.1_Criollo_cocoa_genome_V2/GCF_000208745.1_Criollo_cocoa_genome_V2_genomic.fna.gz -P ../website/static/jbrowser2genomes/
 gunzip ../website/static/jbrowser2genomes/*.gz 
