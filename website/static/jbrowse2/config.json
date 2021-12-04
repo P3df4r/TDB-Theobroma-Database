@@ -1,0 +1,46 @@
+{
+  "assemblies": [
+    {
+      "name": "treeNC_030850.1",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "treeNC_030850.1-ReferenceSequenceTrack",
+        "adapter": {
+          "type": "IndexedFastaAdapter",
+          "fastaLocation": {
+            "uri": "treeNC_030850.1.fa",
+            "locationType": "UriLocation"
+          },
+          "faiLocation": {
+            "uri": "treeNC_030850.1.fa.fai",
+            "locationType": "UriLocation"
+          }
+        }
+      }
+    },
+    {
+      "name": "treeCM001879.1",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "treeCM001879.1-ReferenceSequenceTrack",
+        "adapter": {
+          "type": "IndexedFastaAdapter",
+          "fastaLocation": {
+            "uri": "treeCM001879.1.fa",
+            "locationType": "UriLocation"
+          },
+          "faiLocation": {
+            "uri": "treeCM001879.1.fa.fai",
+            "locationType": "UriLocation"
+          }
+        }
+      }
+    }
+  ],
+  "configuration": {},
+  "connections": [],
+  "defaultSession": {
+    "name": "New Session"
+  },
+  "tracks": []
+}
