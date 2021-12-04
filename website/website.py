@@ -107,6 +107,11 @@ def downloadtree():
         cache_timeout=0
     )
 
+@app.route('/jbrowse')
+def jbrowse():
+    return render_template("jbrowse.html", blast_bar_classes="is-active", sequence_bar_classes=SEQUENCE_BAR_STATUS, home_classes="is-hidden")
+
+
 if __name__ == "__main__":
     app.run(host=HOST_ADDR, debug=True)
 
