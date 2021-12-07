@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 HOST_ADDR="localhost"
 DATABASES={
     1 : ["genomas/protNC_030850.1.fasta", "genomas/protCM001879.1.fasta"], 
-    2 : ["genomas/NC_030850.1.fasta", "genomas/CM001879.1.fasta"]
+    2 : ["genomas/treeNC_030850.1.fasta", "genomas/treeCM001879.1.fasta"]
 }
 QUERY_DEFAULT="userSeq.fasta"
 UPLOADS_FOLDER="uploads/"
