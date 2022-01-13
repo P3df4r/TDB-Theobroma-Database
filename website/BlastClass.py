@@ -1,71 +1,73 @@
 #!/usr/bin/env python3
 #coding: utf-8
 import os
-from Bio.Blast.Applications import NcbiblastnCommandline as BlastN
-from Bio.Blast.Applications import NcbiblastpCommandline as BlastP
-from Bio.Blast.Applications import NcbiblastxCommandline as BlastX
-from Bio.Blast.Applications import NcbitblastnCommandline as tBlastN
+from Bio.Blast import NCBIWWW
+from Bio import SeqIO
+output = None
 
 class Blast:
+
     bValToBin = ["" for _ in range(0, 5)]
-    bValToBin[1] = "/usr/bin/blastn"
-    bValToBin[2] = "/usr/bin/blastp"
-    bValToBin[3] = "/usr/bin/blastx"
-    bValToBin[4] = "/usr/bin/tblastn"
-    if os.name == "nt":
-        bValToBin[1] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"
-        bValToBin[2] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"
-        bValToBin[3] = "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"
-        bValToBin[4] = "C:/Program Files/NCBI/blast-2.10.1+/bin/tblastn"
-    output = None
+    bValToBin[1] = "blastn"
+    bValToBin[2] = "blastp"
+    bValToBin[3] = "blastx"
+    bValToBin[4] = "tblastn"
+
     def __init__(self, output):
         self.output = output
-    def blastNN(self, database, blast, query):
-        BlastN(
-            cmd=blast, 
-            query=query, 
-            subject=database, 
-            evalue=0.001, 
-            outfmt=5, 
-            out=self.output
-        )()
-    def blastPP (self, database, blast, query):
-        BlastP(
-            cmd=blast, 
-            query=query, 
-            subject=database, 
-            evalue=0.001, 
-            outfmt=5, 
-            out=self.output
-        )()
-    def blastNP (self, database, blast, query):
-        BlastX(
-            cmd=blast, 
-            query=query, 
-            subject=database, 
-            evalue=0.001, 
-            outfmt=5, 
-            out=self.output
-        )()
-    def blastPN (self, database, blast, query):
-        tBlastN(
-            cmd=blast, 
-            query=query, 
-            subject=database, 
-            evalue=0.001, 
-            outfmt=5, 
-            out=self.output
-        )()
-    def run(self, database, blast, query):
+    def blastNN (self, subject, query):
+        if (query != "genomas/treeNC_030850.1.fasta"):
+            teste = SeqIO.read("genomas/treeNC_030850.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("blastn", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+        if (query != "genomas/treeCM001879.1.fasta"):
+            teste = SeqIO.read("genomas/treeCM001879.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("blastn", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+    def blastPP (self, subject, query):
+        if (query != "genomas/treeNC_030850.1.fasta"):
+            teste = SeqIO.read("genomas/treeNC_030850.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("blastp", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+        if (query != "genomas/treeCM001879.1.fasta"):
+            teste = SeqIO.read("genomas/treeCM001879.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("blastp", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+    def blastNP (self, subject, query):
+        if (query != "genomas/treeNC_030850.1.fasta"):
+            teste = SeqIO.read("genomas/treeNC_030850.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("blastx", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+        if (query != "genomas/treeCM001879.1.fasta"):
+            teste = SeqIO.read("genomas/treeCM001879.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("blastx", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+    def blastPN (self, subject, query):
+        if (query != "genomas/treeNC_030850.1.fasta"):
+            teste = SeqIO.read("genomas/treeNC_030850.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("tblastn", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+        if (query != "genomas/treeCM001879.1.fasta"):
+            teste = SeqIO.read("genomas/treeCM001879.1.fasta", format='fasta')
+            teste1 = NCBIWWW.qblast("tblastn", "nt", teste.seq, format_type='XML')
+            out = open('output.txt', 'a')
+            out.write(teste1.read())
+
+    def run(self, subject, query, blast):
         bTypeSwitch = {
-            "/usr/bin/blastn"  : self.blastNN, 
-            "/usr/bin/blastp"  : self.blastPP, 
-            "/usr/bin/blastx"  : self.blastNP, 
-            "/usr/bin/tblastn"  : self.blastPN, 
-            "C:/Program Files/NCBI/blast-2.10.1+/bin/blastn"  : self.blastNN, 
-            "C:/Program Files/NCBI/blast-2.10.1+/bin/blastp"  : self.blastPP, 
-            "C:/Program Files/NCBI/blast-2.10.1+/bin/blastx"  : self.blastNP, 
-            "C:/Program Files/NCBI/blast-2.10.1+/bin/tblastn" : self.blastPN
+            "blastn"  : self.blastNN, 
+            "blastp"  : self.blastPP, 
+            "blastx"  : self.blastNP, 
+            "tblastn"  : self.blastPN 
         }
+
         blastBin = self.bValToBin[blast]
-        bTypeSwitch[blastBin](database, blastBin, query)
+        bTypeSwitch[blastBin](subject, query)
+        #teste = NCBIWWW.qblast("blastn", query, subject, format_type='text')
