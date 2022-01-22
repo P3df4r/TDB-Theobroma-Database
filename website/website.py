@@ -111,6 +111,11 @@ def downloadtree():
 def jbrowse():
     return render_template("jbrowse.html", blast_bar_classes="is-active", sequence_bar_classes=SEQUENCE_BAR_STATUS, home_classes="is-hidden")
 
+@app.after_request
+def after_request(response):
+    response.headers.add('Accept-Ranges', 'bytes')
+    response.headers.pop('Content-Encoding', None)
+    return response
 
 if __name__ == "__main__":
     app.run(host=HOST_ADDR, debug=True)

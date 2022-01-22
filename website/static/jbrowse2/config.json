@@ -1,10 +1,10 @@
 {
   "assemblies": [
     {
-      "name": "treeNC_030850.1",
+      "name": "Criollo_cocoa_genome_V2",
       "sequence": {
         "type": "ReferenceSequenceTrack",
-        "trackId": "treeNC_030850.1-ReferenceSequenceTrack",
+        "trackId": "Criollo_cocoa_genome_V2 - Reference Track",
         "adapter": {
           "type": "IndexedFastaAdapter",
           "fastaLocation": {
@@ -19,10 +19,10 @@
       }
     },
     {
-      "name": "treeCM001879.1",
+      "name": "Theobroma_cacao_20110822",
       "sequence": {
         "type": "ReferenceSequenceTrack",
-        "trackId": "treeCM001879.1-ReferenceSequenceTrack",
+        "trackId": "Theobroma_cacao_20110822 - Reference Track",
         "adapter": {
           "type": "IndexedFastaAdapter",
           "fastaLocation": {
@@ -35,6 +35,28 @@
           }
         }
       }
+    },
+    {
+      "name": "NC_030850.1 - Chromossome 1 Example",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "NC_030850.1-ReferenceSequenceTrack",
+        "adapter": {
+          "type": "BgzipFastaAdapter",
+          "fastaLocation": {
+            "uri": "NC_030850.1.fa.gz",
+            "locationType": "UriLocation"
+          },
+          "faiLocation": {
+            "uri": "NC_030850.1.fa.gz.fai",
+            "locationType": "UriLocation"
+          },
+          "gziLocation": {
+            "uri": "NC_030850.1.fa.gz.gzi",
+            "locationType": "UriLocation"
+          }
+        }
+      }
     }
   ],
   "configuration": {},
@@ -42,5 +64,72 @@
   "defaultSession": {
     "name": "New Session"
   },
-  "tracks": []
+  "tracks": [
+    {
+      "type": "FeatureTrack",
+      "trackId": "treeNC_030850.1.sorted.gff",
+      "name": "Criollo_cocoa_genome_V2 GFF",
+      "assemblyNames": [
+        "Criollo_cocoa_genome_V2"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "treeNC_030850.1.sorted.gff.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "treeNC_030850.1.sorted.gff.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "treeCM001879.1.sorted.gff",
+      "name": "Theobroma_cacao_20110822 GFF",
+      "assemblyNames": [
+        "Theobroma_cacao_20110822"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "treeCM001879.1.sorted.gff.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "treeCM001879.1.sorted.gff.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "NC_030850.1.sorted.gff3",
+      "name": "NC_030850.1.sorted.gff3",
+      "assemblyNames": [
+        "NC_030850.1 - Chromossome 1 Example"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "NC_030850.1.sorted.gff3.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "NC_030850.1.sorted.gff3.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      }
+    }
+  ]
 }
