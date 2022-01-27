@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 HOST_ADDR="localhost"
 DATABASES={
     1 : ["genomas/protNC_030850.1.fasta", "genomas/protCM001879.1.fasta"], 
-    2 : ["genomas/treeNC_030850.1.fasta", "genomas/treeCM001879.1.fasta"]
+    2 : ["genomas/NC_030850.1.fasta", "genomas/CM001879.1.fasta"]
 }
 QUERY_DEFAULT="userSeq.fasta"
 UPLOADS_FOLDER="uploads/"
@@ -109,7 +109,8 @@ def downloadtree():
 
 @app.route('/jbrowse')
 def jbrowse():
-    return render_template("jbrowse.html", blast_bar_classes="is-active", sequence_bar_classes=SEQUENCE_BAR_STATUS, home_classes="is-hidden")
+    return render_template("jbrowse.html", home_bar_classes="is-active")
+
 
 @app.after_request
 def after_request(response):
@@ -119,4 +120,6 @@ def after_request(response):
 
 if __name__ == "__main__":
     app.run(host=HOST_ADDR, debug=True)
+
+
 

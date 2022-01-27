@@ -10,16 +10,70 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-    <section class="container is-fullhd" >
-        <div class="navbar is-fullhd" style="padding-top: 7px;padding-left: 8px; background-color: #7abee2;">
-        <h1 class="title" style="font-size: 35px;">
-                    Theobroma DB
-                </h1>
+    <section class="container.is-fullhd" >
+        
+        <nav class="navbar" style="padding:0px 30px 0px 12px; background-color: #5cadcb;">
+            <div class="navbar-brand">
+                <a class="navbar-burger" id="burger">
+                </a>
             </div>
-        </div>
-    <section class="container is-fullhd" >
-        <iframe src="static/jbrowse2/index.html" frameborder="0" width="100%" height="760px"></iframe>
+            <div class="navbar-menu" id="nav-links" style="font-size: 15px;">
+                
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/">
+                        HOME
+                    </a>
+                    <h1 class="is-size-3">
+                        |Assemblies avaiable:
+                    </h1>
+                    <a class="navbar-item" data-target="theobromav1">
+                        Theobroma Cacao V1
+                    </a>
+                    <a class="navbar-item" data-target="theobromav2">
+                        Theobroma Cacao V2
+                    </a>
+                    <a class="navbar-item" data-target="theobromav2-ex">
+                        Theobroma Cacao V1 - Example Cromossome
+                    </a>
+                </div>
+                
+            </div>
+            
+        </nav>
+        
+    <section class="container.is-fullhd" >
 
+        <div class="container.is-fullhd" id="tab-content">
+
+            <div class="is-active">
+                <center> <img src="../static/assets/jbrowse2.png"> </center>
+
+        </div>
+        </div>
+
+
+        <div class="container.is-fullhd" id="tab-content">
+
+        <div class="is-hidden" id="theobromav1">
+            <iframe src="static/jbrowse2/index.html?session=share-SqA4i4HKu6&password=kwHI9" frameborder="0" width="100%" height="760px"></iframe>
+        </div>
+        </div>
+
+        <div class="container.is-fullhd" id="tab-content">
+
+            <div class="is-hidden" id="theobromav2">
+                <iframe src="static/jbrowse2/index.html?session=share-8_w4mK%2Fj2I&password=X6Ged" frameborder="0" width="100%" height="760px"></iframe>
+        </div>
+        </div>
+        
+        <div class="container.is-fullhd" id="tab-content">
+
+            <div class="is-hidden" id="theobromav2-ex">
+                <iframe src="static/jbrowse2/index.html?session=share-cjTFGLUjzG&password=BwJ4l" frameborder="0" width="100%" height="760px"></iframe>
+        </div>
+        </div>
+
+       
 
     </section>
     
