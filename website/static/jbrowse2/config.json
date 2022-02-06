@@ -1,58 +1,44 @@
 {
   "assemblies": [
     {
-      "name": "Criollo_cocoa_genome_V2",
+      "name": "TheobromaV1",
       "sequence": {
         "type": "ReferenceSequenceTrack",
-        "trackId": "Criollo_cocoa_genome_V2 - Reference Track",
-        "adapter": {
-          "type": "IndexedFastaAdapter",
-          "fastaLocation": {
-            "uri": "treeNC_030850.1.fa",
-            "locationType": "UriLocation"
-          },
-          "faiLocation": {
-            "uri": "treeNC_030850.1.fa.fai",
-            "locationType": "UriLocation"
-          }
-        }
-      }
-    },
-    {
-      "name": "Theobroma_cacao_20110822",
-      "sequence": {
-        "type": "ReferenceSequenceTrack",
-        "trackId": "Theobroma_cacao_20110822 - Reference Track",
-        "adapter": {
-          "type": "IndexedFastaAdapter",
-          "fastaLocation": {
-            "uri": "treeCM001879.1.fa",
-            "locationType": "UriLocation"
-          },
-          "faiLocation": {
-            "uri": "treeCM001879.1.fa.fai",
-            "locationType": "UriLocation"
-          }
-        }
-      }
-    },
-    {
-      "name": "NC_030850.1 - Chromossome 1 Example",
-      "sequence": {
-        "type": "ReferenceSequenceTrack",
-        "trackId": "NC_030850.1-ReferenceSequenceTrack",
+        "trackId": "TheobromaV1-ReferenceSequenceTrack",
         "adapter": {
           "type": "BgzipFastaAdapter",
           "fastaLocation": {
-            "uri": "NC_030850.1.fa.gz",
+            "uri": "../genomes/biggenomes/Tcacao_233.fa.gz",
             "locationType": "UriLocation"
           },
           "faiLocation": {
-            "uri": "NC_030850.1.fa.gz.fai",
+            "uri": "../genomes/Tcacao_233.fa.gz.fai",
             "locationType": "UriLocation"
           },
           "gziLocation": {
-            "uri": "NC_030850.1.fa.gz.gzi",
+            "uri": "../genomes/Tcacao_233.fa.gz.gzi",
+            "locationType": "UriLocation"
+          }
+        }
+      }
+    },
+    {
+      "name": "TheobromaV2",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "TheobromaV2-ReferenceSequenceTrack",
+        "adapter": {
+          "type": "BgzipFastaAdapter",
+          "fastaLocation": {
+            "uri": "../genomes/biggenomes/Tcacao_523_v2.0.fa.gz",
+            "locationType": "UriLocation"
+          },
+          "faiLocation": {
+            "uri": "../genomes/Tcacao_523_v2.0.fa.gz.fai",
+            "locationType": "UriLocation"
+          },
+          "gziLocation": {
+            "uri": "../genomes/Tcacao_523_v2.0.fa.gz.gzi",
             "locationType": "UriLocation"
           }
         }
@@ -67,20 +53,20 @@
   "tracks": [
     {
       "type": "FeatureTrack",
-      "trackId": "treeNC_030850.1.sorted.gff",
-      "name": "Criollo_cocoa_genome_V2 GFF",
+      "trackId": "Tcacao_233_v1.1.gene.sorted.gff3",
+      "name": "Gene",
       "assemblyNames": [
-        "Criollo_cocoa_genome_V2"
+        "TheobromaV1"
       ],
       "adapter": {
         "type": "Gff3TabixAdapter",
         "gffGzLocation": {
-          "uri": "treeNC_030850.1.sorted.gff.gz",
+          "uri": "../genomes/Tcacao_233_v1.1.gene.sorted.gff3.gz",
           "locationType": "UriLocation"
         },
         "index": {
           "location": {
-            "uri": "treeNC_030850.1.sorted.gff.gz.tbi",
+            "uri": "../genomes/Tcacao_233_v1.1.gene.sorted.gff3.gz.tbi",
             "locationType": "UriLocation"
           },
           "indexType": "TBI"
@@ -89,20 +75,20 @@
     },
     {
       "type": "FeatureTrack",
-      "trackId": "treeCM001879.1.sorted.gff",
-      "name": "Theobroma_cacao_20110822 GFF",
+      "trackId": "Tcacao_233_v1.1.gene_exons.sorted.gff3",
+      "name": "Gene Exons",
       "assemblyNames": [
-        "Theobroma_cacao_20110822"
+        "TheobromaV1"
       ],
       "adapter": {
         "type": "Gff3TabixAdapter",
         "gffGzLocation": {
-          "uri": "treeCM001879.1.sorted.gff.gz",
+          "uri": "../genomes/Tcacao_233_v1.1.gene_exons.sorted.gff3.gz",
           "locationType": "UriLocation"
         },
         "index": {
           "location": {
-            "uri": "treeCM001879.1.sorted.gff.gz.tbi",
+            "uri": "../genomes/Tcacao_233_v1.1.gene_exons.sorted.gff3.gz.tbi",
             "locationType": "UriLocation"
           },
           "indexType": "TBI"
@@ -111,20 +97,86 @@
     },
     {
       "type": "FeatureTrack",
-      "trackId": "NC_030850.1.sorted.gff3",
-      "name": "NC_030850.1.sorted.gff3",
+      "trackId": "Tcacao_523_v2.1.gene_exons.sorted.gff3",
+      "name": "Gene Exons",
       "assemblyNames": [
-        "NC_030850.1 - Chromossome 1 Example"
+        "TheobromaV2"
       ],
       "adapter": {
         "type": "Gff3TabixAdapter",
         "gffGzLocation": {
-          "uri": "NC_030850.1.sorted.gff3.gz",
+          "uri": "../genomes/Tcacao_523_v2.1.gene_exons.sorted.gff3.gz",
           "locationType": "UriLocation"
         },
         "index": {
           "location": {
-            "uri": "NC_030850.1.sorted.gff3.gz.tbi",
+            "uri": "../genomes/Tcacao_523_v2.1.gene_exons.sorted.gff3.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "Tcacao_523_v2.1.gene.sorted.gff3",
+      "name": "Gene",
+      "assemblyNames": [
+        "TheobromaV2"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "../genomes/Tcacao_523_v2.1.gene.sorted.gff3.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "../genomes/Tcacao_523_v2.1.gene.sorted.gff3.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "Tcacao_523_v2.1.lowConfidence.gene_exons.sorted.gff3",
+      "name": "Gene Exons",
+      "assemblyNames": [
+        "TheobromaV2"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "../genomes/Tcacao_523_v2.1.lowConfidence.gene_exons.sorted.gff3.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "../genomes/Tcacao_523_v2.1.lowConfidence.gene_exons.sorted.gff3.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      }
+    },
+    {
+      "type": "FeatureTrack",
+      "trackId": "Tcacao_523_v2.1.repeatmasked_assembly_v2.0.sorted.gff3",
+      "name": "Repeatmasked",
+      "assemblyNames": [
+        "TheobromaV2"
+      ],
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "../genomes/Tcacao_523_v2.1.repeatmasked_assembly_v2.0.sorted.gff3.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "../genomes/Tcacao_523_v2.1.repeatmasked_assembly_v2.0.sorted.gff3.gz.tbi",
             "locationType": "UriLocation"
           },
           "indexType": "TBI"
