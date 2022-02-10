@@ -7,14 +7,17 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 class Arvore:
+    #caminhoPasta = /genomas/
     def run(self, listaFastas):
         clustalww64 = "../cacao_db_linux/clustalW/clustalw2"
-        if platform != "linux":
-            clustalww64 = "C:\Program Files (x86)\ClustalW2\clustalw2.exe"
+        #if platform != "linux":
+        #    clustalww64 = "C:\Program Files (x86)\ClustalW2\clustalw2.exe"
         save = ""
+        testando = ""
         for ifasta in listaFastas:
             with open(ifasta, "r") as arquivo:
                 save += arquivo.read()
+                testando += arquivo.read()
         with open("mfasta.fasta", "w") as output:
             output.write(save)
         ClustalwCommandline(clustalww64, infile="mfasta.fasta")()
@@ -25,5 +28,5 @@ class Arvore:
         matplotlib.rc("xtick", labelsize=10)
         matplotlib.rc("ytick", labelsize=10)
         axes = fig.add_subplot(1, 1, 1)
-        Phylo.draw(tree, axes=axes)
+        Phylo.draw(tree, axes=axes, do_show=False)
         fig.savefig("downloads/tree.pdf")
