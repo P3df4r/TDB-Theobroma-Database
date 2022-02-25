@@ -43,9 +43,7 @@ app.config["UPLOAD_FOLDER"] = UPLOADS_FOLDER
 
 login_manager.init_app(app)
 
-users = {'admin':{'pw':'admin'}, 
-         'user2':{'pw':'pass2'}, 
-         'user3':{'pw':'pass3'}}
+users = {'admin':{'pw':'cacauadmin'}}
 
 class User(UserMixin):
   pass
