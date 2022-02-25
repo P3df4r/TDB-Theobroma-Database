@@ -160,6 +160,7 @@ def downloadtree():
     )
 
 @app.route('/jbrowse')
+@flask_login.login_required
 def jbrowse():
     return render_template("jbrowse.html", home_bar_classes="is-active")
 
