@@ -22,9 +22,9 @@ DATABASES={
     2 : ["genomas/NC_030850.1.fasta", "genomas/CM001879.1.fasta"]
 }
 QUERY_DEFAULT="userSeq.fasta"
-UPLOADS_FOLDER="uploads/"
-DOWNLOADS_FOLDER="downloads/"
-XML_NAME="resultado.xml"
+UPLOADS_FOLDER="uploads"
+DOWNLOADS_FOLDER="downloads"
+XML_NAME="output.xml"
 TREE_NAME="tree.pdf"
 ARVORE_INST = ArvoreFilo.Arvore()
 BLAST_INST = BlastClass.Blast(
@@ -92,7 +92,7 @@ def index():
     SEQUENCE_BAR_STATUS = sequence_status
     return render_template("index.html", home_bar_classes="is-active", sequence_bar_classes=sequence_status, blast_classes="is-hidden")
 
-@app.route("/index", methods=["POST"])
+@app.route("/index", methods=['GET', 'POST'])
 def runBlast():
     filename = ""
     genoma1 = request.form.get("genoma1")
@@ -160,7 +160,6 @@ def downloadtree():
     )
 
 @app.route('/jbrowse')
-@flask_login.login_required
 def jbrowse():
     return render_template("jbrowse.html", home_bar_classes="is-active")
 
