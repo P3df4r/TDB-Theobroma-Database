@@ -16,6 +16,8 @@ echo -----------------------------Instalando Ruby-------------------------------
 sudo apt-get install ruby-full
 echo ----------------------------Instalando Sequenceserver----------------------------------------
 sudo gem install sequenceserver
+echo ----------------------------Instalando Login----------------------------------------
+sudo pip install flask-login
 echo ------------------------------Preparando Genomas-----------------------------------------------
 
 #Baixa os FASTA
