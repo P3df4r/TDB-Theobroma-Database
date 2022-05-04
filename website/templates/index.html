@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/cocoa.png') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="shortcut icon" href="{{ url_for('static', filename='..//static//assets//cocoa.png') }}"/>-->
     <title>Theobroma DB</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+    <style>
+        .quarter{
+            width: 400;
+            height: 300;
+            border-top-right-radius:0;
+            border-top-left-radius:0;
+            border-bottom-right-radius:100%;
+            border-bottom-left-radius:0;
+            background: red;
+        }
+    </style>
 </head>
 <body>
-    <section class="container is-max-desktop" >
-            <div class="navbar is-max-desktop" style="padding-top: 7px;padding-left: 8px; background-color: #7abee2
-            ;" >
-                <h1 class="title" style="font-size: 35px;">
-                    Theobroma DB
-                </h1>
-            </div>
-        </div>
-        <nav class="navbar" style="padding:0px 30px 0px 12px; background-color: #5cadcb;">
+    <section >
+
+
+        <nav class="navbar" style="padding:0px 30px 0px 12px; background-color: #DDE5B6;">
             <div class="navbar-brand">
                 <a class="navbar-burger" id="burger">
                     <span></span>
@@ -28,6 +33,11 @@
                 </a>
             </div>
             <div class="navbar-menu" id="nav-links" style="font-size: 15px;">
+                <div>
+                    <h1 class="quarter" style="padding-bottom: 70px; padding-top: 15px;padding-left: 1px; padding-right:20px; background-color: #ADC178; font-size: 35px; ">
+                    Theobroma DB
+                    </h1>
+                </div>
                 <div class="navbar-start">
                     <a class="navbar-item {{ home_bar_classes }}" data-target="home-page">
                         HOME
@@ -55,9 +65,85 @@
         </nav>
     </section>
     <section class="container is-max-desktop" >
+        <div style="">
+            <div>
+                <!-- Imagem principal-->
+                <figure class="image" style="max-height: 512px; max-width: 512px">
+                <img src="../static/assets/CirculoBolinhas.png">
+                </figure>
 
-    
+            </div>
+            <div style="position: relative; top: -165px">
+                <!-- inferior esquerdo-->
+                <a href="#">
+                <figure class="image" style="max-height: 80px; max-width: 80px">
+                <img src="../static/assets/cocoa.png">
+                </figure>
+                </a>
+            </div>
+            <div style="position: relative; top: -245px; left: 410px">
+                <!-- inferior direito-->
+                <a href="#">
+                <figure class="image" style="max-height: 80px; max-width: 80px">
+                <img src="../static/assets/cocoa.png">
+                </figure>
+                </a>
+            </div>
+            <div style="position: relative; top: -575px; left: 410px">
+                <!-- superior direito-->
+                <a href="#">
+                <figure class="image" style="max-height: 80px; max-width: 80px">
+                <img src="../static/assets/cocoa.png">
+                </figure>
+                </a>
+            </div>
+            <div style="position: relative; top: -650px; left: 10px">
+                <!-- superior esquerdo-->
+                <a href="#">
+                <figure class="image" style="max-height: 80px; max-width: 80px">
+                <img src="../static/assets/cocoa.png">
+                </figure>
+                </a>
+            </div>
+            <div style="position: relative; top: -400px; left: 200px">
+                <!-- inferior (meio)-->
+                <a href="#">
+                <figure class="image" style="max-height: 80px; max-width: 80px">
+                <img src="../static/assets/cocoa.png">
+                </figure>
+                </a>
+            </div>
+            <div style="position: relative; top: -900px; left: 200px">
+                <!-- superior (meio)-->
+                <a href="#">
+                <figure class="image" style="max-height: 80px; max-width: 80px">
+                <img src="../static/assets/cocoa.png">
+                </figure>
+                </a>
+            </div>
+        </div>
+
     </section>
+    <!-- Start Hero Carousel -->
+		<div class="column is-2" style="position: relative; top: -850px; left: 275px">
+			<section class="hero is-medium has-carousel">
+				<div id="carousel-demo" class="hero-carousel">
+					<div class="item-1">
+						<img src="../static/assets/cupuacu.jpg" width="150px">
+					</div>
+					<div class="item-2">
+						<img src="../static/assets/Cupuacu2.jpg" width="150px">
+					</div>
+					<div class="item-3">
+						<img src="../static/assets/cacau-.jpg" width="150px">
+					</div>
+				</div>
+				<div class="hero-head"></div>
+				<div class="hero-body"></div>
+				<div class="hero-foot"></div>
+			</section>
+		</div>
+		<!-- End Hero Carousel -->
     <section class="section">
         <div class="container is-max-desktop" id="tab-content">
             <div class="{{ home_classes }}" id="home-page">
@@ -73,12 +159,12 @@
                         <div class="box" >
                             <p class="title is-5">Species Description</p>
                             <p class="subtitle">The cupuaçu tree, cupuaçueiro or cupu, is native to the Amazon Basin and is found most often in the north and northeast regions, in the states of Amapá, Pará, and Amazonas. Its tree can reach an average height of 10 to 25 meters and in cultivated areas the height varies from 6 to 10 meters.;
-                            <p class="subtitle">Scientific name: Theobroma grandiflorum; </br>
-			    Native names: <i>"Cupuaçu" (Pará)</i>, <i>"pupu or pupuaçu" (Maranhão)</i>, <i>"cocoa-cupuaçu" (Bahia)</i> or <i>"cupu" (Pará and Acre)</i>; </br>
-                            Flowers: Simple and remain on their branches; </br>
-                            Fruits: Spherical or ovoid-shaped, up to 25 cm long; </br>
-                            Flowering: January to May;</br>
-			    Fructification: The fruit has a hard and smooth peel, and a dark brown color; </br>
+                            <p class="subtitle">Scientific name: Theobroma grandiflorum; <br>
+			    Native names: <i>"Cupuaçu" (Pará)</i>, <i>"pupu or pupuaçu" (Maranhão)</i>, <i>"cocoa-cupuaçu" (Bahia)</i> or <i>"cupu" (Pará and Acre)</i>; <br>
+                            Flowers: Simple and remain on their branches; <br>
+                            Fruits: Spherical or ovoid-shaped, up to 25 cm long; <br>
+                            Flowering: January to May;<br>
+			    Fructification: The fruit has a hard and smooth peel, and a dark brown color; <br>
                             Uses: Ice creams, juices, vitamins, sweets, etc.
                             </p>
                             <form action="https://www.nature.com/articles/ng.736">
@@ -188,13 +274,20 @@
 	    <div class="is-hidden" id="contact-page">
                 <h1 class="title">Contact us</h1>
                                 <p class="subtitle"> &nbsp </p>
-                            <p class="subtitle">Pedro Augusto | Email: pedfar321@gmail.com </p>
-			    <p class="subtitle">José Maria | Email: josemjuniortk@gmail.com</p>
-		    	    <p class="subtitle">Vinícius Abreu | Email: vabreu@ufpa.br</p>
+                            <p class="subtitle">Pedro Augusto: email: pedfar321@gmail.com </p>
+                            <p class="subtitle">Amanda Sammer: email: amandasammerbrandao@gmail.com </p>
+			    <p class="subtitle">José Maria: email: josemjuniortk@gmail.com</p>
             </div>
 
         </div>
     </section>
-    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+    <!--<script src="{{ url_for('static', filename='javascript/index.js') }}"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+		<script>
+		bulmaCarousel.attach('#carousel-demo', {
+			slidesToScroll: 1,
+			slidesToShow: 1
+		});
+		</script>
 </body>
 </html>
