@@ -1,4 +1,4 @@
-Desenvolvido por: Amanda Sammer,José Perdigão e Pedro Augusto
+Desenvolvido por: Pedro Augusto, José Perdigão, Amanda Alcântra e Dr. Vincícius Abreu
 
 # THEOBROMA DB
 
