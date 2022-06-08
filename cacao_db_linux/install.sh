@@ -18,6 +18,10 @@ sudo apt-get install ruby-full
 #sudo gem install sequenceserver
 echo ----------------------------Instalando Login----------------------------------------
 sudo pip install flask-login
+echo -----------------Permissões Clustalw2-----------------
+cd clustalW
+chmod +x clustalw2
+cd ../
 echo ------------------------------Preparando Genomas-----------------------------------------------
 
 #Baixando fasta de DNA
