@@ -1,6 +1,6 @@
-## Version PT/BR
+### Version PT/BR
 
-Desenvolvido por: Pedro Augusto, José Perdigão, Amanda Alcântra e Dr. Vincícius Abreu
+#### Desenvolvido por: Pedro Augusto, José Perdigão, Amanda Alcântra e Dr. Vincícius Abreu
 
 # TDB - THEOBROMA DATABASE
 
@@ -35,12 +35,12 @@ Acessando no navegador:
 
 ATENÇÃO: USE INSTALAÇÕES PADRÕES (Linux: usr/bin/)
 
-pip install ncbi-Blast+
-pip install biopython
+- pip install ncbi-Blast+
+- pip install biopython
 
-## Version EN
+### Version EN
 
-Developed by: Pedro Augusto, José Perdigão, Amanda Alcântra and Dr. Vincícius Abreu
+#### Developed by: Pedro Augusto, José Perdigão, Amanda Alcântra and Dr. Vincícius Abreu
 
 # TDB - THEOBROMA DATABASE
 
@@ -75,5 +75,5 @@ Accessing in the browser:
 
 WARNING: USE STANDARD INSTALLATIONS (Linux: usr/bin/)
 
-pip install ncbi-Blast+
-pip install biopython
+- pip install ncbi-Blast+
+- pip install biopython
