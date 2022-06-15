@@ -1,8 +1,8 @@
 Desenvolvido por: Pedro Augusto, José Perdigão, Amanda Alcântra e Dr. Vincícius Abreu
 
-# THEOBROMA DB
+# TDB - THEOBROMA DATABASE
 
-# Aplicação web Flask 
+### Aplicação web Flask 
 
 
 Para configurar e utilizar a aplicação pela primeira vez, utilizar o seguinte comando
@@ -21,7 +21,7 @@ Acessando no navegador:
 
 > localhost:5000
 
-# Instalação Individual
+## Instalação Individual
 
 -> Ferramentas utilizadas:
 
