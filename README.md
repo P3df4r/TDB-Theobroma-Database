@@ -27,9 +27,9 @@ Acessando no navegador:
 
 -> Ferramentas utilizadas:
 
-Python version 3.9.4 (https://www.python.org/downloads/) 
-Biopython version 1.78 (https://biopython.org/wiki/Download)
-NCBI-Blast version 2.11.0+ (https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+- Python version 3.9.4 (https://www.python.org/downloads/)
+- Biopython version 1.78 (https://biopython.org/wiki/Download)
+- NCBI-Blast version 2.11.0+ (https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
 -> Instalações necessárias:
 
@@ -67,9 +67,9 @@ Accessing in the browser:
 
 -> Tools used:
 
-Python version 3.9.4 (https://www.python.org/downloads/) 
-Biopython version 1.78 (https://biopython.org/wiki/Download)
-NCBI-Blast version 2.11.0+ (https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+- Python version 3.9.4 (https://www.python.org/downloads/) 
+- Biopython version 1.78 (https://biopython.org/wiki/Download)
+- NCBI-Blast version 2.11.0+ (https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
 -> Required installations:
 
