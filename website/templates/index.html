@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<link rel="shortcut icon" href="{{ url_for('static', filename='..//static//assets//cocoa.png') }}"/>-->
     <title>Theobroma DB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
     <style>
         .quarter{
-            width: 500;
-            height: 400;
-            border-radius: 0px 10px 1000px 0px;
-            background: red;
+            width: 195;
+            height: 53;
         }
     </style>
 </head>
-<body>
-    <section >
+<body style="margin:0px 0px;">
+    <section>
             <!--Aba das ferramentas-->
-            <nav class="navbar" style="padding:0px 30px 0px 0px; background-color: #DDE5B6;">
+            <nav class="navbar" style="padding:0px 0px 0px 0px; background-color: #DDE5B6;  justify-content: center;;">
             <div class="navbar-brand">
                 <a class="navbar-burger" id="burger">
                     <span></span>
@@ -28,41 +22,47 @@
                     <span></span>
                 </a>
             </div>
-                <!--Nome do database-->
-                <h1 class="quarter" style="padding-bottom: 5px; padding-top: 5px;padding-left: 5px; padding-right:30px; background-color: #ADC178; font-size: 30px; ">
+                <!--Nome do database
+                <h1 class="quarter" style="padding-bottom: 0px; padding-top: 0px;padding-left: 20px; padding-right:30px; background-color: #ADC178; font-size: 20px; border-radius: 30px 50px 50px 30px;">
                     Theobroma DB
                 </h1>
-            </div>
-        </div>
+                -->
+            
+        
             <!--Ferramentas-->
-            <div class="navbar-menu" id="nav-links" style="font-size: 17px;">
+            <center>
+            <div class="navbar-menu" id="nav-links" style="font-size: 15px;  justify-content: center position: absolute;">
                 <div class="navbar-start">
-                    <a class="navbar-item {{ home_bar_classes }}" data-target="home-page">
-                        HOME
+                    <a class="navbar-item is-active" data-target="home-page" style="padding-bottom: 0px; padding-top: 0px;padding-left: 10px; padding-right:30px; background-color: #ADC178; font-size: 20px; border-radius: 10px 0px 50px 30px;">
+                        Theobroma DB
                     </a>
-                    <a class="navbar-item {{ blast_bar_classes }}" data-target="blast-page">
+                    <a class="navbar-item " data-target="blast-page">
                         BLAST
-                    </a>
-                    <a class="navbar-item {{ sequence_bar_classes }}" data-target="sequence-server">
-                        SEQUENCE SERVER
                     </a>
                     <a class="navbar-item" href="/jbrowse">
                         BROWSE
                     </a>
-                    <a class="navbar-item" data-target="phylotree-page">
-                        PHYLOGENETIC TREE
-                    </a>
-                    <a class="navbar-item" data-target="download-page">
+                   <a class="navbar-item" data-target="download-page">
                         DOWNLOAD
+                    </a>
+                    <a class="navbar-item" data-target="submission-page">
+                        SUBMISSION
                     </a>
                     <a class="navbar-item" data-target="contact-page">
                         CONTACT US
                     </a>
-                </div>
+		    <div class="navbar-end navbar-item" style="padding: 13px 0px 0px 0px">
+			    <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+                                        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome" style="height: 21px; border-radius: 10px 10px 10px 10px">
+                    					<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine" style="height: 20px; border-radius: 10px 10px 10px 10px">
+                                </form>
+                    </div>
+               </div>
             </div>
+            </center>
         </nav>
     </section>
-    <section class="container is-max-desktop" >
+    <section class="container is-max-desktop">
 
     </section>
     <section class="section">
@@ -70,52 +70,65 @@
             <div class="{{ home_classes }}" id="home-page">
                 <div class="columns">
                     <div class="column is-narrow">
-                        <div class="box" style="width: 200px;">
+                        <div class="box" style="width: 150px;">
                             <figure class="image is-3by5">
                                 <img src="../static/assets/cacau1.png">
                             </figure>
                         </div>
                     </div>
-                    <div class="column">
-                        <div class="box" >
-                            <p class="title is-5">Species Description</p>
-                            <p class="subtitle">The cupuaçu tree, cupuaçueiro or cupu, is native to the Amazon Basin and is found most often in the north and northeast regions, in the states of Amapá, Pará, and Amazonas. Its tree can reach an average height of 10 to 25 meters and in cultivated areas the height varies from 6 to 10 meters.;
-                            <p class="subtitle">Scientific name: Theobroma grandiflorum; </br>
-			    Native names: <i>"Cupuaçu" (Pará)</i>, <i>"pupu or pupuaçu" (Maranhão)</i>, <i>"cocoa-cupuaçu" (Bahia)</i> or <i>"cupu" (Pará and Acre)</i>; </br>
-                            Flowers: Simple and remain on their branches; </br>
-                            Fruits: Spherical or ovoid-shaped, up to 25 cm long; </br>
-                            Flowering: January to May;</br>
-			    Fructification: The fruit has a hard and smooth peel, and a dark brown color; </br>
-                            Uses: Ice creams, juices, vitamins, sweets, etc.
-                            </p>
-                            <form action="https://www.nature.com/articles/ng.736">
-                                <button class="button is-primary" style="background-color: #ADC178;" type="submit" >Learn More... </button>
-                            </form>
+                    <div class="tile is-ancestor">
+                        <div class="tile is-parent">
+                            <div class="tile is-child box is-vertical notification">
+                                <p class="title is-5">Genus Description</p>
+                                <p class="subtitle">The cupuaçu tree, cupuaçueiro or cupu, is native to the Amazon Basin and is found most often in the north and northeast regions, in the states of Amapá, Pará, and Amazonas. Its tree can reach an average height of 10 to 25 meters and in cultivated areas the height varies from 6 to 10 meters.;
+                                </p>
+                                <p class="subtitle">Scientific name: Theobroma grandiflorum; <br>
+                    Native names: <i>"Cupuaçu" (Pará)</i>, <i>"pupu or pupuaçu" (Maranhão)</i>, <i>"cocoa-cupuaçu" (Bahia)</i> or <i>"cupu" (Pará and Acre)</i>; <br>
+                                Flowers: Simple and remain on their branches; <br>
+                                Fruits: Spherical or ovoid-shaped, up to 25 cm long; <br>
+                                Flowering: January to May;<br>
+                    Fructification: The fruit has a hard and smooth peel, and a dark brown color; <br>
+                                Uses: Ice creams, juices, vitamins, sweets, etc.
+                                </p>
+                                <form action="https://www.nature.com/articles/ng.736">
+                                    <button class="button is-primary" style="background-color: #ADC178;" type="submit">Learn More... </button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                        <div class="tile is-parent notification box">
+                            <div class="tile is-child box notification">
+                                <p class="title is-4">Group publications</p>
+                                <p class="subtitle is-6">Comparative analyses of Theobroma cacao and T. grandiflorum mitogenomes reveal conserved gene content embedded within complex and plastic structures</p>
+                                <p class="subtitle is-6">DE ABREU, VINICIUS A.C. ; MOYSÉS ALVES, RAFAEL ; SILVA, SAURA R. ; FERRO, JESUS A. ; DOMINGUES, DOUGLAS S. ; MIRANDA, VITOR F.O. ; Varani, Alessandro M</p>
+                                <p class="subtitle is-6">DOI: <a href=https://doi.org/10.1016/j.gene.2022.146904 target="_blank">https://doi.org/10.1016/j.gene.2022.146904 </a></p> 
+                                <p class="title is-4">Last papers...</p>
+                                <object data="/last_paper" width="100%"></object>
+                            </div> 
+                        </div>
+                   </div>
                 </div>
             </div>
-            <div class="{{ blast_classes }}" id="blast-page">
+        <div class="is-hidden" id="blast-page">
                 <h1 class="title">BLAST</h1>
                 <form method="POST" enctype="multipart/form-data">
                     <div class="select">
                         <select name="modoBlast" id="mBlast">
                             <!--Numeração igual ao blastclass.py-->
                             <option value="1">BlastN</option>
-			    <option value="2">BlastP</option>
+            			    <option value="2">BlastP</option>
                             <option value="3">BlastX</option>
                             <option value="4">tBlastN</option>
                         </select>
                     </div>
                     <div class="select">
                         <select name="escolhaGenoma" id="genoma">
-			    <option value="0">Criollo</option>
+            			    <option value="0">Criollo</option>
                             <option value="1">Matina</option>
                         </select>
                     </div>
                     <br>
                     <br>
-                    <textarea class="textarea" placeholder="Sequência em formato FASTA" id="nucleotideo" name="nucleotideo" rows="9"></textarea>
+                    <textarea class="textarea" placeholder="FASTA format" id="nucleotideo" name="nucleotideo" rows="9"></textarea>
                     <br>
                     <h3>Ou enviar arquivo</h3>
                     <br>
@@ -127,82 +140,122 @@
                                     <i class="fas fa-upload"></i>
                                 </span>
                                 <span class="file-label">
-                                    Escolha um Arquivo
+                                    Select file
                                 </span>
                             </span>
                             <spam class="file-name">
-                                Nenhum Arquivo Selecionado
+                                No file selected
                             </spam>
                         </label>
-                        <input class="button is-primary" type="submit">
+                        <input class="button is-primary" type="submit" value="Blast">
                     </div>
-                </form>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-            </div>
-            <div class="is-hidden" id="sequence-server">
-                <iframe src="http://localhost:4567/" frameborder="0" width="100%" height="760px"></iframe>
-            </div>
-
-            <div class="is-hidden" id="phylotree-page">
-                <h1 class="title">Phyogenetic tree</h1>
-                <div class="field is-horizontal">
-                    <form method="POST" enctype="multipart/form-data">
-                        <label class="checkbox">
-                            <input class="checkbox" type="checkbox" name="genoma1" value="treeCM001879.1">
-                            CM001879.1.fasta
-                        </label>
-                        <br>
-                        <label class="checkbox">
-                            <input class="checkbox" type="checkbox" name="genoma2" value="treeNC_030850.1">
-                            NC_030850.1.fasta
-                        </label>
-                        <br>
-                        <br>
-                        <textarea class="textarea" placeholder="Sequência em formato FASTA" name="tree-nucleotideo" rows="9"></textarea>
-                        <br>
-                        <br>
-                        <div class="file has-name is-fullwidth">
-                            <label class="file-label">
-                                <input class="file-input" type="file" name="tree-file">
-                                <span class="file-cta">
-                                    <span class="file-icon">
-                                        <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span class="file-label">
-                                        Escolha um Arquivo
-                                    </span>
-                                </span>
-                                <spam class="file-name">
-                                    Nenhum Arquivo Selecionado
-                                </spam>
-                            </label>
-                            <input class="button is-primary" type="submit" value="Gerar">
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="is-hidden" id="download-page">
-                <h1 class="title">Download</h1>
-				<p class="subtitle"> &nbsp </p>
-			    <p class="subtitle">Genoma 1: <a href="https://www.ncbi.nlm.nih.gov/nuccore/342240206?report=fasta"> NC_030850.1 a NC_030859.1 </a> </p>
-			    <p class="subtitle">Genoma 2: <a href="https://www.ncbi.nlm.nih.gov/nuccore/508078138?report=fasta"> CM001879.1 a CM001888.1  </a> </p>
-            </div>
-	    <div class="is-hidden" id="contact-page">
-                <h1 class="title">Contact us</h1>
-                                <p class="subtitle"> &nbsp </p>
-                            <p class="subtitle">Pedro Augusto | Email: pedfar321@gmail.com </p>
-			    <p class="subtitle">José Maria | Email: josemjuniortk@gmail.com</p>
-		    	    <p class="subtitle">Vinícius Abreu | Email: vabreu@ufpa.br</p>
-            </div>
-
+                </form>                
+                
         </div>
+        <div class="is-hidden" id="download-page">
+                <h2 class="title">Download</h2>
+				<p class="subtitle"> &nbsp; </p>
+			    <p class="subtitle">Criollo (NCBI): <a href="https://www.ncbi.nlm.nih.gov/nuccore/342240206?report=fasta"> Link </a> </p>
+			    <p class="subtitle">Matina (NCBI): <a href="https://www.ncbi.nlm.nih.gov/nuccore/508078138?report=fasta"> Link  </a> </p>
+			    <p class="subtitle">C1074: <a href="https://www.ncbi.nlm.nih.gov/nuccore/508078138?report=fasta"> Link </a> </p>
+			    <p class="subtitle">C174: <a href="http://155.248.231.140:4000/down/TbQNtDLHVLyH"> Link  </a> </p>
+			    <p class="subtitle">Criollo (New Annotation): <a href="http://155.248.231.140:4000/down/r0i8ra6UrusX"> Link  </a> </p>
+			    <p class="subtitle">Matina (New Annotation): <a href="http://155.248.231.140:4000/down/w5LJLJvnXwi8"> Link  </a> </p>
+           </div>
+
+	   <div class="is-hidden" id="contact-page">
+                <h1 class="title">Contact us</h1>
+                                <p class="subtitle"> &nbsp; </p>
+                                <address>
+                                    <p class="subtitle">Pedro Augusto: <a href="mailto:pedfar321@gmail.com">pedfar321@gmail.com</a> </p>
+        	            		    <p class="subtitle">José Maria: <a href="mailto:josemjuniortk@gmail.com">josemjuiortk@gmail.com</a> </p>
+		    	                    <p class="subtitle">Vinícius Abreu: <a href="mailto:vabreu@ufpa.br">vabreu@ufpa.br</a></p>
+                                </address>
+            </div>
+
+        <div class="is-hidden" id="submission-page">
+
+            <h1 class="title">Submission new data</h1>
+                <p class="subtitle"> &nbsp; </p>
+                <p class="subtitle">For send a new data for add or reports bugs in the database, send a email to:  <a href="mailto:pedfar321@gmail.com">pedfar321@gmail.com</a> </p> 
+        </div>
+
+        <div class="{{ search_classes }}" id="search-engine"> 
+            <h1 class="title">Search Results</h1>
+	            <center> 
+                <div id="dataTable"></div>
+                </center>
+        </div>
+
+        <div class="{{ est_classes }}" id="est-engine">
+            <br>
+            <br>
+                <center>
+                <div id="datatable_e"></div>
+                </center>
+        </div> 
+
+
+        <!-- A featuring future implementation for the database
+            <div class="is-hidden" id="search_detail">
+                
+                <p class="subtitle">Genome: </p>
+                <p class="subtitle">Cromossome: </p>
+                <p class="subtitle">Software: </p>
+                <p class="subtitle">Start: </p>
+                <p class="subtitle">Stop: </p>
+                <p class="subtitle">Function: </p>
+                <p class="subtitle">ID: </p>            
+                
+                
+            </div>
+        -->
+
+    </div>
     </section>
-    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
-</body>
-</html
+    
+
+    <script src="/static/javascript/index.js"></script>
+    
+    
+    <script>
+
+    new gridjs.Grid({
+        columns: [{name: "Chromossome", width: '13%'}, {name: "Function", width: '13%'}, {name: "ID"}], 
+    pagination: {
+    limit: 15},
+    search: true,
+    sort: true,
+    fixedHeader: true, 
+    width: '95%',
+        data: {{results|safe}} 
+    }).render(document.getElementById("dataTable"));
+    console.log({{results|safe}})
+    </script>
+
+    <script>
+
+    new gridjs.Grid({
+        columns: [{name: "Genome", hidden: true},{name: "Chromossome", hidden: true},{name: "Software", hidden: true},{name: "Function", hidden: true},{name: "Start", hidden: true},{name: "Stop", hidden: true},{name: "3_prime_partial", hidden: true},{name: "5_prime_partial", hidden: true},{name: "ID", hidden: true},{name: "Name", hidden: true},{name: "Parent", hidden: true},{name: "anticodon", hidden: true},{name: "cacao", hidden: true},{name: "cazy", hidden: true},{name: "classification", hidden: true},{name: "cog", hidden: true},{name: "description", hidden: true},{name: "domains", hidden: true},{name: "ec_number", hidden: true},{name: "fpkm", hidden: true},{name: "gene_ontology", hidden: true},{name: "identity", hidden: true},{name: "ltr_identity", hidden: true},{name: "method", hidden: true},,{name: "motif", hidden: true},{name: "nlr", hidden: true},{name: "note", hidden: true},{name: "pfam", hidden: true},{name: "plantTFDB", hidden: true},{name: "plantiSMASH", hidden: true},{name: "prgDBproduct", hidden: true},{name: "pseudogene", hidden: true},{name: "sequence_ontology", hidden: true},{name: "tIR", hidden: true},{name: "tSD", hidden: true},{name: "tair10", hidden: true},{name: "topology", hidden: true},{name: "tpm", hidden: true},{name: "tsd", hidden: true}], 
+    pagination: {
+    limit: 15},
+    search: true,
+    sort: true,
+    fixedHeader: true, 
+    width: '95%',
+        data: {{results|safe}} 
+    }).render(document.getElementById("dataTable"));
+    console.log({{results|safe}})
+
+    </script>
+
+    <script>
+
+        new gridjs.Grid({
+            columns: [{name: "chr"}, {name: "gene"}, {name: "exon"}, {name: "intron"}, {name: "transposon"}, {name: "mRNA"}, {name: "rRNA"}, {name: "tRNA"}, {name: "CDS"}],
+            width: '80%',
+            data: {{counts|safe}}
+        }).render(document.getElementById("datatable_e"));
+        console.log({{counts|safe}})
+    </script>
+</body></html>
