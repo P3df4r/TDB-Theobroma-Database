@@ -1,6 +1,6 @@
 ### Version PT/BR
 
-#### Desenvolvido por: Pedro Augusto, José Perdigão, Amanda Alcântra e Dr. Vincícius Abreu
+#### Desenvolvido por: Pedro Augusto, José Perdigão e Dr. Vincícius Abreu
 
 # TDB - THEOBROMA DATABASE
 
