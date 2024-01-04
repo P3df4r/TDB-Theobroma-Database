@@ -4,6 +4,7 @@ import os
 import subprocess
 import BlastClass
 import ArvoreFilo
+import alignments
 from sys import platform
 from flask import Flask, render_template, request, send_file, flash, redirect, url_for, jsonify
 import flask_login
@@ -29,9 +30,9 @@ QUERY_DEFAULT="userSeq.fasta"
 UPLOADS_FOLDER="uploads"
 DOWNLOADS_FOLDER="downloads"
 TEXT_NAME="output.txt"
-TREE_NAME="tree.pdf"
-ARVORE_INST = ArvoreFilo.Arvore()
-BLAST_INST = BlastClass.Blast(
+ARVORE_INST=ArvoreFilo.Arvore()
+ALIGN_INST=alignments.Align()
+BLAST_INST=BlastClass.Blast(
     os.path.join(
         DOWNLOADS_FOLDER, 
         TEXT_NAME
@@ -87,7 +88,7 @@ def home():
   return render_template('loginpage.html')
 
 
-@app.route("/index")
+@app.route("/index.html")
 @flask_login.login_required
 def index():
     count = estatistic()
@@ -97,42 +98,17 @@ def index():
         if seqspid != 256:
             sequence_status = ""
     SEQUENCE_BAR_STATUS = sequence_status
-    return render_template("index.html", counts=count, home_bar_classes="is-active", sequence_bar_classes=sequence_status, blast_classes="is-hidden", search_classes="is-hidden", search_detail_classes="is-hidden", paper_classes="is-active", est_classes="is-active")
+    return render_template("./index.html", counts=count, home_bar_classes="is-active", sequence_bar_classes=sequence_status, blast_classes="is-hidden", search_classes="is-hidden", search_detail_classes="is-hidden", paper_classes="is-active", est_classes="is-active")
 
 
-@app.route("/index", methods=['GET', 'POST'])
+@app.route("/blast_run", methods=['GET', 'POST'])
 def runBlast():
-    filename = ""
-    genoma1 = request.form.get("genoma1")
-    genoma2 = request.form.get("genoma2")
-    #genomaU = request.form.get("tree-nucleotideo")
-    if genoma1 or genoma2:
-        listaFastas = []
-        if genoma1:
-            listaFastas.append("a/{}.fasta".format(genoma1))
-        if genoma2:
-            listaFastas.append("a/{}.fasta".format(genoma2))
-        if "file" in request.files:
-            arquivo = request.files["file"]
-            if arquivo.filename != "":
-                filename = secure_filename(arquivo.filename)
-                arquivo.save(os.path.join("./static/blast_db", filename))
-                listaFastas.append("static/blast_db/{}".format(filename))
-        if len(genomaU) > 0:
-            filename = "userTree.fasta"
-            with open(os.path.join("genomas/", filename), "w") as arquivo:
-                arquivo.write(genomaU)
-                listaFastas.append("genomas/{}".format(filename))
-        ARVORE_INST.run(listaFastas)
-        return redirect(url_for("downloadtree"))
-
     upFolder = app.config["UPLOAD_FOLDER"]
     mBlast = request.form.get("modoBlast")
     uInput = request.form.get("nucleotideo")
     genoma = request.form.get("escolhaGenoma")
     bValor = int(mBlast)
     dbValor = int(genoma)
-
     if "file" in request.files:
         arquivo = request.files["file"]
         if arquivo.filename != "":
@@ -142,15 +118,14 @@ def runBlast():
         filename = QUERY_DEFAULT
         with open(os.path.join(upFolder, filename), "w") as arquivo:
             arquivo.write(uInput)
-
     if filename == "":
         flash("Não foi fornecido arquivo nem sequência.")
-        return render_template("index.html", blast_bar_classes="is-active", sequence_bar_classes=SEQUENCE_BAR_STATUS,
-                               home_classes="is-hidden")
-
+        return render_template("blast.html")
     query = os.path.join(upFolder, filename)
     BLAST_INST.run(DATABASES[bValor][dbValor], bValor, query)
-    return redirect(url_for("downloadxml"))
+    with open('./downloads/output.txt', "r") as f:
+        content = f.read()
+    return render_template("./blast.html", content=content)
 
 @app.route("/download/blast")
 def downloadxml():
@@ -160,53 +135,104 @@ def downloadxml():
         #cache_timeout=0
         )
 
+@app.route('/tree_run', methods=['GET', 'POST'])
+def generate_tree():
+    genoma = request.form.get("escolhaGenoma")
+    uInput = request.form.get("input_manual")
+    tree_data = request.files['file_tree']
+    upFolder = app.config["UPLOAD_FOLDER"]
+    if tree_data.filename != "":
+            filename = secure_filename(tree_data.filename)
+            tree_data.save(os.path.join(upFolder, filename))
+    if len(uInput) > 0:
+        filename = QUERY_DEFAULT
+        with open(os.path.join(upFolder, filename), "w") as arquivo:
+            arquivo.write(uInput)
+    input_tree = os.path.join(upFolder, filename)
+    teste = ARVORE_INST.run(input_tree, genoma)
+    return render_template("tree.html", tree_result=teste)
+    
+@app.route('/tree')
+def tree():
+    return render_template("tree.html")
+
+@app.route('/align', methods=['GET', 'POST'])
+def generate_align(): 
+    genoma = request.form.get("escolhaGenoma")
+    modo = request.form.get('escolha_clustal')
+    uInput = request.form.get("input_manual")
+    genome_data = request.files['file_clustal']
+    upFolder = app.config["UPLOAD_FOLDER"]
+    if genome_data.filename != "":
+            filename = secure_filename(genome_data.filename)
+            genome_data.save(os.path.join(upFolder, filename))
+    if len(uInput) > 0:
+        filename = QUERY_DEFAULT
+        with open(os.path.join(upFolder, filename), "w") as arquivo:
+            arquivo.write(uInput)
+    fasta = open(os.path.join(upFolder, filename), "r")
+    input_clustal = os.path.join(upFolder, filename)
+    result_clustal = ALIGN_INST.run(input_clustal, genoma, modo)
+    print(result_clustal)
+    return render_template("clustalw.html", output_clustal_fmt=result_clustal)
+    
+@app.route('/show_align')
+def show_align():
+	upFolder = app.config["UPLOAD_FOLDER"]
+	return (open(os.path.join(upFolder, "clustalw.aln"), "r"))
+
+@app.route('/clustalw')
+def clustalw():
+    return render_template("clustalw.html")
+    
 @app.route('/jbrowse')
 def jbrowse():
     return render_template("jbrowse.html", home_bar_classes="is-active")
+
+@app.route('/download')
+def download_page():
+    return render_template("download.html")
+
+@app.route('/about')
+def about():
+    return render_template("about.html")
+    
+@app.route('/blast')
+def blast():
+    return render_template("blast.html")
 
 @app.route('/search_engine', methods=['POST'])
 def search_engine():
     busca = request.form.get("search_input")
     client = MongoClient("mongodb://172.17.0.2:27017")
     db = client.test
-    # tmp = []
-    # tmp = db.Tabela1.find( { "$or": [  { Software: busca }, { ID: busca}  ], {'_id': 0}  } )
-    # cursor = db.Tabela1.find({"Software":"EVM"})
-    # tmp = db.Tabela1.find({"Software": busca}, {'_id': 0})
-    # tmp.batch_size(100000)
-    # result_tmp = list(tmp)
     result = []
     i = 0
     print(busca)
-    #for x in db.Tabela1.find( {"$or": [
-    #        {"Chromossome": {"$regex": busca, "$options": "i"}},
-    #        {"Program": {"$regex": busca, "$options": "i"}},
-    #        {"Function": {"$regex": busca, "$options": "i"}},
-    #        {"ID": {"$regex": busca, "$options": "i"}}
-    #        ]}, {'_id': 0}) :
-    #for x in db.Tabela1.find({ 'Cromossome\tSoftware\tFunction\tStart\tStop\tIG\tLecture\t3_prime_partial=\t5_prime_partial=\tID=\t Name=\tParent=\tanticodon=\tcacao=\tcazy=\tclassification=\tcog=\tdescription=\tdomains=\tec_number=\tfpkm=\tgene_ontology=\tidentity=\tltr_identity=\tmethod=\tmotif=\tnlr=\tnote=\tpfam=\tplantTFDB=\tplantiSMASH=\tprgDB=\tproduct=\tpseudogene=\tsequence_ontology=\ttIR=\ttSD=\ttair10=\ttopology=\ttpm=\ttsd=': { "$regex": busca, "$options": "i" } }, {'_id':0} ) :
-    for x in db.Tabela1.find( {"$or": [
+    #tabelas = client.list_collection_names()
+    for x in db.Criollo.find( {"$or": [
+            {"Strain":{"$regex": busca, "$options": "i"}},
             {"Cromossome": {"$regex": busca, "$options": "i"}},
-            {"Program": {"$regex": busca, "$options": "i"}},
+            {"Software": {"$regex": busca, "$options": "i"}},
             {"Function": {"$regex": busca, "$options": "i"}},
             {"Start": {"$regex": busca, "$options": "i"}},
             {"Stop": {"$regex": busca, "$options": "i"}},
-            {"IG": {"$regex": busca, "$options": "i"}},
-            {"Lecture": {"$regex": busca, "$options": "i"}},
+            {"Score": {"$regex": busca, "$options": "i"}},
+            {"Strand": {"$regex": busca, "$options": "i"}},
+            {"Phase": {"$regex": busca, "$options": "i"}},
             {"3_prime_partial=": {"$regex": busca, "$options": "i"}},
             {"5_prime_partial=": {"$regex": busca, "$options": "i"}},
             {"ID=": {"$regex": busca, "$options": "i"}},
             {"Name=": {"$regex": busca, "$options": "i"}},
             {"Parent=": {"$regex": busca, "$options": "i"}},
-            {"anticodon=": {"$regex": busca, "$options": "i"}},
-            {"cacao=": {"$regex": busca, "$options": "i"}},
+            {"Target=": {"$regex": busca, "$options": "i"}},
             {"cazy=": {"$regex": busca, "$options": "i"}},
             {"classification=": {"$regex": busca, "$options": "i"}},
             {"cog=": {"$regex": busca, "$options": "i"}},
+            {"conversion_envent=": {"$regex": busca, "$options": "i"}},
             {"description=": {"$regex": busca, "$options": "i"}},
             {"domains=": {"$regex": busca, "$options": "i"}},
             {"ec_number=": {"$regex": busca, "$options": "i"}},
-            {"fpkm=": {"$regex": busca, "$options": "i"}},
             {"gene_ontology=": {"$regex": busca, "$options": "i"}},
             {"identity=": {"$regex": busca, "$options": "i"}},
             {"ltr_identity=": {"$regex": busca, "$options": "i"}},
@@ -218,23 +244,26 @@ def search_engine():
             {"planTFDB=": {"$regex": busca, "$options": "i"}},
             {"platiSMASH=": {"$regex": busca, "$options": "i"}},
             {"prgDB=": {"$regex": busca, "$options": "i"}},
-            {"product=": {"$regex": busca, "$options": "i"}},
-            {"pseudogene=": {"$regex": busca, "$options": "i"}},
+            {"retrocopy_host=": {"$regex": busca, "$options": "i"}},
+            {"retrocopy_parental=": {"$regex": busca, "$options": "i"}},
             {"sequence_ontology=": {"$regex": busca, "$options": "i"}},
+            {"signal_peptide=": {"$regex": busca, "$options": "i"}},
             {"tIR=": {"$regex": busca, "$options": "i"}},
             {"tSD=": {"$regex": busca, "$options": "i"}},
             {"tair10=": {"$regex": busca, "$options": "i"}},
+            {"tcacao=": {"$regex": busca, "$options": "i"}},
             {"topology=": {"$regex": busca, "$options": "i"}},
             {"tpm=": {"$regex": busca, "$options": "i"}},
-            {"tsd=": {"$regex": busca, "$options": "i"}}
+            {"transmembrane_domain=": {"$regex": busca, "$options": "i"}},
+            {"transposed_gene=": {"$regex": busca, "$options": "i"}},
             ]}, {'_id': 0}):
 
         i = i + 1
         tmp = list(dict(x).values())
         result.append(tmp)
-        print(result)
-        if i == 1000:
-            break
+        #print(len(tmp))
+        #if i == 1000:
+        #    break
     # for elemento in result_tmp:
     #     i = i + 1
     #     result.append(list(dict(elemento).values()))
@@ -243,7 +272,7 @@ def search_engine():
     # print(client.list_database_names())
     client.close()
     #print(result)
-    return render_template("index.html", home_classes="is-hidden", home_bar_classes="is-hidden", sequence_bar_classes="is-hidden", search_classes="is-active", blast_bar_classes="is-hidden", blast_classes="is-hidden", search_detail_classes="is-hidden", results=result)
+    return render_template("search.html", results=result)
 
 def estatistic():
 #    terms = ["chr", "gene", "exon", "intron", "transposon", "mRNA", "rRNA", "tRNA", "CDS"]
@@ -281,7 +310,7 @@ def search ():
     Entrez.email = "pedfar321@gmail.com" #The email from Pedro Augusto, send a message whenever you want
     procura = Entrez.esearch(db="pubmed", retmax=parameter_number_papers, term="Theobroma[title]", mindate="2018")
     save_temp = Entrez.read(procura)
-    papers = ""
+    collector = []
     #Treatament of Entrez collection
     save = str(save_temp.get("IdList"))
     temp = save.replace("[", '')
@@ -295,11 +324,17 @@ def search ():
     doi = save.split(" ")
     #Add all information of Entrez collection
     for i in range(len(doi)):
+        temp_paper = []
         temp = ""
         nome = Entrez.esummary(db="pubmed", id=doi[i])
         record = Entrez.read(nome)
-        temp += record[0]["Title"] + " DOI: " + doi[i] + " Publish Date: " + record[0]["PubDate"]+"\n"
-        papers += temp
+        #temp += record[0]["Title"] + " DOI: " + doi[i] + " Publish Date: " + record[0]["PubDate"]+"\t"
+        #papers += temp
+        collector.append({'title':record[0]["Title"], 'doi':doi[i], "data":record[0]["PubDate"]})
+        #collector.append(temp_paper)
+        temp_paper = []
+    print(collector)
+    papers = collector
     return papers
 
 
