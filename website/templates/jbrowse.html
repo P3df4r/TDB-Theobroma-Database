@@ -1,111 +1,482 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/cocoa.png') }}"/>
-    <title>Theobroma DB</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/jbrowse.css">
+  <!--<script defer src="../static/js/jbrowse.js"></script>-->
+
+  <script src="../static/js/navbar.js" defer></script>
+  
+	<script
+	  src="//unpkg.com/react@18/umd/react.development.js"
+	  crossorigin
+	></script>
+	<script
+	  src="//unpkg.com/react-dom@18/umd/react-dom.development.js"
+	  crossorigin
+	></script>
+	<script
+	  src="//unpkg.com/@jbrowse/react-linear-genome-view/dist/react-linear-genome-view.umd.development.js"
+	  crossorigin
+	></script>
+    
+	<style>
+		#wrapperJbrowseCriollo{
+			display: inline-block;
+		}	
+		#wrapperJbrowseMatina{
+			display: none;
+		}
+		#wrapperJbrowseC174{
+			display: none;
+		}
+		#wrapperJbrowseC174P{
+			display: none;
+		}
+		#wrapperJbrowseC1074{
+			display: none;
+		}
+		#wrapperJbrowseC1074P{
+			display: none;
+		}
+	</style>
+    
 </head>
 <body>
-    <section class="container.is-fullhd" >        
-        <nav class="navbar" style="padding:0px 100px 0px 0x; background-color: #ADC178;">
-            <div class="navbar-brand">
-                <a class="navbar-burger" id="burger">
-                </a>
-            </div>
-            <div class="navbar-menu" id="nav-links" style="font-size: 13px;">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="/index">
-                        HOME
-		            </a>
-                    <a class="navbar-item" data-target="Criollo">
-                        Criollo
-	                </a>
-        	        <a class="navbar-item" data-target="Matina">
-	                    Matina
-	                </a>
-			        <a class="navbar-item" data-target="C174">
-	                    C174
-	                </a>
-			        <a class="navbar-item" data-target="C174 - Diploid">
-	                    C174 - Diploid
-	                </a>
-			        <a class="navbar-item" data-target="C1074">
-	                    C1074
-	                </a>
-			        <a class="navbar-item" data-target="C1074 - Diploid">
-	                    C1074 - Diploid
-	                </a>
-                </div>
-		        <div class="navbar-end">
-			        <nav class="navbar-item"> 
-        	            <form class="form-inline">
-                            <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome" style="height: 21px; border-radius: 10px 10px 10px 10px">
-                            <button class="btn btn-outline-sucess my-2 my-sm-0" type="submit" style="height: 21px; border-radius: 10px 10    px 10px     10px">Search</button>
-	                    </form>
-        	         </nav>
-		        </div>
-            </div>
-            
-        </nav>
-        
-    <section class="container.is-fullhd" >
+  <nav class='navbar'>
+    <div class='menuButton'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" onclick="redirectPage(this)">
+      <figure>
+        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="/index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="/blast">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="/jbrowse">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+          <a href="/clustalw">
+            <img src='../static/icons/genetic_icon.svg' alt="CLUSTAL tool icon" />
+            CLUSTALW
+          </a>
+		  <a href="/tree">
+            <img src='../static/icons/genetic_icon.svg' alt="TREE tool icon" />
+           FiloTree
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="/download">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="/about">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function">
+    	<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine" >
+      </form>
+    </div>
+  </nav>
 
-        <div class="container.is-fullhd" id="tab-content">
+  <section class='jbrowsePageContainer'>
+    <div class='pageTitle'>
+      <figure>
+        <img src='../static/icons/genetic_icon.svg' alt="JBrowse tool page icon" />
+      </figure>
+      <h1>JBROWSE</h1>
+    </div>
+    <ul class='families'>
+    <!--
+      <a id="Criollo_jbrowse_button" href="">Criollo</a>
+      <a id="Matina_jbrowse_button" href="">Matina</a>
+      <li>C174</li>
+      <li>C174 - Diploid</li>
+      <li>C1074</li>
+      <li>C1074 - Diploid</li>
+    -->
+      <li id="Criollo_jbrowse">Criollo</li>
+      <li id="Matina_jbrowse">Matina</li>
+      <li id="C174_jbrowse">C174</li>
+      <li id="C174P_jbrowse">C174 - Diploid</li>
+      <li id="C1074_jbrowse">C1074</li>
+      <li id="C1074P_jbrowse">C1074 - Diploid</li>
+    </ul>
+    <div class='jbrowseContainer' >
+    	<!--
+      	<iframe width="250%" src="../static/dados/Criollo_new/index_criollo.html"></iframe>
+      	-->
+      <div class='jbrowseTool' id="wrapperJbrowseCriollo">
+        <br>
+        <div id="jbrowse_criollo"></div>
+      </div>
+     
+      <div class="jbrowseTool" id="wrapperJbrowseMatina">
+        <br>
+        <div id="jbrowse_matina"></div>
+      </div>
+     
+      <div class="jbrowseTool" id="wrapperJbrowseC174">
+        <br>
+        <div id="jbrowse_C174"></div>
+      </div>
 
-            <div class="is-active">
-                <center> <img src="../static/assets/browse2.png"> </center>
+      <div class="jbrowseTool" id="wrapperJbrowseC174P">
+        <br>
+        <div id="jbrowse_C174P"></div>
+      </div>
 
-        </div>
-        </div>
-    <div class="container.is-fullhd" id="tab-content">
-	        <div class="is-hidden" id="Criollo">
-                <iframe src="../static/dados/Criollo_new/index_criollo.html" width="75%" height="90%"></iframe>
-        	    <img src="../static/images/Criollo-idiogram.png" style="position: fixed; width: 450px; top: 70px">
-            </div>
-        </div>
-<!-- 
-	<div class="container.is-fullhd" id="tab-content">
-            <div class="is-hidden" id="Matina">
-                <iframe src="static/jbrowse2/Matina/index.html" frameborder="0" width="100%" height="600px"></iframe>
-                <img src="../static/images/Matina-idiogram.png" width="370px" style="margin: 10px 100px">
-            </div>
-        </div>
+      <div class="jbrowseTool" id="wrapperJbrowseC1074">
+        <br>
+        <div id="jbrowse_C1074"></div>
+      </div>
 
-	<div class="container.is-fullhd" id="tab-content">
-            <div class="is-hidden" id="C174">
-                <iframe src="static/jbrowse2/C174_jbrowse/index.html" frameborder="0" width="100%" height="600px"></iframe>
-                <img src="../static/images/C174-idiogram.png" width="370px" style="margin: 10px 100px">
-            </div>
-        </div>
+      <div class="jbrowseTool" id="wrapperJbrowseC1074P">
+        <br>
+        <div id="jbrowse_C1074P"></div>
+      </div>
 
-	<div class="container.is-fullhd" id="tab-content">
-            <div class="is-hidden" id="C174 - Diploid">
-                <iframe src="static/jbrowse2/C174_jbrowse_diploide/index.html" frameborder="0" width="100%" height="600px"></iframe>
-                <img src="../static/images/C174P-idiogram.png" width="570px" style="margin: 10px 100px">
-          </div>
-        </div>
-
-	<div class="container.is-fullhd" id="tab-content">
-            <div class="is-hidden" id="C1074">
-                <iframe src="static/C1074/index.html" frameborder="0" width="100%" height="600px"></iframe>
-                <img src="../static/images/C1074-idiogram.png" width="370px" style="margin: 10px 10px">
-            </div>
-        </div>
-
-	<div class="container.is-fullhd" id="tab-content">
-            <div class="is-hidden" id="C1074 - Diploid">
-                <iframe src="static/jbrowse2/C1074_jbrowse_diṕloide/index.html" frameborder="0" width="100%" height="600px"></iframe>
-                <img src="../static/images/C1074P-idiogram.png" width="570px" style="margin: 100px 10px">
-            </div>
-        </div>
-    
-        -->
+      <figure class='fig2'>
+        <img src='../static/imgs/Criollo-idiogram1.png' alt="Criollo Idiogram image" id="idiogramImage"/>
+      </figure>
+    </div>
     </section>
     
-    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+  <script type="module">
+    //import config_Criollo from '../static/dados/Criollo_new/config.json' assert { type: "json" }
+    import config_Criollo from '../static/dados/Criollo_new/config_criollo.json' assert { type: "json" }
+    import config_Matina from '../static/dados/Matina_new/config.json' assert { type: "json" }
+    import config_C1074 from '../static/dados/C1074/config.json' assert { type: "json" }
+    import config_C1074P from '../static/dados/C1074P/config.json' assert { type: "json" }
+    import config_C174 from '../static/dados/C174/config.json' assert { type: "json" }
+    import config_C174P from '../static/dados/C174P/config.json' assert { type: "json" }
+   
+    const { createElement } = React
+    const { render } = ReactDOM
+    
+/*     const { createViewState, JBrowseLinearGenomeView } =
+      JBrowseReactLinearGenomeView
+    const state = new createViewState({
+      assembly,
+      tracks,
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                                },
+                  "secondary": {
+                      "main": "#ccc178"
+                                },
+                  "tertiary": {
+                      "main": "#ADC178"
+                                },
+                  "quaternary": {
+                      "main": "#ADC178"
+                                }
+                        }
+                    }
+      }
+    })
+    render(
+      createElement(JBrowseLinearGenomeView, { viewState: state }),
+      document.getElementById('jbrowse_linear_genome_view'),
+    ) */
+
+    const { createViewState, JBrowseLinearGenomeView } = JBrowseReactLinearGenomeView;
+     
+    // ==== Config. do JBrowse do Criollo ====
+    const stateCriollo = new createViewState({
+      assembly: config_Criollo.assemblies[0],
+      tracks: config_Criollo.tracks,
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+      createElement(JBrowseLinearGenomeView, { viewState: stateCriollo }),
+      document.getElementById('jbrowse_criollo'),
+    );
+    
+    // ==== Config. do JBrowse do Matina ====
+    const stateMatina = new createViewState({
+      assembly: config_Matina.assemblies[0],
+      tracks: config_Matina.tracks,
+      //location: 'chr1:1..100',
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+        createElement(JBrowseLinearGenomeView, { viewState: stateMatina }),
+        document.getElementById('jbrowse_matina'),
+    );
+
+    // ==== Config. do JBrowse do Matina ====   
+    const stateC1074 = new createViewState({
+      assembly: config_C1074.assemblies[0],
+      tracks: config_C1074.tracks,
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+        createElement(JBrowseLinearGenomeView, { viewState: stateC1074 }),
+        document.getElementById('jbrowse_C1074'),
+    );
+
+    // ==== Config. do JBrowse do Matina ====
+    const stateC1074P = new createViewState({
+      assembly: config_C1074P.assemblies[0],
+      tracks: config_C1074P.tracks,
+      //location: 'chr1:1..100',
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+        createElement(JBrowseLinearGenomeView, { viewState: stateC1074P }),
+        document.getElementById('jbrowse_C1074P'),
+    );
+
+    // ==== Config. do JBrowse do Matina ====
+    const stateC174 = new createViewState({
+      assembly: config_C174.assemblies[0],
+      tracks: config_C174.tracks,
+      //location: 'chr1:1..100',
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+        createElement(JBrowseLinearGenomeView, { viewState: stateC174 }),
+        document.getElementById('jbrowse_C174'),
+    );
+
+    // ==== Config. do JBrowse do Matina ====
+    const stateC174P = new createViewState({
+      assembly: config_C174P.assemblies[0],
+      tracks: config_C174P.tracks,
+     // location: 'chr1:1..100',
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+        createElement(JBrowseLinearGenomeView, { viewState: stateC174P }),
+        document.getElementById('jbrowse_C174P'),
+    );
+
+    // ==== Função que altera o JBrowse ====
+    const jbrowseArr = {
+    	Criollo_jbrowse: {
+    		srcImg: '../static/imgs/Criollo-idiogram1.png',
+    	},
+    	Matina_jbrowse: {
+    		srcImg: '../static/imgs/pedro.png',
+    	},
+    };
+    
+    const idiogramImage = document.getElementById('idiogramImage');
+    const wrapperJbrowseCriollo = document.getElementById('wrapperJbrowseCriollo');
+    const wrapperJbrowseMatina = document.getElementById('wrapperJbrowseMatina');
+    const wrapperJbrowseC1074 = document.getElementById('wrapperJbrowseC1074');
+    const wrapperJbrowseC1074P = document.getElementById('wrapperJbrowseC1074P');
+    const wrapperJbrowseC174 = document.getElementById('wrapperJbrowseC174');
+    const wrapperJbrowseC174P = document.getElementById('wrapperJbrowseC174P');
+    
+    document.getElementById('Criollo_jbrowse').addEventListener('click', () => {
+    	wrapperJbrowseCriollo.style.display = 'inline-block';
+    	wrapperJbrowseMatina.style.display = 'none';
+        wrapperJbrowseC1074.style.display = 'none';
+        wrapperJbrowseC1074P.style.display = 'none';
+        wrapperJbrowseC174.style.display = 'none';
+        wrapperJbrowseC174P.style.display = 'none';
+    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    });
+    
+    document.getElementById('Matina_jbrowse').addEventListener('click', () => {
+    	wrapperJbrowseCriollo.style.display = 'none';
+    	wrapperJbrowseMatina.style.display = 'inline-block';
+        wrapperJbrowseC1074.style.display = 'none';
+        wrapperJbrowseC1074P.style.display = 'none';
+        wrapperJbrowseC174.style.display = 'none';
+        wrapperJbrowseC174P.style.display = 'none'
+    	idiogramImage.src = jbrowseArr.Matina_jbrowse.srcImg;
+    });
+     
+    document.getElementById('C1074_jbrowse').addEventListener('click', () => {
+    	wrapperJbrowseCriollo.style.display = 'none';
+    	wrapperJbrowseMatina.style.display = 'none';
+        wrapperJbrowseC1074.style.display = 'inline-block';
+        wrapperJbrowseC1074P.style.display = 'none';
+        wrapperJbrowseC174.style.display = 'none';
+        wrapperJbrowseC174P.style.display = 'none';
+    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    });
+    
+    document.getElementById('C1074P_jbrowse').addEventListener('click', () => {
+    	wrapperJbrowseCriollo.style.display = 'none';
+    	wrapperJbrowseMatina.style.display = 'none';
+        wrapperJbrowseC1074.style.display = 'none';
+        wrapperJbrowseC1074P.style.display = 'inline-block';
+        wrapperJbrowseC174.style.display = 'none';
+        wrapperJbrowseC174P.style.display = 'none';
+    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    });
+
+    document.getElementById('C174_jbrowse').addEventListener('click', () => {
+    	wrapperJbrowseCriollo.style.display = 'none';
+    	wrapperJbrowseMatina.style.display = 'none';
+        wrapperJbrowseC1074.style.display = 'none';
+        wrapperJbrowseC1074P.style.display = 'none';
+        wrapperJbrowseC174.style.display = 'inline-block';
+        wrapperJbrowseC174P.style.display = 'none';
+    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    });
+
+    document.getElementById('C174P_jbrowse').addEventListener('click', () => {
+    	wrapperJbrowseCriollo.style.display = 'none';
+    	wrapperJbrowseMatina.style.display = 'none';
+        wrapperJbrowseC1074.style.display = 'none';
+        wrapperJbrowseC1074P.style.display = 'none';
+        wrapperJbrowseC174.style.display = 'none';
+        wrapperJbrowseC174P.style.display = 'inline-block';
+    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    });
+    
+
+
+  </script>
+  
 </body>
 </html>
