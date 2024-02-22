@@ -125,6 +125,7 @@ def runBlast():
     BLAST_INST.run(DATABASES[bValor][dbValor], bValor, query)
     with open('./downloads/output.txt', "r") as f:
         content = f.read()
+    print(content)
     return render_template("./blast.html", content=content)
 
 @app.route("/download/blast")
@@ -208,9 +209,13 @@ def search_engine():
     db = client.test
     result = []
     i = 0
-    print(busca)
-    #tabelas = client.list_collection_names()
-    for x in db.Criollo.find( {"$or": [
+    tabelas = db.list_collection_names()
+    print('pesquisando')
+    for a in range(len(tabelas)):
+        for x in db[tabelas[a]].find( {"$or": [
+    #for collection_name in db.list_collection_names():
+    #    collection = db[collection_name]
+    #    x = collection.find({"$or": [
             {"Strain":{"$regex": busca, "$options": "i"}},
             {"Cromossome": {"$regex": busca, "$options": "i"}},
             {"Software": {"$regex": busca, "$options": "i"}},
@@ -257,20 +262,16 @@ def search_engine():
             {"transmembrane_domain=": {"$regex": busca, "$options": "i"}},
             {"transposed_gene=": {"$regex": busca, "$options": "i"}},
             ]}, {'_id': 0}):
-
-        i = i + 1
-        tmp = list(dict(x).values())
-        result.append(tmp)
-        #print(len(tmp))
-        #if i == 1000:
-        #    break
-    # for elemento in result_tmp:
-    #     i = i + 1
-    #     result.append(list(dict(elemento).values()))
-    #     if i == 50000:
-    #         break
-    # print(client.list_database_names())
+        #for doc in x:
+        #    tmp = list(dict(doc).values())
+        #    result.append(tmp)
+            i = i + 1
+            tmp = list(dict(x).values())
+            result.append(tmp)
+            if len(result) > 100:
+                break
     client.close()
+    print(tmp)
     #print(result)
     return render_template("search.html", results=result)
 
