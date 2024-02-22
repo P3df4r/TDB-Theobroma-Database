@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/blast.css">
+  
+  <script src="../static/js/navbar.js" defer></script>
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuButton'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="/index.html">
+      <figure>
+        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="/index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="/blast">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="/jbrowse">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+          <a href="/clustalw">
+            <img src='../static/icons/genetic_icon.svg' alt="CLUSTAL tool icon" />
+            CLUSTALW
+          </a>
+	  <a href="/tree">
+            <img src='../static/icons/genetic_icon.svg' alt="TREE tool icon" />
+           FiloTree
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="/download">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+     </li>
+      <li>
+        <a href="/about">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function">
+    	<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine">
+      </form>
+    </div>
+  </nav>
+
+  <section class='blastPageContainer'>
+    <div class='pageTitle'>
+        <figure>
+            <img src='../static/icons/blast_icon.svg' alt="Blast tool page icon" />
+        </figure>
+        <h1>BLAST</h1>
+    </div>
+    
+    <form method="POST" enctype="multipart/form-data" action="/blast_run">
+      <div class="selectWrapper">
+        <div class="select">
+          <select name="modoBlast" id="mBlast">
+            <!--Numeração igual ao blastclass.py-->
+            <option value="1">BlastN</option>
+            <option value="2">BlastP</option>
+            <option value="3">BlastX</option>
+            <option value="4">tBlastN</option>
+          </select>
+        </div>
+        <div class="select">
+          <select name="escolhaGenoma" id="genoma">
+            <option value="0">Criollo</option>
+            <option value="1">Matina</option>
+            <option value="2">C174</option>
+            <option value="3">C174P</option>
+            <option value="4">C1074</option>
+            <option value="5">C1074P</option>
+            <option value="6">18S</option>
+          </select>
+        </div>
+      </div>
+      <textarea class="textarea fastaFormat" placeholder="FASTA format" id="nucleotideo" name="nucleotideo"></textarea>
+      <div class="uploadFileBox">
+        <input type="file" name="file">
+      </div>
+      <input class="sendForm" type="submit" value="Blast">
+    </form>
+
+    <div class='blastContainer'>
+	    <input type="file" id="blastinput" />
+		    <div id="blast-multiple-alignments"></div>
+		    <div id="blast-alignments-table"></div>
+		    <div id="blast-single-alignment"></div>
+
+          <!--<div id="blast-multiple-alignments1"></div>
+          <div id="blast-alignments-table1"></div>
+          <div id="blast-single-alignment1"></div>-->
+    </div>
+
+  </section>
+    <script type="text/javascript" src="../static/node/node_modules/biojs-vis-blasterjs/lib/html2canvas.js"></script>  
+    <script type="text/javascript" src="../static/node/node_modules/biojs-vis-blasterjs/build/blasterjs.js"></script>
+ 
+    <script type="text/javascript">
+      var blasterjs = require("biojs-vis-blasterjs");
+      var instance = new blasterjs({
+         input: "blastinput",
+         multipleAlignments: "blast-multiple-alignments",
+         alignmentsTable: "blast-alignments-table",
+         singleAlignment: "blast-single-alignment"
+      });
+    </script>
+    
+</body>
+</html>
