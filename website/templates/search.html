@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/jbrowse.css">
+  <script src="../static/js/jbrowse.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+  <script src="../static/js/jbrowse.js"></script>
+  <link rel="stylesheet" href="../static/css/jbrowse.css">
+  
+  <script src="../static/js/navbar.js" defer></script>
+  
+  	<script
+	  src="//unpkg.com/react@18/umd/react.development.js"
+	  crossorigin
+	></script>
+	<script
+	  src="//unpkg.com/react-dom@18/umd/react-dom.development.js"
+	  crossorigin
+	></script>
+	<script
+	  src="//unpkg.com/@jbrowse/react-linear-genome-view/dist/react-linear-genome-view.umd.development.js"
+	  crossorigin
+	></script>
+  
+  <style>
+	.detalhada_class{
+		width: min(95%, 135rem);
+		padding: 2rem 0;
+	}
+  
+	#botaoback{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 0 1.5rem;
+	}
+  
+	.botaoEsconderTabela{
+		background-color: #2ea44f;
+		border-radius: 1rem;
+		padding: 1rem;
+		font-size: 1.7rem;
+		font-weight: bold;
+		color: #FFF;
+		border: 0;
+		cursor: pointer;
+		transition: .3s ease;
+	}
+	
+	.botaoEsconderTabela:hover{
+		background-color: #39cc62;
+	}
+  
+	.SearchPageContainer{
+		width: 100%;
+		height: 100%;
+	}
+  
+  	#tela-empty{
+  		width: 100%;
+  		height: 100%;
+  		padding: 1.5rem;
+  		
+  		display: flex;
+  		flex-direction: column;
+  		align-items: center;
+  		justify-content: center;
+  		
+  		text-align: center;
+  	}
+  	
+  	#tela-empty h1,
+  	#tela-empty p,
+  	#tela-empty svg{
+  		color: var(--secondary-color);
+  	}
+  	
+  	#tela-empty h1{
+  		font-size: clamp(2.5rem, 1vw + 1rem, 3.8rem);
+  		margin-top: 1.5rem;
+  		margin-bottom: 1rem;
+  	}
+  	
+  	#tela-empty p{
+  		font-size: clamp(1.5rem, 1vw + 1rem, 2rem);
+  	}
+  	
+  	#tela-empty svg{
+  		width: 8rem;
+  		height: 8rem;
+  	}
+  	
+  	.caixaDeResultado{
+  		display: flex;
+  		flex-direction: column;
+  		align-items: center;
+  	}
+  	
+  	#dataTable2{
+  		width: 100%;
+  		display: flex;
+  		justify-content: center;
+  	}
+  	
+  	.tabelaResultado{
+  		width: min(100%, 90rem);
+  		margin: auto;
+  		box-shadow: 0px 5px 1rem rgba(0, 0, 0, 0.30);
+  		border-radius: 1rem;
+  		margin-bottom: 2.5rem;
+  	}
+  	
+  	.jbrowseContainer,
+  	.jbrowseTool{
+  		max-width: unset;
+  	}
+  	
+  	.jbrowseTool iframe{
+  		width: 100%;
+  	}
+ 
+  	
+  </style>
+        
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuButton'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="/index.html">
+      <figure>
+        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="/index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="/blast">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="/jbrowse">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+          <a href="/clustalw">
+            <img src='../static/icons/genetic_icon.svg' alt="CLUSTAL tool icon" />
+            CLUSTALW
+          </a>
+		  <a href="/tree">
+            <img src='../static/icons/genetic_icon.svg' alt="TREE tool icon" />
+           FiloTree
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="/download">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="/about">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function">
+    	<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine">
+      </form>
+    </div>
+
+  </nav>
+
+  <section class='SearchPageContainer'>
+        <div id="tela-empty">
+        	<i data-lucide="x-circle"></i>
+            <h1>Nenhuma informação encontrada!</h1>
+            <p>Por favor, verifique seus dados e tente novamente.</p>
+        </div>
+        <div class="{{ search_classes }}" id="search-engine"> 
+        	<div class="caixaDeResultado">
+	        <div id="dataTable2"></div>
+	        <div class="detalhada_class" id="detalhada" hidden="true">
+	            <div id="botaoback">
+	              <button class="botaoEsconderTabela" type="hidden" onclick="escondertab2()">Back</button>
+	            </div>
+	            <div id="popupTable"></div>
+	            <div></div>
+	            <table class="tabelaResultado">
+	                         <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Strain</th>
+	                            <td style="padding: 8px;" id="col1">col1</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Chromossome</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col2">col2</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Software</th>
+	                            <td style="padding: 8px;" id="col3">col3</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Function</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col4">col4</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Start</th>
+	                            <td style="padding: 8px;" id="col5">col5</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Stop</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col6">col6</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Score</th>
+	                            <td style="padding: 8px;" id="col7">col7</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Strand</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col8">col8</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Phase</th>
+	                            <td style="padding: 8px;" id="col9">col9</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">3_prime_partial</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col10">col10</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">5_prime_partial</th>
+	                            <td style="padding: 8px;" id="col11">col11</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">ID</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col12">col12</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Name</th>
+	                            <td style="padding: 8px;" id="col13">col13</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Parent</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col14">col14</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Target</th>
+	                            <td style="padding: 8px;" id="col15">col15</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">cazy</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col16">col16</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">classification</th>
+	                            <td style="padding: 8px;" id="col17">col17</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">cog</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col18">col18</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Conversion Event</th>
+	                            <td style="padding: 8px;" id="col19">col19</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Description</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col20">col20</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">domains</th>
+	                            <td style="padding: 8px;" id="col21">col21</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">EC Number</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col22">col22</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Gene Ontology</th>
+	                            <td style="padding: 8px;" id="col23">col23</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Identity</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col24">col24</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">LTR Identity</th>
+	                            <td style="padding: 8px;" id="col25">col25</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Method</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col26">col26</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Motif</th>
+	                            <td style="padding: 8px;" id="col27">col27</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">NLR</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col28">col28</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Note</th>
+	                            <td style="padding: 8px;" id="col29">col29</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">PFAM</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col30">col30</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">plantTFDB</th>
+	                            <td style="padding: 8px;" id="col31">col31</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">plantiSMASH</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col32">col32</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">prgDB</th>
+	                            <td style="padding: 8px;" id="col33">col33</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Pseudo</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col34">col34</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Retrocopy Host</th>
+	                            <td style="padding: 8px;" id="col35">col35</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Retrocopy Parental</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col36">col36</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Sequence Ontology</th>
+	                            <td style="padding: 8px;" id="col37">col37</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Signal Peptide</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col38">col38</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">tIR</th>
+	                            <td style="padding: 8px;" id="col39">col39</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">tSD</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col40">col40</td>
+	                        </tr>
+	                         <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px;">Tair10</th>
+	                            <td style="padding: 8px;" id="col41">col41</td>
+	                        </tr>
+	                        <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">T. Cacao</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col42">col42</td>
+	                        </tr>
+                            <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Topology</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col43">col43</td>
+	                        </tr>
+                            <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">TPM</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col44">col44</td>
+	                        </tr>
+                            <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Transmembrane Domain</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col45">col45</td>
+	                        </tr>
+                            <tr style="border: 1px solid #dee2e6; ">
+	                            <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Transposed Gene</th>
+	                            <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col46">col46</td>
+	                        </tr>
+                        </table>
+	            <div class='jbrowseContainer' id="View_jbrowse">
+					<div class='jbrowseTool'>
+						<!--<iframe src="../static/dados/Criollo_new/index_criollo.html"></iframe>-->
+						<div id="jbrowse_criollo" ></div>
+						<div id="jbrowse_matina" ></div>
+						<div id="jbrowse_C1074" ></div>
+						<div id="jbrowse_C1074P" ></div>
+						<div id="jbrowse_C174" ></div>
+						<div id="jbrowse_C174P" ></div>
+					</div>
+				</div>
+	        </div> 
+        </div>
+        </div>
+    </section>
+
+
+    <script type='module'>
+       
+        import config_criollo from '../static/dados/Criollo_new/config.json' assert { type: "json" }
+
+		const { createElement } = React;
+		const { render } = ReactDOM;
+		const { createViewState, JBrowseLinearGenomeView } =JBrowseReactLinearGenomeView;
+		
+		// ==== Config. do JBrowse do Criollo ====
+	    let stateCriollo = new createViewState({
+	      assembly: config_criollo.assemblies[0],
+	      tracks: config_criollo.tracks,
+	      location: `chr1:1..100`, // '$cromossomo:$inicio..$fim'
+	      disableAddTracks: true,
+	      configuration:{
+	          "theme": {
+	              "palette": {
+	                  "primary": {
+	                      "main": "#d5c178"
+	                  },
+	                  "secondary": {
+	                      "main": "#ccc178"
+	                  },
+	                  "tertiary": {
+	                      "main": "#ADC178"
+	                  },
+	                  "quaternary": {
+	                      "main": "#ADC178"
+	                  }
+	              }
+	          }
+	      }
+	    })
+        function navTo(event){
+            
+            if (event.target.dataset.specie == "Criollo"){
+                console.log(event)
+                console.log(event.target)
+                console.log(event.target.dataset)
+                console.log(event.target.dataset.location_start)
+                console.log(event.target.dataset.location_stop)
+                console.log(event.target.dataset.chr)
+
+                let formatter = new Intl.NumberFormat("en-US");
+                let startFormatado = formatter.format(event.target.dataset.location_start)
+                let stopFormatado = formatter.format(event.target.dataset.location_stop)
+            
+                const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                stateCriollo.session.view.navToLocString(new_loc, "Criollo")
+
+            }
+        }
+        const buttons = document.getElementsByTagName('button')
+            for (const button of buttons) {
+                if (button.dataset.type === 'gene_button') {
+                    button.addEventListener('click', navTo)
+                }
+            }
+	    render(
+	      createElement(JBrowseLinearGenomeView, { viewState: stateCriollo }),
+	      document.getElementById('jbrowse_criollo'),
+	    );
+	    
+    	/*
+        export function jbrowse_render(){
+              //import tracks from "../static/dados/Criollo_new/tracks.js";
+              //import assembly from "../static/dados/Criollo_new/assembly.js";
+              import("../static/dados/Criollo_new/tracks.js")
+                .then((tracksModule) => {
+                  return import("../static/dados/Criollo_new/assembly.js")
+                    .then((assemblyModule) => {
+                      // Agora você pode usar tracksModule e assemblyModule dentro deste bloco
+                      const tracks = tracksModule.default;
+                      const assembly = assemblyModule.default;
+            
+
+                      
+                      const state = new createViewState({
+                        assembly,
+                        tracks,
+                        location: '',
+                        disableAddTracks: true,
+                        configuration:{
+                            "theme": {
+                                "palette": {
+                                    "primary": {
+                                        "main": "#d5c178"
+                                    },
+                                    "secondary": {
+                                        "main": "#ccc178"
+                                    },
+                                    "tertiary": {
+                                        "main": "#ADC178"
+                                    },
+                                    "quaternary": {
+                                        "main": "#ADC178"
+                                    }
+                                }
+                            }
+                        }
+                      })
+                      render(
+                        createElement(JBrowseLinearGenomeView, { viewState: state }),
+                        document.getElementById('jbrowse_criollo'),
+                      )
+                      
+                      console.log("# ok!!!")
+                    })
+                    .catch((error) => {
+                      console.error("Erro ao importar assembly.js:", error);
+                    });
+                })
+                .catch((error) => {
+                  console.error("Erro ao importar tracks.js:", error);
+                });
+              
+            }
+        */
+    </script>
+
+    <script type='module'>
+        
+        import config_matina from '../static/dados/Matina_new/config.json' assert { type: "json" }
+    
+		const { createElement } = React;
+		const { render } = ReactDOM;
+		const { createViewState, JBrowseLinearGenomeView } = JBrowseReactLinearGenomeView;
+
+
+		// ==== Config. do JBrowse do Matina ====
+	    let stateMatina = new createViewState({
+	      assembly: config_matina.assemblies[0],
+	      tracks: config_matina.tracks,
+	      location: 'chr1:1..100', // '$cromossomo:$inicio..$fim'
+	      disableAddTracks: true,
+	      configuration:{
+	          "theme": {
+	              "palette": {
+	                  "primary": {
+	                      "main": "#d5c178"
+	                  },
+	                  "secondary": {
+	                      "main": "#ccc178"
+	                  },
+	                  "tertiary": {
+	                      "main": "#ADC178"
+	                  },
+	                  "quaternary": {
+	                      "main": "#ADC178"
+	                  }
+	              }
+	          }
+	      }
+	    })
+        function navTo(event){
+            if (event.target.dataset.specie == "Matina"){
+                console.log(event)
+                console.log(event.target)
+                console.log(event.target.dataset)
+                console.log(event.target.dataset.location_start)
+                console.log(event.target.dataset.location_stop)
+                console.log(event.target.dataset.specie)
+
+                let formatter = new Intl.NumberFormat("en-US");
+                let startFormatado = formatter.format(event.target.dataset.location_start)
+                let stopFormatado = formatter.format(event.target.dataset.location_stop)
+
+                const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                stateMatina.session.view.navToLocString(new_loc, "Matina")
+            }
+        }
+        const buttons = document.getElementsByTagName('button')
+            for (const button of buttons) {
+                if (button.dataset.type === 'gene_button') {
+                    button.addEventListener('click', navTo)
+                }
+            }
+	    render(
+	      createElement(JBrowseLinearGenomeView, { viewState: stateMatina }),
+	      document.getElementById('jbrowse_matina'),
+	    );
+    </script>
+
+    <script type='module'>
+        
+        import config_C1074 from '../static/dados/C1074/config.json' assert { type: "json" }
+    
+		const { createElement } = React;
+		const { render } = ReactDOM;
+		const { createViewState, JBrowseLinearGenomeView } = JBrowseReactLinearGenomeView;
+
+
+		// ==== Config. do JBrowse do C1074 ====
+	    let stateC1074 = new createViewState({
+	      assembly: config_C1074.assemblies[0],
+	      tracks: config_C1074.tracks,
+	      location: 'chr1:1..100', // '$cromossomo:$inicio..$fim'
+	      disableAddTracks: true,
+	      configuration:{
+	          "theme": {
+	              "palette": {
+	                  "primary": {
+	                      "main": "#d5c178"
+	                  },
+	                  "secondary": {
+	                      "main": "#ccc178"
+	                  },
+	                  "tertiary": {
+	                      "main": "#ADC178"
+	                  },
+	                  "quaternary": {
+	                      "main": "#ADC178"
+	                  }
+	              }
+	          }
+	      }
+	    })
+        function navTo(event){
+            if (event.target.dataset.specie == "C1074"){
+                console.log(event)
+                console.log(event.target)
+                console.log(event.target.dataset)
+                console.log(event.target.dataset.location_start)
+                console.log(event.target.dataset.location_stop)
+                console.log(event.target.dataset.specie)
+
+                let formatter = new Intl.NumberFormat("en-US");
+                let startFormatado = formatter.format(event.target.dataset.location_start)
+                let stopFormatado = formatter.format(event.target.dataset.location_stop)
+
+                const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                stateC1074.session.view.navToLocString(new_loc, "C1074")
+            }
+        }
+        const buttons = document.getElementsByTagName('button')
+            for (const button of buttons) {
+                if (button.dataset.type === 'gene_button') {
+                    button.addEventListener('click', navTo)
+                }
+            }
+	    render(
+	      createElement(JBrowseLinearGenomeView, { viewState: stateC1074 }),
+	      document.getElementById('jbrowse_C1074'),
+	    );
+    </script>
+    
+    <script type='module'>
+        
+        import config_C1074P from '../static/dados/C1074P/config.json' assert { type: "json" }
+    
+		const { createElement } = React;
+		const { render } = ReactDOM;
+		const { createViewState, JBrowseLinearGenomeView } = JBrowseReactLinearGenomeView;
+
+		// ==== Config. do JBrowse do Matina ====
+	    let stateC1074P = new createViewState({
+	      assembly: config_C1074P.assemblies[0],
+	      tracks: config_C1074P.tracks,
+          location: 'chr1:1..100', // '$cromossomo:$inicio..$fim'
+	      disableAddTracks: true,
+	      configuration:{
+	          "theme": {
+	              "palette": {
+	                  "primary": {
+	                      "main": "#d5c178"
+	                  },
+	                  "secondary": {
+	                      "main": "#ccc178"
+	                  },
+	                  "tertiary": {
+	                      "main": "#ADC178"
+	                  },
+	                  "quaternary": {
+	                      "main": "#ADC178"
+	                  }
+	              }
+	          }
+	      }
+	    })
+        function navTo(event){
+            if (event.target.dataset.specie == 'C1074P'){
+                console.log(event)
+                console.log(event.target)
+                console.log(event.target.dataset)
+                console.log(event.target.dataset.location_start)
+                console.log(event.target.dataset.location_stop)
+                console.log(event.target.dataset.specie)
+                console.log({{results|safe}})
+
+                let formatter = new Intl.NumberFormat("en-US");
+                let startFormatado = formatter.format(event.target.dataset.location_start)
+                let stopFormatado = formatter.format(event.target.dataset.location_stop)
+
+                const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                console.log(new_loc)
+                stateC1074P.session.view.navToLocString(new_loc, "C1074P")
+            }
+        }
+        const buttons = document.getElementsByTagName('button')
+        console.log(buttons)
+            for (const button of buttons) {
+                if (button.dataset.type === 'gene_button') {
+                    button.addEventListener('click', navTo)
+                }
+            }
+	    render(
+	      createElement(JBrowseLinearGenomeView, { viewState: stateC1074P }),
+	      document.getElementById('jbrowse_C1074P'),
+	    );
+    </script>
+
+    <script type='module'>
+        
+        import config_C174 from '../static/dados/C174/config.json' assert { type: "json" }
+    
+		const { createElement } = React;
+		const { render } = ReactDOM;
+		const { createViewState, JBrowseLinearGenomeView } = JBrowseReactLinearGenomeView;
+
+		// ==== Config. do JBrowse do Matina ====
+	    let stateC174 = new createViewState({
+	      assembly: config_C174.assemblies[0],
+	      tracks: config_C174.tracks,
+          location: 'chr1:1..100', // '$cromossomo:$inicio..$fim'
+	      disableAddTracks: true,
+	      configuration:{
+	          "theme": {
+	              "palette": {
+	                  "primary": {
+	                      "main": "#d5c178"
+	                  },
+	                  "secondary": {
+	                      "main": "#ccc178"
+	                  },
+	                  "tertiary": {
+	                      "main": "#ADC178"
+	                  },
+	                  "quaternary": {
+	                      "main": "#ADC178"
+	                  }
+	              }
+	          }
+	      }
+	    })
+        function navTo(event){
+            if (event.target.dataset.specie == "C174"){
+                console.log(event)
+                console.log(event.target)
+                console.log(event.target.dataset)
+                console.log(event.target.dataset.location_start)
+                console.log(event.target.dataset.location_stop)
+                console.log(event.target.dataset.specie)
+
+                let formatter = new Intl.NumberFormat("en-US");
+                let startFormatado = formatter.format(event.target.dataset.location_start)
+                let stopFormatado = formatter.format(event.target.dataset.location_stop)
+
+                const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                stateC174.session.view.navToLocString(new_loc, "C174")
+            }
+        }
+        const buttons = document.getElementsByTagName('button')
+            for (const button of buttons) {
+                if (button.dataset.type === 'gene_button') {
+                    button.addEventListener('click', navTo)
+                }
+            }
+	    render(
+	      createElement(JBrowseLinearGenomeView, { viewState: stateC174 }),
+	      document.getElementById('jbrowse_C174'),
+	    );
+    </script>
+
+    <script type='module'>
+        
+        import config_C174P from '../static/dados/C174P/config.json' assert { type: "json" }
+		
+        const { createElement } = React;
+		const { render } = ReactDOM;
+		const { createViewState, JBrowseLinearGenomeView } = JBrowseReactLinearGenomeView;
+
+
+		// ==== Config. do JBrowse do Matina ====
+	    let stateC174P = new createViewState({
+	      assembly: config_C174P.assemblies[0],
+	      tracks: config_C174P.tracks,
+          location: 'chr1:1..100', // '$cromossomo:$inicio..$fim'
+	      disableAddTracks: true,
+	      configuration:{
+	          "theme": {
+	              "palette": {
+	                  "primary": {
+	                      "main": "#d5c178"
+	                  },
+	                  "secondary": {
+	                      "main": "#ccc178"
+	                  },
+	                  "tertiary": {
+	                      "main": "#ADC178"
+	                  },
+	                  "quaternary": {
+	                      "main": "#ADC178"
+	                  }
+	              }
+	          }
+	      }
+	    })
+        function navTo(event){
+            if (event.target.dataset.specie == "C174P"){
+                console.log(event)
+                console.log(event.target)
+                console.log(event.target.dataset)
+                console.log(event.target.dataset.location_start)
+                console.log(event.target.dataset.location_stop)
+                console.log(event.target.dataset.specie)
+
+                let formatter = new Intl.NumberFormat("en-US");
+                let startFormatado = formatter.format(event.target.dataset.location_start)
+                let stopFormatado = formatter.format(event.target.dataset.location_stop)
+
+                const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                stateC174P.session.view.navToLocString(new_loc, "C174P")
+            }
+        }
+        const buttons = document.getElementsByTagName('button')
+            for (const button of buttons) {
+                if (button.dataset.type === 'gene_button') {
+                    button.addEventListener('click', navTo)
+                }
+            }
+	    render(
+	      createElement(JBrowseLinearGenomeView, { viewState: stateC174P }),
+	      document.getElementById('jbrowse_C174P'),
+	    );
+    </script>
+
+    <script>
+               //scriot do grid js para mostrar os resultados da busca
+            console.log('grid recebeu')
+            new gridjs.Grid({
+                columns: [
+                    {name: "Strain", hidden: false},
+                    {name: "Chromossome", hidden: false},
+                    {name: "Software", hidden: true},
+                    {name: "Function", hidden: false},
+                    {name: "Start", hidden: true},
+                    {name: "Stop", hidden: true},
+                    {name: "Score", hidden: true},
+                    {name: "Strand", hidden: true},
+                    {name: "Phase", hidden: true},
+                    {name: "3_prime_partial", hidden: true},
+                    {name: "5_prime_partial", hidden: true},
+                    {name: "ID", hidden: false, width: "15%"},
+                    {name: "Name", hidden:true},
+                    {name: "Parent", hidden: true},
+                    {name: "Target", hidden: true},
+                    {name: "Cazy", hidden: true},
+                    {name: "Classification", hidden: true},
+                    {name: "Cog", hidden: true},
+                    {name: "Conversion Event", hidden: true},
+                    {name: "Description", hidden: false, width:"25%"},
+                    {name: "Domains", hidden: true},
+                    {name: "ec_number", hidden: true},
+                    {name: "Gene_ontology", hidden: true},
+                    {name: "Identity", hidden: true},
+                    {name: "Ltr_identity", hidden: true},
+                    {name: "Method", hidden: true},
+                    {name: "Motif", hidden: true},
+                    {name: "Nlr", hidden: true},
+                    {name: "Note", hidden: true},
+                    {name: "Pfam", hidden: true},
+                    {name: "PlantTFDB", hidden: true},
+                    {name: "PlantiSMASH", hidden: true},
+                    {name: "PrgDB", hidden: true},
+                    {name: "Pseudo", hidden: true},
+                    {name: "Retrocopy Host", hidden: true},
+                    {name: "Retrocopy Parental", hidden: true},
+                    {name: "sequence_ontology", hidden: true},
+                    {name: "Signal Peptide", hidden: true},
+                    {name: "tIR", hidden: true},
+                    {name: "tSD", hidden: true},
+                    {name: "Tair10", hidden: true},
+                    {name: "Tcacao", hidden: true},
+                    {name: "Topology", hidden: true},
+                    {name: "Tpm", hidden: true},
+                    {name: "Transmembrane Domain", hidden: true},
+                    {name: "Transposed Gene", hidden: true},
+                    {name: "Details", hidden:false, width:"7%" , formatter: (cell,row) => {return gridjs.html(`<button type="button" data-type="gene_button" data-chr='${row.cells.slice(1,2).map(cell => cell.data)}' data-specie='${row.cells.slice(0,1).map(cell => cell.data)}' data-location_start='${row.cells.slice(4,5).map(cell => cell.data)}' data-location_stop='${row.cells.slice(5,6).map(cell => cell.data)}'  onclick="dupla('${row.cells.map(cell => cell.data)}')">Details</button>`)}},
+                ],
+                resizable: true,
+                search: true,
+                sort: true,
+                fixedHeader: true,
+                width: '90%',
+                //pagination: true,
+                data: {{results|safe}}
+            }).render(document.getElementById("dataTable2"));
+            
+            const telaEmpty = document.getElementById('tela-empty');
+            const caixaDeResultado = document.querySelector('.caixaDeResultado');
+           
+            console.log({{results|safe}}.length)  
+            if({{results|safe}}.length === 0){
+            	telaEmpty.style.display = 'flex';
+            	caixaDeResultado.style.display = 'none';
+            	
+            	console.log('# mostrar tela de erro');
+            } else {
+            	telaEmpty.style.display = 'none';
+            	caixaDeResultado.style.display= 'flex';
+            	
+            	console.log('# esconder tela de erro');
+            };
+            
+			/*
+            if (results.length === 0){
+                //document.querySelector('.tela-empty').style.displey = 'block';
+                const myDiv = document.querySelector("#tela-empty");
+
+                // Altere o style `display` para `block`
+                myDiv.style.display = "block";
+            }
+        
+        	*/
+        	
+        	
+            let linhasArmazenadas = []
+        
+            const popupGrid = new gridjs.Grid();
+        
+            // função que acionava o botao de esconder a tabela principal e mostrava a tabela secundária
+            function escondertab1(){
+
+                document.getElementById("dataTable2").style.display = 'none';
+                document.getElementById("detalhada").hidden = false;
+                document.getElementById("popupTable").hidden = true;
+                    if (event.target.dataset.specie == "Criollo") {
+                      Mostrar_Criollo();
+                    }
+                    if (event.target.dataset.specie == "Matina") {
+                      Mostrar_Matina();
+                    }
+                    if (event.target.dataset.specie == "C1074") {
+                      Mostrar_C1074();
+                    }
+                    if (event.target.dataset.specie == "C1074P") {
+                      Mostrar_C1074P();
+                    }
+                    if (event.target.dataset.specie == "C174") {
+                      Mostrar_C174();
+                    }
+                    if (event.target.dataset.specie == "C174P") {
+                      Mostrar_C174P();
+                    }
+                }
+        
+            function escondertab2(){
+                document.getElementById("dataTable2").style.display = 'flex';
+                document.getElementById("detalhada").hidden = true;
+            }
+        
+            function back(){
+                document.getElementById("botaoback").hidden = true;
+            }
+
+            function Mostrar_Matina() {
+                document.getElementById("jbrowse_criollo").hidden = true;
+                document.getElementById("jbrowse_matina").hidden = false;
+                document.getElementById("jbrowse_C1074").hidden = true;
+                document.getElementById("jbrowse_C1074P").hidden = true;
+                document.getElementById("jbrowse_C174").hidden = true;
+                document.getElementById("jbrowse_C174P").hidden = true;
+            }
+             
+            function Mostrar_Criollo() {
+                document.getElementById("jbrowse_criollo").hidden = false;
+                document.getElementById("jbrowse_matina").hidden = true;
+                document.getElementById("jbrowse_C1074").hidden = true;
+                document.getElementById("jbrowse_C1074P").hidden = true;
+                document.getElementById("jbrowse_C174").hidden = true;
+                document.getElementById("jbrowse_C174P").hidden = true;
+            }
+            function Mostrar_C1074() {
+                document.getElementById("jbrowse_criollo").hidden = true;
+                document.getElementById("jbrowse_matina").hidden = true;
+                document.getElementById("jbrowse_C1074").hidden = false;
+                document.getElementById("jbrowse_C1074P").hidden = true;
+                document.getElementById("jbrowse_C174").hidden = true;
+                document.getElementById("jbrowse_C174P").hidden = true;
+            }
+            function Mostrar_C1074P() {
+                document.getElementById("jbrowse_criollo").hidden = true;
+                document.getElementById("jbrowse_matina").hidden = true;
+                document.getElementById("jbrowse_C1074").hidden = true;
+                document.getElementById("jbrowse_C1074P").hidden = false;
+                document.getElementById("jbrowse_C174").hidden = true;
+                document.getElementById("jbrowse_C174P").hidden = true;
+            }
+            function Mostrar_C174() {
+                document.getElementById("jbrowse_criollo").hidden = true;
+                document.getElementById("jbrowse_matina").hidden = true;
+                document.getElementById("jbrowse_C1074").hidden = true;
+                document.getElementById("jbrowse_C1074P").hidden = true;
+                document.getElementById("jbrowse_C174").hidden = false;
+                document.getElementById("jbrowse_C174P").hidden = true;
+            }
+            function Mostrar_C174P() {
+                document.getElementById("jbrowse_criollo").hidden = true;
+                document.getElementById("jbrowse_matina").hidden = true;
+                document.getElementById("jbrowse_C1074").hidden = true;
+                document.getElementById("jbrowse_C1074P").hidden = true;
+                document.getElementById("jbrowse_C174").hidden = true;
+                document.getElementById("jbrowse_C174P").hidden = false;
+            }
+ 
+            //captura os dados do gridjs e reorganiza para usar no HTML
+            function teste(click_dados) {
+                linhasArmazenadas.push(click_dados);
+                const myArray = click_dados.split(",");
+                for (var i = 0; i < 46; i++) {
+                    let numbe = parseInt(i) + parseInt(1);
+                    let coluna = "col" + numbe;
+                    document.getElementById(coluna).innerHTML = myArray[i];
+                }
+                // Criar uma nova instância do GridJS para a tabela de popup
+                popupGrid.updateConfig({
+                    columns: [
+                        {name: "Strain", hidden: false},
+                        {name: "Chromossome", hidden: false},
+                        {name: "Software", hidden: true},
+                        {name: "Function", hidden: false},
+                        {name: "Start", hidden: true},
+                        {name: "Stop", hidden: true},
+                        {name: "Score", hidden: true},
+                        {name: "Strand", hidden: true},
+                        {name: "Phase", hidden: true},
+                        {name: "3_prime_partial", hidden: true},
+                        {name: "5_prime_partial", hidden: true},
+                        {name: "ID", hidden: false, width: "15%"},
+                        {name: "Name", hidden:true},
+                        {name: "Parent", hidden: true},
+                        {name: "Target", hidden: true},
+                        {name: "Cazy", hidden: true},
+                        {name: "Classification", hidden: true},
+                        {name: "Cog", hidden: true},
+                        {name: "Conversion Event", hidden: true},
+                        {name: "Description", hidden: false, width:"25%"},
+                        {name: "Domains", hidden: true},
+                        {name: "ec_number", hidden: true},
+                        {name: "Gene_ontology", hidden: true},
+                        {name: "Identity", hidden: true},
+                        {name: "Ltr_identity", hidden: true},
+                        {name: "Method", hidden: true},
+                        {name: "Motif", hidden: true},
+                        {name: "Nlr", hidden: true},
+                        {name: "Note", hidden: true},
+                        {name: "Pfam", hidden: true},
+                        {name: "PlantTFDB", hidden: true},
+                        {name: "PlantiSMASH", hidden: true},
+                        {name: "PrgDB", hidden: true},
+                        {name: "Pseudo", hidden: true},
+                        {name: "Retrocopy Host", hidden: true},
+                        {name: "Retrocopy Parental", hidden: true},
+                        {name: "sequence_ontology", hidden: true},
+                        {name: "Signal Peptide", hidden: true},
+                        {name: "tIR", hidden: true},
+                        {name: "tSD", hidden: true},
+                        {name: "Tair10", hidden: true},
+                        {name: "Tcacao", hidden: true},
+                        {name: "Topology", hidden: true},
+                        {name: "Tpm", hidden: true},
+                        {name: "Transmembrane Domain", hidden: true},
+                        {name: "Transposed Gene", hidden: true},
+                        {name: "Details", hidden:false, width:"7%" , formatter: (cell,row) => {return gridjs.html(`<button type="button" data-type="gene_button" data-chr='${row.cells.slice(1,2).map(cell => cell.data)}' data-specie='${row.cells.slice(0,1).map(cell => cell.data)}' data-location_start='${row.cells.slice(4,5).map(cell => cell.data)}' data-location_stop='${row.cells.slice(5,6).map(cell => cell.data)}'  onclick="dupla('${row.cells.map(cell => cell.data)}')">Details</button>`)}},
+                    ],
+                data: [myArray]
+                }).render(document.getElementById("popupTable")).forceRender();
+                escondertab1();
+                
+                let strain = document.getElementById('col2');
+            	let chromossome = document.getElementById('col2');
+            	let start = document.getElementById('col5');
+            	let stop = document.getElementById('col6');
+            	
+            	console.log('[DEBUG] informações da tabela de busca para o jbrowse2: ');
+            	console.log('[DEBUG] strain: ', strain.innerText);
+            	console.log('[DEBUG] chromossome: ', chromossome.innerText);
+            	console.log('[DEBUG] start: ', start.innerText);
+            	console.log('[DEBUG] stop: ', stop.innerText);
+            	
+            	//criarJbrowse();
+         
+            };
+            
+            
+            function dupla(click_dados){
+                teste(click_dados)
+                console.log('ok')
+            }
+            
+            function criarJbrowse(){
+    			console.log('[DEBUG] criarJbrowse');
+    			// ==== Config. do JBrowse do Criollo ====
+            };
+            
+    </script>
+        
+    <script src="https://unpkg.com/lucide@latest"></script>
+	<script>
+		lucide.createIcons();
+	</script>
+
+    </body>
+</html>
