@@ -4,23 +4,17 @@
 
 # TDB - THEOBROMA DATABASE
 
-### Aplicação web Flask 
+# Para instalação inicial, siga os seguintes comandos:
 
-
-Para configurar e utilizar a aplicação pela primeira vez, utilizar o seguinte comando
-
-> ../TDB-Theobroma-Database/cacao_db_linux/install.sh
-
-Obs: Caso a aplicação não funcione, utilizar o comando abaixo no mesmo diretório
-
-> chmod +x install.sh
-
-Para rodar a aplicação já configurada, utilizar o seguinte comando:
-
-> ../TDB-Theobroma-Database/website/python3 website.py
-
-Acessando no navegador:
-
+Execute o primeiro script, denomindao "install.sh"
+> sudo bash install.sh
+Colete o ID do container:
+> sudo docker ps
+Execute o container:
+> sudo docker exec -i -t CONTAINER_ID
+Execute o segundo script, denomindao "data.sh":
+> sudo bash data.sh
+Acesse no navegador:
 > localhost:5000
 
 ## Instalação Individual
