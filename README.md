@@ -6,14 +6,18 @@
 
 # Para instalação inicial, siga os seguintes comandos:
 
-Execute o primeiro script, denomindao "install.sh"
+Execute o primeiro script, denominado "install.sh"
 > sudo bash install.sh
+
 Colete o ID do container:
 > sudo docker ps
+
 Execute o container:
-> sudo docker exec -i -t CONTAINER_ID
+> sudo docker exec -i -t CONTAINER_ID "/bin/bash"
+
 Execute o segundo script, denomindao "data.sh":
 > sudo bash data.sh
+
 Acesse no navegador:
 > localhost:5000
 
