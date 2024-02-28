@@ -1,0 +1,167 @@
+.blastPageContainer{
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 2rem;
+  color: var(--secondary-color);
+}
+
+.blastPageContainer .pageTitle{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.blastPageContainer form{
+  width: min(100%, 90rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.blastPageContainer .pageTitle figure{
+  width: 2.8rem;
+  display: flex;
+}
+
+.blastPageContainer .pageTitle figure img{
+  width: 100%;
+}
+
+.blastPageContainer .pageTitle h1{
+  font-size: 3rem;
+}
+
+.blastPageContainer .options{
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.blastPageContainer .fastaFormat{
+  width: 100%;
+  max-width: 90rem;
+  height: 20em;
+  border-radius: 1.5rem;
+  background-color: #DDE5B6;
+  opacity: .4;
+  border: 0;
+  color: var(--secondary-color);
+  font-weight: 500;
+  padding: 1.5rem;
+}
+
+.blastPageContainer .uploadFileBox{
+  width: 100%;
+  max-width: 60rem;
+  height: 18rem;
+  border-radius: 1.5rem;
+  background-color: #B6BF88;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border: 1px dashed;
+}
+
+.blastPageContainer .uploadFileBox input[type="file"]{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.blastPageContainer .uploadFileBox figure{
+  width: 6rem;
+  height: 6rem;
+}
+
+.blastPageContainer .uploadFileBox figure img{
+  width: 100%;
+}
+
+.blastPageContainer .uploadFileBox h2{
+  font-size: 2rem;
+}
+
+.blastPageContainer .sendForm{
+  border: 0;
+  color: var(--secondary-color);
+  background-color: var(--main-color);
+  padding: 1.3rem 3rem;
+  border-radius: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: all .2s ease-in-out;
+}
+
+.blastPageContainer .sendForm:hover{
+  background-color: var(--color-bttn);
+}
+
+/*=== Sections animations ===*/
+
+.blastPageContainer .pageTitle,
+.blastPageContainer .selectWrapper,
+.blastPageContainer .fastaFormat,
+.blastPageContainer .uploadFileBox{
+  opacity: 0;
+  transform: translateX(-3rem);
+}
+
+.blastPageContainer .pageTitle{
+  animation: sectionAnimation 1s ease-in-out .1s forwards;
+}
+
+.blastPageContainer .selectWrapper{
+  animation: sectionAnimation 1s ease-in-out .3s forwards;
+}
+
+.blastPageContainer .fastaFormat{
+  animation: sectionAnimation 1s ease-in-out .6s forwards;
+}
+
+.blastPageContainer .uploadFileBox{
+  animation: sectionAnimation 1s ease-in-out 1.1s forwards;
+}
+
+.blastContainer{
+  border: 2px solid;
+}
+
+.selectWrapper{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.selectWrapper select{
+  color: var(--secondary-color);
+  background-color: var(--main-color);
+  border: 0;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 1.7rem;
+  cursor: pointer;
+
+  transition: all .2s ease-in-out;
+}
+
+.selectWrapper select:hover{
+  background-color: var(--color-bttn);
+}
+
+@keyframes sectionAnimation {
+  100%{
+      opacity: 1;
+      transform: translateX(0);
+  }
+}

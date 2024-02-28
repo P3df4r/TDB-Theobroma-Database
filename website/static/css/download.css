@@ -1,0 +1,114 @@
+.downloadPageContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  
+  gap: 2rem;
+  padding: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.downloadPageContainer .pageTitle{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.downloadPageContainer .pageTitle figure{
+  width: 3.7rem;
+  height: 3.7rem;
+}
+
+.downloadPageContainer .pageTitle figure img{
+  width: 100%;
+}
+
+.downloadPageContainer .pageTitle h1{
+  font-size: 3rem;
+}
+
+.downloadPageContainer .pageSubtitle{
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.downloadPageContainer .downloadLinks{
+  width: 100%;
+  /* height: 100%; */
+  max-width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.downloadPageContainer .downloadLinks a{
+  height: 10rem;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  padding: 2.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+.downloadPageContainer .downloadLinks figure{
+  display: flex;
+  width: 3rem;
+}
+
+.downloadPageContainer .downloadLinks figure img{
+  width: 100%;
+}
+
+/*=== Sections animations ===*/
+
+.downloadPageContainer .pageTitle,
+.downloadPageContainer .pageSubtitle,
+.downloadPageContainer .downloadLinks{
+  opacity: 0;
+  transform: translateX(-3rem);
+}
+
+.downloadPageContainer .pageTitle{
+  animation: sectionAnimation 1s ease-in-out .1s forwards;
+}
+
+.downloadPageContainer .pageSubtitle{
+  animation: sectionAnimation 1s ease-in-out .3s forwards;
+}
+
+.downloadPageContainer .downloadLinks{
+  animation: sectionAnimation 1s ease-in-out .6s forwards;
+}
+
+@keyframes sectionAnimation {
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .downloadPageContainer .downloadLinks{
+    max-width: 60rem;
+    display: grid;
+    gap: 2.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  }
+
+  .downloadPageContainer .downloadLinks a{
+    padding: 3rem 0rem;
+    transition: transform .3s ease-in-out, box-shadow .3s ease-in-out;
+  }
+
+  .downloadPageContainer .downloadLinks a:hover{
+    transform: scale(1.05) translateY(-.5rem);
+    box-shadow: 0 9px 15px #CCC;
+  }
+}
