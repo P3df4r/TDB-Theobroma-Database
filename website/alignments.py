@@ -9,7 +9,7 @@ class Align:
 
     def run(self, fasta, genoma, modo):
         print('Iniciando alinhamento')
-        list_genome = {'0':'./static/dados/Criollo_new/Criollo.fasta', '6':'./static/dados/exemplos/ncbi_dataset/data/gene.fna'}
+        list_genome = {'0':'./static/dados/Criollo_new/Criollo.fasta', '1':'./static/dados/Matina_new/Matina.fasta', '2':'./static/dados/C1074P/C1074P.fasta','3':'./static/dados/C174P/C174P.fasta','4':'./static/dados/C174/C174.fa','5':'./static/dados/C1074/C1074.fasta','6':'./static/dados/example/atpA_2.fasta'}
         temp_fasta = open(os.path.join(fasta), 'r')
         temp_database = open(os.path.join(list_genome[genoma]), "r")
         #print(temp_fasta)
