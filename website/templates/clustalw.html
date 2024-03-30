@@ -244,6 +244,28 @@
 	  background-color: rgb(219, 219, 219);
 	}
 	
+	
+	
+	.exampleClustalwBttn,
+	.exampleResetBttn{
+    border: 0;
+    background-color: #FFF;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    color: var(--theme-4);
+    font-weight: bold;
+    box-shadow: var(--box-shadow-1);
+  
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    cursor: pointer;
+	}
+	
+	
+	
+	
 	@media screen and (min-width: 917px){
 		.sequenceAlignmentViewer{
 			align-items: center;
@@ -350,6 +372,20 @@
             </select>
         </div>
       </div>
+      
+      <button
+        class="exampleClustalwBttn"
+        type="button"
+      >
+        Usar exemplo do 16S Chr2
+      </button>
+      <button
+        class="exampleResetBttn"
+        type="button"
+      >
+        Limpar sequência de exemplo
+      </button>
+      
       <textarea class="textarea fastaFormat" placeholder="FASTA format" id="input-manual" name="input_manual"></textarea>
       <div class="uploadFileBox">
         <input type="file" name="file_clustal">
@@ -373,9 +409,7 @@
 	      <i class="ph ph-dna"></i>
 	      <h2>Visualize aqui o alinhamento</h2>
 	    </div>
-	    <pre>
-          {{ output_clustal_fmt }}
-        </pre>
+	    <pre>{{output_clustal_fmt}}</pre>
 	  </div>
 	</div>
 	
@@ -409,6 +443,15 @@
 	
 
 	const sequenceAlignmentViewerContainer = document.querySelector('.sequenceAlignmentViewer');
+	//sequenceAlignmentViewerContainer.innerText = output_clustal_fmt;
+
+	
+	
+	//console.log(outputClustal);
+	
+
+	//# Display your own sequence alignment
+	// You must provide your sequences ready-aligned in FASTA format.
 	
 	const displayAlignment = document.querySelector('.displayAlignment');
 	
@@ -439,7 +482,14 @@
 	};
 	
 	// Guarda o tamanho do elemento que contem o maior nome
-	let maiorTamanhoNome = 0
+	let maiorTamanhoNome = 0;
+	
+	/*
+	if(outputClustal.trim() !== ''){
+		console.log('[debug] iniciando visualizador...');
+		sequenceAlignmentViewer(outputClustal.trim());
+	};
+	*/
 	
 	// Função principal
 	function sequenceAlignmentViewer(sequencesText){
@@ -495,6 +545,24 @@
 	  nome.innerText = sequence[0];
 	  sequenceContainer.appendChild(nome);
 	  
+	  /*
+	  // variasLetras
+	  let variasLetras = document.createElement('div');
+	  variasLetras.classList.add('variasLetras');
+	
+	  let letrasSeparadas = sequence[1].split('');
+	  //letrasSeparadasParaConsensus.push(letrasSeparadas);
+	  
+	  letrasSeparadas.forEach(word => {
+	    let span = document.createElement('span');
+	    span.classList.add(colors[word]);
+	    span.innerText = word;
+	    variasLetras.appendChild(span);
+	  });
+	
+	  sequenceContainer.appendChild(variasLetras);
+	  */
+	  
 	  // sequencia
 	  let sequencia = document.createElement('bold');
 	  sequencia.classList.add('sequencia');
@@ -524,6 +592,21 @@
 	    element.style.width = `${maiorTamanhoNome*1.5}px`;
 	  });
 	};
+	
+	
+	
+	const exampleClustalwBttn = document.querySelector('.exampleClustalwBttn');
+	exampleClustalwBttn.addEventListener('click', () => {
+	  fetch('./static/dados/example/atpA_2.fasta')
+	    .then(resp => resp.text())
+	    .then(data => document.getElementById('input-manual').innerText = data)
+	  
+	});
+	
+	const exampleResetBttn = document.querySelector('.exampleResetBttn');
+	exampleResetBttn.addEventListener('click', () => {
+	  document.getElementById('input-manual').innerText = '';
+	});
   </script>
 </body>
 </html>
