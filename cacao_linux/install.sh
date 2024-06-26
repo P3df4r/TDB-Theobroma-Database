@@ -4,6 +4,7 @@ echo -----------------------------------Instalando dependências----------------
 apt update
 apt install python3
 apt install python3-pip
+apt install docker.io
 pip install -r requeriments.txt
 apt install wget
 
