@@ -7,7 +7,11 @@ apt install python3-pip
 apt install docker.io
 pip install -r requeriments.txt
 apt install wget
+apt install curl
+apt install samtools
 
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
 
 wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.15.0/ncbi-blast-2.15.0+-x64-linux.tar.gz
 tar -xf ncbi-blast-2.15.0+-x64-linux.tar.gz
@@ -29,20 +33,17 @@ docker pull mongo:latest
 #nohup python3 website.py &
 #exit
 #docker run -d -p 27017:27017 -v ~/data/db --network tdb_bridge --name theobroma_mongodb mongo:latest #"theobroma_mongodb" é o nome do banco de dados que deve ser acessado por "docker exec -i -t theobroma_mongodb /bin/bash"
-docker run -d -p 27017:27017 -v ~/data/db --name theobroma_mongodb mongo:latest
+docker run -d -p 27017:27017 -v ~/data/db --name TheobromaDB mongo:latest
 
 echo -------------------------------------Preparando Genomas---------------------------------------------------
 
 mkdir ../website/static/dados/
 mkdir ../website/static/dados/Criollo_new
 cp pre* ../website/static/dados/Criollo_new/
-cp headfix.txt ../website/static/dados/Criollo_new/
 mkdir ../website/static/dados/Matina_old
 cp pre* ../website/static/dados/Matina_old/
-cp headfix.txt ../website/static/dados/Matina_old/
 mkdir ../website/static/dados/C1074
 cp pre* ../website/static/dados/C1074/
-cp headfix.txt ../website/static/dados/C1074/
 mkdir ../website/static/blast_db
 
 #BAIXANDO, DESCOMPACTANDO E RENOMEANDO GENOMAS E ANOTAÇÕES
@@ -97,10 +98,13 @@ cp prep-database.py C1074/
 #mkdir ./website/static/dados/C174P/prep_db
 
 cd ../website/static/dados/Criollo_new/
+samtools faidx Criollo.fasta
 bash pre-database.sh Criollo
 cd ../Matina_old/
+samtools faidx Matina.fasta
 bash pre-database.sh Matina
 cd ../C1074/
+samtools faidx C1074.fasta
 bash pre-database.sh C1074
 #cd ../C1074P
 #bash ../../../pre-database.sh C1074P
@@ -110,18 +114,17 @@ bash pre-database.sh C1074
 #bash ../../../pre-database.sh C174P
 cd ../
 
-
-
 echo ------------------------------------Preparando Jbrowse2--------------------------------------------------
 npm install -g @jbrowse/cli
 cd Criollo_new
-cp jbrowse add-assembly Criollo.fasta --load inPlace
+jbrowse add-assembly Criollo.fasta --load inPlace
 cd ../Matina_old
-cp jbrowse add-assembly Matina.fasta --load inPlace
+jbrowse add-assembly Matina.fasta --load inPlace
 cd ../C1074
-cp jbrowse add-assembly C1074.fasta --load inPlace
+jbrowse add-assembly C1074.fasta --load inPlace
 #cp C1074P/C1074P.fasta . | jbrose add-assembly C1074P.fasta --load inPlace
 #cp C174/C174.fasta . | jbrowse add-assembly C174.fasta --load inPlace
 #cp C174P/C174P.fasta . | jbrowse add-assembly C174P.fasta --load inPlace
+cd ../../../
 
-python3 ../website/website.py
+python3 website.py
