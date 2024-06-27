@@ -129,10 +129,10 @@
     -->
       <li id="Criollo_jbrowse">Criollo</li>
       <li id="Matina_jbrowse">Matina</li>
-      <li id="C174_jbrowse">C174</li>
-      <li id="C174P_jbrowse">C174 - Diploid</li>
+      <!--<li id="C174_jbrowse">C174</li>
+      <li id="C174P_jbrowse">C174 - Diploid</li>-->
       <li id="C1074_jbrowse">C1074</li>
-      <li id="C1074P_jbrowse">C1074 - Diploid</li>
+      <!--<li id="C1074P_jbrowse">C1074 - Diploid</li>-->
     </ul>
     <div class='jbrowseContainer' >
     	<!--
@@ -176,17 +176,17 @@
     
   <script type="module">
     //import config_Criollo from '../static/dados/Criollo_new/config.json' assert { type: "json" }
-    import config_Criollo from '../static/dados/Criollo_new/config_criollo.json' assert { type: "json" }
-    import config_Matina from '../static/dados/Matina_new/config.json' assert { type: "json" }
-    import config_C1074 from '../static/dados/C1074/config.json' assert { type: "json" }
-    import config_C1074P from '../static/dados/C1074P/config.json' assert { type: "json" }
-    import config_C174 from '../static/dados/C174/config.json' assert { type: "json" }
-    import config_C174P from '../static/dados/C174P/config.json' assert { type: "json" }
-   
+    import config_Criollo from '../static/dados/Criollo_new/config.json' with { type: "json" };
+    import config_Matina from '../static/dados/Matina_old/config.json' with { type: "json" };
+    import config_C1074 from '../static/dados/C1074/config.json' with { type: "json" };
+    /* import config_C1074P from '../static/dados/C1074P/config.json' with { type: "json" };
+    import config_C174 from '../static/dados/C174/config.json' with { type: "json" };
+    import config_C174P from '../static/dados/C174P/config.json' with { type: "json" };*/
+  
     const { createElement } = React
     const { render } = ReactDOM
     
-/*     const { createViewState, JBrowseLinearGenomeView } =
+    /*const { createViewState, JBrowseLinearGenomeView } =
       JBrowseReactLinearGenomeView
     const state = new createViewState({
       assembly,
@@ -480,3 +480,4 @@
   
 </body>
 </html>
+

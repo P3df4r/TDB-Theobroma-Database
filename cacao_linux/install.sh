@@ -9,6 +9,12 @@ pip install -r requeriments.txt
 apt install wget
 apt install curl
 apt install samtools
+pip install Bio
+pip install pymongo
+pip install flask
+pip install flask_login
+pip install matplotlib
+pip install bioinfokit
 
 curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 apt install -y nodejs
@@ -118,13 +124,23 @@ echo ------------------------------------Preparando Jbrowse2--------------------
 npm install -g @jbrowse/cli
 cd Criollo_new
 jbrowse add-assembly Criollo.fasta --load inPlace
+mv config.json config_origin.json
+sed 's/Criollo.fasta/..\/static\/dados\/Criollo_new\/Criollo.fasta/g' config_origin.json > config.json
+sed 's/Criollo.fasta.fai/..\/static\/dados\/Criollo_new\/Criollo.fasta.fai/g' config_origin.json > config.json
 cd ../Matina_old
 jbrowse add-assembly Matina.fasta --load inPlace
+mv config.json config_origin.json
+sed 's/Matina.fasta/..\/static\/dados\/Matina_old\/Matina.fasta/g' config_origin.json > config.json
+sed 's/Matina.fasta.fai/..\/static\/dados\/Matina_old\/Matina.fasta.fai/g' config_origin.json > config.json
 cd ../C1074
 jbrowse add-assembly C1074.fasta --load inPlace
+mv config.json config_origin.json
+sed 's/C1074.fasta/..\/static\/dados\/C1074\/C1074.fasta/g' config_origin.json > config.json
+sed 's/C1074.fasta.fai/..\/static\/dados\/C1074\/C1074.fasta.fai/g' config_origin.json > config.json
 #cp C1074P/C1074P.fasta . | jbrose add-assembly C1074P.fasta --load inPlace
 #cp C174/C174.fasta . | jbrowse add-assembly C174.fasta --load inPlace
 #cp C174P/C174P.fasta . | jbrowse add-assembly C174P.fasta --load inPlace
 cd ../../../
 
 python3 website.py
+
