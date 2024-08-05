@@ -4,6 +4,7 @@ output_filename = '{}_mod.gff'.format(sys.argv[1])
 input_filename = sys.argv[1]
 
 def collect_terms(file):
+    #Se desejar pegar os novos termos de cada arquivo, comente as linhas 8 e 10 e descomente a linha 11
     fixed_terms_TDB = ['Strain','Chromossome','Software','Function','Start','Stop','score','strand','phase','3_prime_partial=','5_prime_partial=','ID=','Name=','Parent=','Target=','cazy=','classification=','cog=','conversion_event=','description=','domains=','ec_number=','gene_ontology=','identity=','ltr_identity=','method=','motif=','nlr=','note=','pfam=','plantTFDB=','plantiSMASH=','prgDB=','pseudo=','retrocopy_host=','retrocopy_parental=','sequence_ontology=','signal_peptide=','tIR=','tSD=','tair10=','tcacao=','topology=','tpm=','transmembrane_domain=','transposed_gene=','tsd=']
     fixed_terms = []
     termos = []
@@ -35,8 +36,8 @@ def collect_data(file, terms, out):
                     break
             if marcador == False:
                 data_temp.append('No information')
-        print(terms)
-        print(data_temp)
+        #print(terms)
+        #print(data_temp)
         break
         out.write(','.join(data_temp) + '\n')
 
