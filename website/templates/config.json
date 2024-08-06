@@ -1,0 +1,51 @@
+{
+  "assemblies": [
+    {
+      "name": "Criollo",
+      "sequence": {
+        "type": "ReferenceSequenceTrack",
+        "trackId": "Criollo-ReferenceSequenceTrack",
+        "adapter": {
+          "type": "IndexedFastaAdapter",
+          "fastaLocation": {
+            "uri": "Criollo.fasta",
+            "locationType": "UriLocation"
+          },
+          "faiLocation": {
+            "uri": "Criollo.fasta.fai",
+            "locationType": "UriLocation"
+          }
+        }
+      }
+    }
+  ],
+  "configuration": {},
+  "connections": [],
+  "defaultSession": {
+    "name": "New Session"
+  },
+  "tracks": [
+    {
+      "type": "FeatureTrack",
+      "trackId": "Annotation-EVM.gff3",
+      "name": "Annotation-EVM.gff3",
+      "adapter": {
+        "type": "Gff3TabixAdapter",
+        "gffGzLocation": {
+          "uri": "Annotation-EVM.gff3.gz",
+          "locationType": "UriLocation"
+        },
+        "index": {
+          "location": {
+            "uri": "Annotation-EVM.gff3.gz.tbi",
+            "locationType": "UriLocation"
+          },
+          "indexType": "TBI"
+        }
+      },
+      "assemblyNames": [
+        "Criollo"
+      ]
+    }
+  ]
+}

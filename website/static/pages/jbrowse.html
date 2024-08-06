@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/jbrowse.css">
+  <script src="../static/js/jbrowse.js"></script>
+  
+
+  <script
+  src="//unpkg.com/react@16/umd/react.development.js"
+  crossorigin
+  ></script>
+  <script
+    src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="//unpkg.com/@jbrowse/react-linear-genome-view/dist/react-linear-genome-view.umd.development.js"
+    crossorigin
+  ></script>
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuIcon'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="../index.html">
+      <figure>
+        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="../index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="./blast.html">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="./jbrowse.html">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="./download.html">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="./about.html">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <input 
+        type="text" 
+        name="searchButton" 
+        id="searchButton"
+      />
+    </div>
+  </nav>
+
+  <section class='jbrowsePageContainer'>
+    <div class='pageTitle'>
+      <figure>
+        <img src='../static/icons/genetic_icon.svg' alt="JBrowse tool page icon" />
+      </figure>
+      <h1>JBROWSE</h1>
+    </div>
+    <ul class='families'>
+      <li>Criollo</li>
+      <li>Matina</li>
+      <li>C174</li>
+      <li>C174 - Diploid</li>
+      <li>C1074</li>
+      <li>C1074 - Diploid</li>
+    </ul>
+    <div class='jbrowseContainer'>
+      <div class='jbrowseTool'>
+        <img src='../static/imgs/jbrowse-exemplo.png' alt="JBrowse example" />
+      </div>
+      <figure class='fig2'>
+        <img src='../static/imgs/Criollo-idiogram1.png' alt="Criollo Idiogram image" />
+      </figure>
+    </div>
+    <div class='testeJbrowse'></div>
+  </section>
+
+  <div id="jbrowse_linear_genome_view"></div>
+  <script type="module">
+    import assembly from '../static/filesJBrowse/assembly.js'
+    import tracks from '../static/filesJBrowse/tracks.js'
+    const { createElement } = React
+    const { render } = ReactDOM
+    const { createViewState, JBrowseLinearGenomeView } =
+      JBrowseReactLinearGenomeView
+    const state = new createViewState({
+      assembly,
+      tracks,
+      disableAddTracks: true,
+      configuration:{
+          "theme": {
+              "palette": {
+                  "primary": {
+                      "main": "#d5c178"
+                  },
+                  "secondary": {
+                      "main": "#ccc178"
+                  },
+                  "tertiary": {
+                      "main": "#ADC178"
+                  },
+                  "quaternary": {
+                      "main": "#ADC178"
+                  }
+              }
+          }
+      }
+    })
+    render(
+      createElement(JBrowseLinearGenomeView, { viewState: state }),
+      document.getElementById('jbrowse_linear_genome_view'),
+    )
+  </script>
+</body>
+</html>

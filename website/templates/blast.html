@@ -9,6 +9,242 @@
   <link rel="stylesheet" href="../static/css/blast.css">
   
   <script src="../static/js/navbar.js" defer></script>
+  
+  <style>
+    .exampleBlast,
+    .sendForm{
+      opacity: 0;
+      transform: translateX(-3rem);
+    }
+  
+  
+    .exampleBlast{
+      display: flex;
+      gap: 1.5rem;
+      
+      animation: sectionAnimation 1s ease-in-out .5s forwards;
+    }
+    
+    .sendForm{
+      animation: sectionAnimation 1s ease-in-out .4s forwards;
+    }
+  
+    .exampleBlastBttn,
+  	.exampleResetBttn{
+      border: 0;
+      background-color: #FFF;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      color: var(--theme-4);
+      font-weight: bold;
+      box-shadow: var(--box-shadow-1);
+    
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+      cursor: pointer;
+  	}
+  	
+
+  
+  	.outputBlast{
+  		width: 100vw;
+  		height: 100%;
+  		background-color: #FFF;
+  		padding: 4.5rem 2rem 3rem;
+  		
+  		display: none;
+  		/*justify-content: center;*/
+  		
+  		flex-direction: column;
+  		
+  		position: fixed;
+  		top: 0rem;
+  		
+  		animation: outputBlastAnimation .5s ease-in-out;
+  	}
+  	
+  	.showOutputBlast{
+  		display: flex;
+  	}
+  	
+  	.outputBlastBackButton,
+  	.previousResultButton{
+  		border: 0;
+  		background-color: #FFF;
+  		color: var(--theme-4);
+  		font-size: 1.5rem;
+  		font-weight: bold;
+  		padding: 1rem 2.5rem;
+  		border-radius: 1rem;
+  		cursor: pointer;
+  		
+  		box-shadow: 0 3px .5rem #0004;
+  		
+  		transition: all .3s ease;
+  	}
+  	
+  	.outputBlastBackButton:hover,
+  	.previousResultButton:hover{
+	    background-color: var(--theme-4);
+  		color: #FFF;
+  	}
+  	
+  	/*.outputBlastBackButton{
+  		 position: absolute;
+  		top: 5rem;
+  		left: 2rem;
+  	}*/
+  	
+  	.previousResultButton{
+  		display: none;
+  	}
+  	
+  	.showPreviousResultButton{
+  		display: flex;
+  	}
+  	
+  	@keyframes outputBlastAnimation{
+  		from{
+  			transform: translate(0, 100%);
+  		}
+  		to{
+  			transform: translate(0, 0);
+  		}
+  	}
+  	
+  	
+  	/*==== SAV ====*/
+	::-webkit-scrollbar{
+	  width: .7rem;
+	  height: .7rem;
+	}
+	
+	/* Barra de scroll */
+	::-webkit-scrollbar-thumb{
+	  background-color: var(--main-color);
+	  border-radius: 4rem;
+	}
+	
+	/* Barra de scroll com hover */
+	::-webkit-scrollbar-thumb:hover{
+	  background-color: var(--color-bttn);
+	}
+	
+	/*==== sequenceAlignmentViewer ====*/
+	.sequenceAlignmentViewer{
+	  width: 100%;
+	  /*border-radius: 2rem;*/
+	  background-color: #FFF;
+	  /*box-shadow: 0 4px .3rem #bbbbbb75;*/
+	  
+	  padding: 1rem 1rem;
+	  
+	  display: flex;
+	  flex-direction: column;
+	  gap: 1rem;
+	  
+	  overflow: scroll;
+	  
+	  /*border: 1px solid #e3e3e3;*/
+	}
+	
+
+	
+	/*==== viewerText ====*/
+	.viewerText{
+	  width: 100%;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  gap: 1rem;
+	  padding: 1rem;
+	  
+	  user-select: none;
+	}
+	
+	.viewerText .ph-dna{
+	  color: var(--green-2);
+	  font-size: 3rem;
+	}
+	
+	.viewerText h2{
+	  color: var(--green-2);
+	  text-align: center;
+	}
+	
+	
+	
+	
+	.outputBlast .buttonsWrapper{
+    padding: 1rem 0rem;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .outputBlast .buttonsWrapper a{
+		background-color: #FFF;
+		color: var(--theme-4);
+		font-size: 1.5rem;
+		font-weight: bold;
+		padding: 1rem 2.5rem;
+		border-radius: 1rem;
+		cursor: pointer;
+		
+		box-shadow: 0 3px .5rem #0004;
+		transition: all .3s ease;
+  }
+	
+   .outputBlast .buttonsWrapper a:hover{
+    	background-color: var(--theme-4);
+  		color: #FFF;
+   }
+   
+   
+   
+   .uploadFileBox{
+     position: relative;
+   }
+   
+   .uploadFileBox input[type='file']{
+     opacity: 0;
+     z-index: 1;
+   }
+   
+   .uploadFileBox .uploadFileBoxDetail{
+     position: absolute;
+     z-index: 0;
+     
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 1rem;
+   }
+   
+   .uploadFileBox .uploadFileBoxDetail .icon{
+     width: 5rem;
+     height: 5rem;
+   }
+   
+   .uploadFileBox .uploadFileBoxDetail .text{
+     font-weight: bold;
+     text-align: center;
+   }
+	
+	
+	@media screen and (min-width: 917px){
+		.sequenceAlignmentViewer{
+			align-items: center;
+		}
+	}
+  	
+  	
+  </style>
 </head>
 <body>
   <nav class='navbar'>
@@ -19,9 +255,8 @@
     </div>
     <a class="tdbLogo" href="/index.html">
       <figure>
-        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
       </figure>
-      <h2>TDB</h2>
     </a>
     <ul class='navbarTools'>
       <li>
@@ -98,22 +333,48 @@
           <select name="escolhaGenoma" id="genoma">
             <option value="0">Criollo</option>
             <option value="1">Matina</option>
-            <option value="2">C174</option>
-            <option value="3">C174P</option>
-            <option value="4">C1074</option>
-            <option value="5">C1074P</option>
-            <option value="6">18S</option>
+            <option value="2">C1074</option>
+            <option value="3">C1074P</option>
+            <option value="4">C174</option>
+            <option value="5">C174P</option>
+            <option value="6">Example</option>
           </select>
         </div>
+        <textarea class="textarea fastaFormat" placeholder="Evalue" id="evalue" name="evalue" style="resize: none; width: 100px; height: 45px;"></textarea>
+        <textarea class="textarea fastaFormat" placeholder="Gap extend" id="gap" name="gap" style="resize: none; width: 100px; height: 45px;"></textarea>
+        <textarea class="textarea fastaFormat" placeholder="Word size" id="word_size" name="word_size" style="resize: none; width: 100px; height: 45px;"></textarea>
       </div>
+
+
+      <div class="exampleBlast">
+        <button
+          class="exampleBlastBttn"
+          type="button"
+        >
+          Usar arquivo de exemplo
+        </button>
+        <button
+          class="exampleResetBttn"
+          type="button"
+        >
+          Limpar sequência de exemplo
+        </button>
+      </div>
+      
+      
       <textarea class="textarea fastaFormat" placeholder="FASTA format" id="nucleotideo" name="nucleotideo"></textarea>
       <div class="uploadFileBox">
         <input type="file" name="file">
+        
+        <div class="uploadFileBoxDetail">
+          <i data-lucide="file-plus-2" class="icon"></i>
+          <span class="text">Clique para adicionar um arquivo</span>
+        </div>
       </div>
       <input class="sendForm" type="submit" value="Blast">
     </form>
 
-    <div class='blastContainer'>
+    <!--<div class='blastContainer'>
 	    <input type="file" id="blastinput" />
 		    <div id="blast-multiple-alignments"></div>
 		    <div id="blast-alignments-table"></div>
@@ -123,8 +384,39 @@
           <div id="blast-alignments-table1"></div>
           <div id="blast-single-alignment1"></div>-->
     </div>
+    
+    <div class="outputBlast">
+      <div class="buttonsWrapper">
+    		<button type='button' class="outputBlastBackButton">
+    			Voltar
+    		</button>
+  		  <a href="./static/dados/example/atpA_2.fasta">Download FASTA</a>
+  		</div>
+    
+      <div class="sequenceAlignmentViewer">
+  	    <div class="viewerText">
+  	      <h2>Visualize aqui o resultado</h2>
+  	    </div>
+  	    <pre>{{content}}</pre>
+  	  </div>
+  	</div>
+  	
+		<div>
+  		<button type='button' class="previousResultButton">
+  			Resultado anterior
+  		</button>
+  	</div>
 
   </section>
+  
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  
+  
+  
+  
     <script type="text/javascript" src="../static/node/node_modules/biojs-vis-blasterjs/lib/html2canvas.js"></script>  
     <script type="text/javascript" src="../static/node/node_modules/biojs-vis-blasterjs/build/blasterjs.js"></script>
  
@@ -138,5 +430,79 @@
       });
     </script>
     
+    <script>
+      const exampleBlastBttn = document.querySelector('.exampleBlastBttn');
+      
+      let blastExampleData = '';
+      fetch('./static/dados/example/atpA_2.fasta')
+        .then(resp => resp.text())
+        .then(data => {
+          blastExampleData = data;
+        })
+        .catch(error => console.log(error));
+      
+      exampleBlastBttn.addEventListener('click', () => {
+        document.getElementById('nucleotideo').innerText = blastExampleData;
+      });
+      
+      const exampleResetBttn = document.querySelector('.exampleResetBttn');
+      exampleResetBttn.addEventListener('click', () => {
+        document.getElementById('nucleotideo').innerText = '';
+      });
+    </script>
+    
+    <script>
+      const outputBlast = document.querySelector('.outputBlast');
+    	const outputBlastBackButton = document.querySelector('.outputBlastBackButton');
+    	const previousResultButton = document.querySelector('.previousResultButton');
+      
+      let blastResult = `{{content}}`;
+    	
+    	if(blastResult.length > 0){
+    		outputBlast.classList.add('showOutputBlast');
+    		previousResultButton.classList.add('showPreviousResultButton');
+    	};
+    	
+    	outputBlastBackButton.addEventListener('click', () => {
+    		outputBlast.classList.remove('showOutputBlast');
+    	});
+    	
+    	previousResultButton.addEventListener('click', () => {
+    		outputBlast.classList.add('showOutputBlast');
+    	});
+      
+      
+    </script>
+    	
+    <script>
+        const exampleClustalwBttn = document.querySelector('.exampleClustalwBttn');
+        
+        let clustalwExampleData = '';
+        fetch('../static/dados/example/atpA_2.fasta')
+        .then(resp => resp.text())
+        .then(data => {
+            clustalwExampleData = data;
+        })
+        .catch(error => console.log(error));
+        
+        exampleClustalwBttn.addEventListener('click', () => {
+        document.getElementById('input-manual').innerText = clustalwExampleData;
+        });
+        
+        const exampleResetBttn = document.querySelector('.exampleResetBttn');
+        exampleResetBttn.addEventListener('click', () => {
+        document.getElementById('input-manual').innerText = '';
+        });
+    </script>
+   <!--<script type="text/javascript">
+		var cu = `{{content}}`;
+	    var blasterjs = require("biojs-vis-blasterjs");
+	    var instance1  = new blasterjs({
+	        string: cu,
+	        multipleAlignments: "blast-multiple-alignments1",
+	        alignmentsTable: "blast-alignments-table1",
+	        singleAlignment: "blast-single-alignment1"
+	    });    
+    </script>-->
 </body>
 </html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/blast.css">
+  <link rel="stylesheet" href="../static/css/tree.css">
+
+  <script src="../static/js/navbar.js" defer></script>
+</head>
+
+<style>
+    .exampleBlastBttn,
+  	.exampleResetBttn{
+      border: 0;
+      background-color: #FFF;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      color: var(--theme-4);
+      font-weight: bold;
+      box-shadow: var(--box-shadow-1);
+    
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+      cursor: pointer;
+  	}
+  	
+  	.uploadFileBox{
+       position: relative;
+     }
+     
+     .uploadFileBox input[type='file']{
+       opacity: 0;
+       z-index: 1;
+     }
+     
+     .uploadFileBox .uploadFileBoxDetail{
+       position: absolute;
+       z-index: 0;
+       
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 1rem;
+     }
+     
+     .uploadFileBox .uploadFileBoxDetail .icon{
+       width: 5rem;
+       height: 5rem;
+     }
+     
+     .uploadFileBox .uploadFileBoxDetail .text{
+       font-weight: bold;
+       text-align: center;
+     }
+</style>
+
+<body>
+  <nav class='navbar'>
+    <div class='menuButton'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="/index.html">
+      <figure>
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="/index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="/blast">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="/jbrowse">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+          <a href="/clustalw">
+            <img src='../static/icons/genetic_icon.svg' alt="CLUSTAL tool icon" />
+            CLUSTALW
+          </a>
+		  <a href="/tree">
+            <img src='../static/icons/genetic_icon.svg' alt="TREE tool icon" />
+           FiloTree
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="/download">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="/about">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function">
+    	<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine">
+      </form>
+    </div>
+  </nav>
+
+  <section class='blastPageContainer'>
+    <div class='pageTitle'>
+        <figure>
+            <img src='../static/icons/blast_icon.svg' alt="Blast tool page icon" />
+        </figure>
+        <h1>Filogenetic Tree</h1>
+    </div>
+    
+    <form method="POST" enctype="multipart/form-data" action="/tree_run">
+      <div class="selectWrapper">
+        <div class="select">
+          <select name="escolhaGenoma" id="genoma">
+            <option value="0">Criollo</option>
+            <option value="1">Matina</option>
+            <option value="2">C174</option>
+            <option value="3">C174P</option>
+            <option value="4">C1074</option>
+            <option value="5">C1074P</option>
+            <option value="6">example</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- <div class="exampleBlast">
+            <button
+            class="exampleBlastBttn"
+            type="button"
+            >
+            Usar exemplo do 16S Chr2
+            </button>
+            <button
+            class="exampleResetBttn"
+            type="button"
+            >
+            Limpar sequência de exemplo
+            </button>
+        </div>
+      -->
+
+      <textarea class="textarea fastaFormat" placeholder="FASTA format" id="input-manual" name="input_manual"></textarea>
+      <div class="uploadFileBox">
+        <input type="file" name="file_tree">
+        
+        <div class="uploadFileBoxDetail">
+          <i data-lucide="file-plus-2" class="icon"></i>
+          <span class="text">Clique para adicionar um arquivo</span>
+        </div>
+      </div>
+      <input class="sendForm" type="submit" value="Generate Tree">
+    </form>
+    
+    <!--
+    <button
+      class="lastResutBttn"
+      type="button"
+    >
+      Mostrar último resultado
+    </button>
+    -->
+    
+    <!--
+    <div class="wrapperResultFiloTree showResultFiloTree">
+    	<button
+    		type="button"
+    		class="closeBttn"
+    	>
+    	  <i data-lucide="undo-2"></i>
+    	  Retornar para ferramenta
+    	</button>
+	    <div class="resultadoArvoreFilogenetica">
+	    	<embed 
+	    		src="{{url_for('static', filename='tree.pdf')}}" 
+	    		type="application/pdf"
+	    		width="100%" 
+	    		height="100%"
+	    	>
+	    </div>
+	    <a 
+	    	class="linkResultadoAF"
+	    	href="{{url_for('static', filename='tree.pdf')}}"
+	    >
+	    	Resultado Arvore Filogenetica
+        </a>
+    </div>    
+    <a
+        name = {{content}}.pdf
+      class="treeResutBttn"
+      href="{{url_for('static', filename=name)}}"
+      download
+    >
+    	Baixar resultado da arvore
+    </a>-->
+    
+  </section>
+  
+  
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      const exampleBlastBttn = document.querySelector('.exampleBlastBttn');
+      
+      let blastExampleData = '';
+      fetch('./static/dados/example/atpA_2.fasta')
+        .then(resp => resp.text())
+        .then(data => {
+          blastExampleData = data;
+        })
+        .catch(error => console.log(error));
+      
+      exampleBlastBttn.addEventListener('click', () => {
+        document.getElementById('input-manual').innerText = blastExampleData;
+      });
+      
+      const exampleResetBttn = document.querySelector('.exampleResetBttn');
+      exampleResetBttn.addEventListener('click', () => {
+        document.getElementById('input-manual').innerText = '';
+      });
+    </script>
+
+
+  <script>
+    lucide.createIcons();
+    
+    /*
+    const wrapperResultFiloTree = document.querySelector('.wrapperResultFiloTree');
+    const closeBttn = document.querySelector('.closeBttn');
+    closeBttn.addEventListener('click', () => {
+      wrapperResultFiloTree.classList.toggle('showResultFiloTree');
+    });
+    
+    const lastResutBttn = document.querySelector('.lastResutBttn');
+    lastResutBttn.addEventListener('click', () => {
+      wrapperResultFiloTree.classList.toggle('showResultFiloTree');
+    });
+    */
+    
+    
+  </script>
+</body>
+</html>

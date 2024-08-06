@@ -1,0 +1,106 @@
+.wrapperResultFiloTree{
+  width: 100%;
+  height: calc(100% - 4.5rem);
+  padding: 1.5rem;
+  background-color: #FFF;
+		
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  position: fixed;
+  top: 4.5rem;
+  left: 0;
+
+  overflow-y: scroll;
+  
+  transform: translateY(100%);
+  transition: all .3s ease-in-out;
+}
+
+.showResultFiloTree{
+  transform: translateY(0);
+}
+
+.closeBttn{
+  border: 0;
+  background-color: #FFF;
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  color: var(--theme-4);
+  font-weight: bold;
+  box-shadow: var(--box-shadow-1);
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  cursor: pointer;
+}
+
+.closeBttn svg{
+  width: 2rem;
+  height: 2rem;
+}
+
+.resultadoArvoreFilogenetica{
+  width: 100%;
+  max-width: 100rem;
+  min-height: 50rem;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.linkResultadoAF{
+  width: 100%;
+  max-width: 28rem;
+  background-color: var(--green-2);
+  color: var(--secondary-color);
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+  transition: all .2s ease;
+}
+
+.linkResultadoAF:hover{
+  background-color: var(--color-bttn);
+}
+
+.lastResutBttn{
+  border: 0;
+  background-color: #FFF;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  color: var(--theme-4);
+  font-weight: bold;
+  box-shadow: var(--box-shadow-1);
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  cursor: pointer;
+}
+
+
+.treeResutBttn{
+  border: 0;
+  background-color: #FFF;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  color: var(--theme-4);
+  font-weight: bold;
+  box-shadow: var(--box-shadow-1);
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  cursor: pointer;
+}
+
+
+

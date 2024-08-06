@@ -5,4 +5,8 @@ docker run -d -p 27017:27017 -v ~/data/db --name theobroma_mongodb mongo:latest 
 docker start theobroma_mongodb
 #docker run -d -p 27017:27017 -v ~/data/db --name TheobromaDB mongo:latest
 docker cp install.sh theobroma_mongodb:/.
+docker cp pre-database.sh theobroma_mongodb:/.
+docker cp prep-database.py theobroma_mongodb:/.
+docker cp requirements.txt theobroma_mongodb:/.
+docker cp website theobroma_mongodb:/.
 docker exec theobroma_mongodb bash install.sh

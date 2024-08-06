@@ -1,0 +1,130 @@
+.loginContainer{  
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-type-1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginFormWrapper{
+  width: 90%;
+  max-width: 43rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.loginLogo{
+  width: 90%;
+  max-width: 15rem;
+}
+
+.loginLogo img{
+  width: 100%;
+}
+
+.loginTitle{
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  text-align: center;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  user-select: none;
+}
+
+.loginTitle::after{
+  content: '';
+  position: absolute;
+  top: 115%;
+
+  width: calc(100% + 3rem);
+  height: .2rem;
+  background-color: var(--color-white);
+  border-radius: 2rem;
+}
+
+.loginForm{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loginInputWrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.loginInputWrapper label{
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.loginInputWrapper input{
+  width: 100%;
+  padding: 1.1rem 1.5rem;
+  border: 0;
+  border-radius: 5rem;
+  box-shadow: var(--box-shadow-1);
+}
+
+.loginInputWrapper input#pw{
+  padding-right: 4.5rem;
+}
+
+.loginInputWrapper .pwInput{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.loginInputWrapper .pwInput .showPwBttn{
+  width: 2.5rem;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  position: absolute;
+  right: 1.5rem;
+  cursor: pointer;
+}
+
+.loginInputWrapper .pwInput .eyeIcon,
+.loginInputWrapper .pwInput .eyeOffIcon{
+  color: var(--color-type-2);
+  
+  display: none;
+}
+
+.loginInputWrapper .pwInput .eyeIcon.showIcon,
+.loginInputWrapper .pwInput .eyeOffIcon.showIcon{
+  display: flex;
+}
+
+.formSubmitBttn{
+  width: 100%;
+  padding: 1.1rem;
+  margin-top: .8rem;
+  background-color: var(--color-type-2);
+  border: 0;
+  border-radius: 5rem;
+  color: var(--color-white);
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--box-shadow-1);
+
+  transition: all .3s ease;
+}
+
+.formSubmitBttn:hover{
+  background-color: var(--color-type-2-hover);
+}

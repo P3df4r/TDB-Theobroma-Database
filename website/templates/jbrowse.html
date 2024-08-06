@@ -55,9 +55,8 @@
     </div>
     <a class="tdbLogo" onclick="redirectPage(this)">
       <figure>
-        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
       </figure>
-      <h2>TDB</h2>
     </a>
     <ul class='navbarTools'>
       <li>
@@ -140,7 +139,7 @@
       	-->
       <div class='jbrowseTool' id="wrapperJbrowseCriollo">
         <br>
-        <div id="jbrowse_criollo"></div>
+        <div id="jbrowse_criollo" style='height:200px'></div>
       </div>
      
       <div class="jbrowseTool" id="wrapperJbrowseMatina">
@@ -169,24 +168,23 @@
       </div>
 
       <figure class='fig2'>
-        <img src='../static/imgs/Criollo-idiogram1.png' alt="Criollo Idiogram image" id="idiogramImage"/>
+        <img id="ideogramImage"/>
       </figure>
     </div>
     </section>
     
   <script type="module">
-    //import config_Criollo from '../static/dados/Criollo_new/config.json' assert { type: "json" }
     import config_Criollo from '../static/dados/Criollo_new/config.json' with { type: "json" };
-    import config_Matina from '../static/dados/Matina_old/config.json' with { type: "json" };
+    import config_Matina from '../static/dados/Matina_new/config.json' with { type: "json" };
     import config_C1074 from '../static/dados/C1074/config.json' with { type: "json" };
-    /* import config_C1074P from '../static/dados/C1074P/config.json' with { type: "json" };
+    import config_C1074P from '../static/dados/C1074P/config.json' with { type: "json" };
     import config_C174 from '../static/dados/C174/config.json' with { type: "json" };
-    import config_C174P from '../static/dados/C174P/config.json' with { type: "json" };*/
-  
+    import config_C174P from '../static/dados/C174P/config.json' with { type: "json" };
+   
     const { createElement } = React
     const { render } = ReactDOM
     
-    /*const { createViewState, JBrowseLinearGenomeView } =
+/*     const { createViewState, JBrowseLinearGenomeView } =
       JBrowseReactLinearGenomeView
     const state = new createViewState({
       assembly,
@@ -399,14 +397,18 @@
     // ==== Função que altera o JBrowse ====
     const jbrowseArr = {
     	Criollo_jbrowse: {
-    		srcImg: '../static/imgs/Criollo-idiogram1.png',
+    		srcImg: '../static/dados/ideogramas/Criollo-idiogram.png',
     	},
     	Matina_jbrowse: {
-    		srcImg: '../static/imgs/pedro.png',
+    		srcImg: '../static/dados/ideogramas/Matina-idiogram.png',
     	},
+        C1074_jbrowse: {
+            srcImg: '../static/dados/ideogramas/C1074-idiogram.png'
+        }
+
     };
     
-    const idiogramImage = document.getElementById('idiogramImage');
+    const ideogramImage = document.getElementById('ideogramImage');
     const wrapperJbrowseCriollo = document.getElementById('wrapperJbrowseCriollo');
     const wrapperJbrowseMatina = document.getElementById('wrapperJbrowseMatina');
     const wrapperJbrowseC1074 = document.getElementById('wrapperJbrowseC1074');
@@ -421,7 +423,7 @@
         wrapperJbrowseC1074P.style.display = 'none';
         wrapperJbrowseC174.style.display = 'none';
         wrapperJbrowseC174P.style.display = 'none';
-    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    	ideogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
     });
     
     document.getElementById('Matina_jbrowse').addEventListener('click', () => {
@@ -431,7 +433,7 @@
         wrapperJbrowseC1074P.style.display = 'none';
         wrapperJbrowseC174.style.display = 'none';
         wrapperJbrowseC174P.style.display = 'none'
-    	idiogramImage.src = jbrowseArr.Matina_jbrowse.srcImg;
+    	ideogramImage.src = jbrowseArr.Matina_jbrowse.srcImg;
     });
      
     document.getElementById('C1074_jbrowse').addEventListener('click', () => {
@@ -441,7 +443,7 @@
         wrapperJbrowseC1074P.style.display = 'none';
         wrapperJbrowseC174.style.display = 'none';
         wrapperJbrowseC174P.style.display = 'none';
-    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    	ideogramImage.src = jbrowseArr.C1074_jbrowse.srcImg;
     });
     
     document.getElementById('C1074P_jbrowse').addEventListener('click', () => {
@@ -451,7 +453,7 @@
         wrapperJbrowseC1074P.style.display = 'inline-block';
         wrapperJbrowseC174.style.display = 'none';
         wrapperJbrowseC174P.style.display = 'none';
-    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    	ideogramImage.src = jbrowseArr.C1074P_jbrowse.srcImg;
     });
 
     document.getElementById('C174_jbrowse').addEventListener('click', () => {
@@ -461,7 +463,7 @@
         wrapperJbrowseC1074P.style.display = 'none';
         wrapperJbrowseC174.style.display = 'inline-block';
         wrapperJbrowseC174P.style.display = 'none';
-    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    	ideogramImage.src = jbrowseArr.C174_jbrowse.srcImg;
     });
 
     document.getElementById('C174P_jbrowse').addEventListener('click', () => {
@@ -471,7 +473,7 @@
         wrapperJbrowseC1074P.style.display = 'none';
         wrapperJbrowseC174.style.display = 'none';
         wrapperJbrowseC174P.style.display = 'inline-block';
-    	idiogramImage.src = jbrowseArr.Criollo_jbrowse.srcImg;
+    	ideogramImage.src = jbrowseArr.C174P_jbrowse.srcImg;
     });
     
 
@@ -480,4 +482,3 @@
   
 </body>
 </html>
-

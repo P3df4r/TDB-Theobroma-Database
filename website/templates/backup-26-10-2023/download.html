@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/download.css">
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuIcon'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="/index.html">
+      <figure>
+        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="/index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="/blast">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="/jbrowse">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="/download">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="/about">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function" style="height: 21px; border-radius: 10px 10px 10px 10px">
+    	<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine" style="height: 40px; border-radius: 10px 10px 10px 10px">
+      </form>
+    </div>
+  </nav>
+
+  <section class='downloadPageContainer'>
+    <div class='pageTitle'>
+      <figure>
+        <img src='../static/icons/download_icon.svg' alt="Ícone de download" />
+      </figure>
+      <h1>Download</h1>
+    </div>
+    <h2 class='pageSubtitle'>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </h2>
+    <div class='downloadLinks'>
+      <a href="">
+        <figure>
+          <img src='../static/icons/genetic_icon.svg' alt="Ícone de genoma" />
+        </figure>
+        <h3>Criollo (NCBI)</h3>
+      </a>
+      <a href="">
+        <figure>
+          <img src='../static/icons/genetic_icon.svg' alt="Ícone de genoma" />
+        </figure>
+        <h3>Matina (NCBI)</h3>
+      </a>
+      <a href="">
+        <figure>
+          <img src='../static/icons/genetic_icon.svg' alt="Ícone de genoma" />
+        </figure>
+        <h3>C1074</h3>
+      </a>
+      <a href="">
+        <figure>
+          <img src='../static/icons/genetic_icon.svg' alt="Ícone de genoma" />
+        </figure>
+        <h3>C174</h3>
+      </a>
+      <a href="">
+        <figure>
+          <img src='../static/icons/genetic_icon.svg' alt="Ícone de genoma" />
+        </figure>
+        <h3>Criollo <br /> (New Annotation)</h3>
+      </a>
+      <a href="">
+        <figure>
+          <img src='../static/icons/genetic_icon.svg' alt="Ícone de genoma" />
+        </figure>
+        <h3>Matina <br /> (New Annotation)</h3>
+      </a>
+    </div>
+  </section>
+</body>
+</html>

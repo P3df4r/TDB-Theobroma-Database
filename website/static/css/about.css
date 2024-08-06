@@ -200,6 +200,8 @@
 
 .aboutPageContainer .collaborators ul li img{
     width: 15rem;
+    user-select: none;
+    pointer-events: none;
 }
 
 .aboutPageContainer .collaboratorName{
@@ -277,6 +279,20 @@
 
 .citeTdb{
     animation: sectionAnimation 1s ease-in-out 2s forwards;
+}
+
+
+
+
+.collaboratorsImg{
+  width: 15rem;
+  height: 15rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 0rem -1rem;
+  
+  overflow: hidden;
 }
 
 @keyframes sectionAnimation {

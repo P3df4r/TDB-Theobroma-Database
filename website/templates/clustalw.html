@@ -22,6 +22,8 @@
   		display: none;
   		/*justify-content: center;*/
   		
+  		flex-direction: column;
+  		
   		position: fixed;
   		top: 0rem;
   		
@@ -35,27 +37,31 @@
   	.outputClustalFmtBackButton,
   	.previousResultButton{
   		border: 0;
-  		background-color: var(--main-color);
-  		color: var(--secondary-color);
+  		background-color: #FFF;
+  		color: var(--theme-4);
   		font-size: 1.5rem;
   		font-weight: bold;
   		padding: 1rem 2.5rem;
   		border-radius: 1rem;
   		cursor: pointer;
   		
+  		box-shadow: 0 3px .5rem #0004;
+  		
   		transition: all .3s ease;
   	}
   	
   	.outputClustalFmtBackButton:hover,
   	.previousResultButton:hover{
-  		background-color: var(--green-2);
+  		background-color: var(--theme-4);
+  		color: #FFF;
   	}
   	
-  	.outputClustalFmtBackButton{
+  	/*.outputClustalFmtBackButton{
   		 position: absolute;
   		top: 5rem;
   		left: 2rem;
   	}
+  	*/
   	
   	.previousResultButton{
   		display: none;
@@ -95,12 +101,11 @@
 	/*==== sequenceAlignmentViewer ====*/
 	.sequenceAlignmentViewer{
 	  width: 100%;
-	  border-radius: 2rem;
+	  /*border-radius: 2rem;*/
 	  background-color: #FFF;
-	  box-shadow: 0 4px .3rem #bbbbbb75;
+	  /*box-shadow: 0 4px .3rem #bbbbbb75;*/
 	  
 	  padding: 1rem 1rem;
-	  margin-top: 5rem;
 	  
 	  display: flex;
 	  flex-direction: column;
@@ -108,7 +113,7 @@
 	  
 	  overflow: scroll;
 	  
-	  border: 1px solid #e3e3e3;
+	  /*border: 1px solid #e3e3e3;*/
 	}
 	
 	/*==== sequenceContainer ====*/
@@ -244,6 +249,25 @@
 	  background-color: rgb(219, 219, 219);
 	}
 	
+	.exampleClustalw,	
+	.sendForm{
+	  opacity: 0;
+    transform: translateX(-3rem);
+	}
+	
+	
+	.exampleClustalw{
+	  display: flex;
+    gap: 1.5rem;
+    
+    animation: sectionAnimation 1s ease-in-out .5s forwards;
+	}
+	
+	.sendForm{
+	  animation: sectionAnimation 1s ease-in-out .4s forwards;
+	}
+
+
 	
 	
 	.exampleClustalwBttn,
@@ -265,17 +289,117 @@
 	
 	
 	
+	.downloadArquivos{
+	  width: 90%;
+	  border-top: 1px solid var(--theme-4);
+	}
+	
+	.downloadArquivosTitle{
+	  text-align: center;
+	  padding: 1.3rem 1rem;
+	  user-select: none;
+	}
+	
+	.downloadArquivos .linkArquivos{
+	  width: 100%;
+	  
+	  display: flex;
+	  flex-wrap: wrap;
+	  gap: 1rem;
+	}
+	
+	.downloadArquivos .linkArquivos a{
+	  width: 15rem;
+	  padding: 1rem;
+	  border-radius: 1rem;
+	  box-shadow: 0 3px .5rem #0004;
+	  color: var(--theme-4);
+	  font-weight: bold;
+	  text-align: center;
+	}
+	
+
+
+
+  .outputClustalFmt .buttonsWrapper{
+    padding: 1rem 0rem;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    
+  }
+  
+  .outputClustalFmt .buttonsWrapper a{
+		background-color: #FFF;
+		color: var(--theme-4);
+		font-size: 1.5rem;
+		font-weight: bold;
+		padding: 1rem 2.5rem;
+		border-radius: 1rem;
+		cursor: pointer;
+		
+		box-shadow: 0 3px .5rem #0004;
+		transition: all .3s ease;
+  }
+	
+   .outputClustalFmt .buttonsWrapper a:hover{
+    	background-color: var(--theme-4);
+  		color: #FFF;
+   }
+   
+  
+  .uploadFileBox{
+     position: relative;
+   }
+   
+   .uploadFileBox input[type='file']{
+     opacity: 0;
+     z-index: 1;
+   }
+   
+   .uploadFileBox .uploadFileBoxDetail{
+     position: absolute;
+     z-index: 0;
+     
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 1rem;
+   }
+   
+   .uploadFileBox .uploadFileBoxDetail .icon{
+     width: 5rem;
+     height: 5rem;
+   }
+   
+   .uploadFileBox .uploadFileBoxDetail .text{
+     font-weight: bold;
+     text-align: center;
+   }
+   
+   
+	
 	
 	@media screen and (min-width: 917px){
 		.sequenceAlignmentViewer{
 			align-items: center;
 		}
 	}
+	
+	@keyframes animation1 {
+    100%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }
+	
   </style>
   
   <script src="../static/js/navbar.js" defer></script>
   
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <link rel="stylesheet" href="../static/css/clustalw.css"/>
 </head>
 <body>
   <nav class='navbar'>
@@ -286,9 +410,8 @@
     </div>
     <a class="tdbLogo" href="/index.html">
       <figure>
-        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
       </figure>
-      <h2>TDB</h2>
     </a>
     <ul class='navbarTools'>
       <li>
@@ -311,7 +434,7 @@
             <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
             JBROWSE
           </a>
-          <a href="/clustaw">
+          <a href="/clustalw">
             <img src='../static/icons/genetic_icon.svg' alt="CLUSTAL tool icon" />
             CLUSTALW
           </a>
@@ -353,42 +476,166 @@
     <form method="POST" enctype="multipart/form-data" action="/align">
       <div class="selectWrapper">
         <div class="select">
-          <select name="escolhaGenoma" id="genoma">
-            <option value="0">Criollo</option>
-            <option value="1">Matina</option>
-            <option value="2">C174</option>
-            <option value="3">C174P</option>
-            <option value="4">C1074</option>
-            <option value="5">C1074P</option>
-            <option value="6">16S Chr2</option>
-          </select>
-        </div>
-      </div>
-      <div class="modos_clustal">
-        <div class="select_clustal">
-            <select name="escolha_clustal" id="escolha">
-                <option value="0">DNA</option>
-                <option value="1">Protein</option>
+            <select name="escolhaGenoma" id="genoma">
+                <option value="0">Criollo_chr1</option>
+                <option value="1">Criollo_chr2</option>
+                <option value="2">Criollo_chr3</option>
+                <option value="3">Criollo_chr4</option>
+                <option value="4">Criollo_chr5</option>
+                <option value="5">Criollo_chr6</option>
+                <option value="6">Criollo_chr7</option>
+                <option value="7">Criollo_chr8</option>
+                <option value="8">Criollo_chr9</option>
+                <option value="9">Criollo_chr10</option>
+                <option value="10">Criollo_chrUnk</option>
+                <option value="11">Matina_chr1</option>
+                <option value="12">Matina_chr2</option>
+                <option value="13">Matina_chr3</option>
+                <option value="14">Matina_chr4</option>
+                <option value="15">Matina_chr5</option>
+                <option value="16">Matina_chr6</option>
+                <option value="17">Matina_chr7</option>
+                <option value="18">Matina_chr8</option>
+                <option value="19">Matina_chr9</option>
+                <option value="20">Matina_chr10</option>
+                <option value="21">Matina_chrUnk</option>
+                <option value="22">C174_chr1</option>
+                <option value="23">C174_chr2</option>
+                <option value="24">C174_chr3</option>
+                <option value="25">C174_chr4</option>
+                <option value="26">C174_chr5</option>
+                <option value="27">C174_chr6</option>
+                <option value="28">C174_chr7</option>
+                <option value="29">C174_chr8</option>
+                <option value="30">C174_chr9</option>
+                <option value="31">C174_chr10</option>
+                <option value="32">C174_chrUnk</option>
+                <option value="33">C1074_chr1</option>
+                <option value="34">C1074_chr2</option>
+                <option value="35">C1074_chr3</option>
+                <option value="36">C1074_chr4</option>
+                <option value="37">C1074_chr5</option>
+                <option value="38">C1074_chr6</option>
+                <option value="39">C1074_chr7</option>
+                <option value="40">C1074_chr8</option>
+                <option value="41">C1074_chr9</option>
+                <option value="42">C1074_chr10</option>
+                <option value="43">C1074_chrUnk</option>
+                <option value="44">C174P_chr1</option>
+                <option value="45">C174P_chr2</option>
+                <option value="46">C174P_chr3</option>
+                <option value="47">C174P_chr4</option>
+                <option value="48">C174P_chr5</option>
+                <option value="49">C174P_chr6</option>
+                <option value="50">C174P_chr7</option>
+                <option value="51">C174P_chr8</option>
+                <option value="52">C174P_chr9</option>
+                <option value="53">C174P_chr10</option>
+                <option value="54">C174P_chrUnk</option>
+                <option value="55">C1074P_chr1</option>
+                <option value="56">C1074P_chr2</option>
+                <option value="57">C1074P_chr3</option>
+                <option value="58">C1074P_chr4</option>
+                <option value="59">C1074P_chr5</option>
+                <option value="60">C1074P_chr6</option>
+                <option value="61">C1074P_chr7</option>
+                <option value="62">C1074P_chr8</option>
+                <option value="63">C1074P_chr9</option>
+                <option value="64">C1074P_chr10</option>
+                <option value="65">C1074P_chrUnk</option>
+                <option value="66">example</option>
             </select>
+          </div>
+        <div class="modos_clustal">
+          <div class="select_clustal select">
+              <select name="escolha_clustal" id="escolha">
+                  <option value="0">DNA</option>
+                  <option value="1">Protein</option>
+              </select>
+          </div>
         </div>
       </div>
-      
-      <button
+<!-- 
+      <div class="modosAnalise">
+        <h2 class="modosAnaliseTitle">Modos de análise</h2>
+        <div class="selectBttnGroup">
+          <div class="selectBttnWrapper">
+            <button 
+              class="selectBttn" 
+              id="selectBttn1"
+              style="--width: 13rem"
+              type="button"
+            >
+              Criollo
+            </button>
+            <ul class="optionsList" id="optionsList1">
+              <li>
+                <button type="button" class="optionListBttn">Criollo</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn">Matina</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn">C174</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn">C174P</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn">C1074</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn">C1074P</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn">16S Chr2</button>
+              </li>
+            </ul>
+          </div>
+          <div class="selectBttnWrapper">
+            <button 
+              class="selectBttn" 
+              id="selectBttn2"
+              style="--width: 13rem"
+              type="button"
+            >
+              DNA
+            </button>
+            <ul class="optionsList" id="optionsList2">
+              <li>
+                <button type="button" class="optionListBttn2">DNA</button>
+              </li>
+              <li>
+                <button type="button" class="optionListBttn2">Protein</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+-->    
+      <div class="exampleClustalw">
+        <button
         class="exampleClustalwBttn"
         type="button"
       >
         Usar exemplo do 16S Chr2
       </button>
-      <button
+        <button
         class="exampleResetBttn"
         type="button"
       >
         Limpar sequência de exemplo
       </button>
+      </div>
       
       <textarea class="textarea fastaFormat" placeholder="FASTA format" id="input-manual" name="input_manual"></textarea>
       <div class="uploadFileBox">
         <input type="file" name="file_clustal">
+        
+        <div class="uploadFileBoxDetail">
+          <i data-lucide="file-plus-2" class="icon"></i>
+          <span class="text">Clique para adicionar um arquivo</span>
+        </div>
       </div>
       <input class="sendForm" type="submit" value="Alignment">
     </form>
@@ -396,17 +643,15 @@
 	<br>
 	<br>
 	<div class="outputClustalFmt">
-		<button type='button' class="outputClustalFmtBackButton">
-			voltar
-		</button>
+		<div class="buttonsWrapper">
+  		<button type='button' class="outputClustalFmtBackButton">
+  			Voltar
+  		</button>
+		  <a href="./static/dados/example/atpA_2.fasta">Download FASTA</a>
+		</div>
 		
-
-
-
-        
-      <div class="sequenceAlignmentViewer">
+    <div class="sequenceAlignmentViewer">
 	    <div class="viewerText">
-	      <i class="ph ph-dna"></i>
 	      <h2>Visualize aqui o alinhamento</h2>
 	    </div>
 	    <pre>{{output_clustal_fmt}}</pre>
@@ -420,193 +665,258 @@
 	</div>
   </section>
   
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+  
+  
+  
   
   <script>
-	const outputClustalFmt = document.querySelector('.outputClustalFmt');
-	const outputClustalFmtBackButton = document.querySelector('.outputClustalFmtBackButton');
-	const previousResultButton = document.querySelector('.previousResultButton');
+  	const outputClustalFmt = document.querySelector('.outputClustalFmt');
+  	const outputClustalFmtBackButton = document.querySelector('.outputClustalFmtBackButton');
+  	const previousResultButton = document.querySelector('.previousResultButton');
+    
+    	let output_clustal_fmt = `{{ output_clustal_fmt }}`;
+  	
+  	if(output_clustal_fmt.length > 0){
+  		outputClustalFmt.classList.add('showOutputClustalFmt');
+  		previousResultButton.classList.add('showPreviousResultButton');
+  	};
+  	
+  	outputClustalFmtBackButton.addEventListener('click', () => {
+  		outputClustalFmt.classList.remove('showOutputClustalFmt');
+  	});
+  	
+  	previousResultButton.addEventListener('click', () => {
+  		outputClustalFmt.classList.add('showOutputClustalFmt');
+  	});
+  	
   
-  	let output_clustal_fmt = `{{ output_clustal_fmt }}`;
-	
-	if(output_clustal_fmt.length > 0){
-		outputClustalFmt.classList.add('showOutputClustalFmt');
-		previousResultButton.classList.add('showPreviousResultButton');
-	};
-	
-	outputClustalFmtBackButton.addEventListener('click', () => {
-		outputClustalFmt.classList.remove('showOutputClustalFmt');
-	});
-	
-	previousResultButton.addEventListener('click', () => {
-		outputClustalFmt.classList.add('showOutputClustalFmt');
-	});
-	
-
-	const sequenceAlignmentViewerContainer = document.querySelector('.sequenceAlignmentViewer');
-	//sequenceAlignmentViewerContainer.innerText = output_clustal_fmt;
-
-	
-	
-	//console.log(outputClustal);
-	
-
-	//# Display your own sequence alignment
-	// You must provide your sequences ready-aligned in FASTA format.
-	
-	const displayAlignment = document.querySelector('.displayAlignment');
-	
-	
-	
-	const colors = {
-	  S: 'red',
-	  A: 'yellowGreen',
-	  T: 'orange',
-	  C: 'yellow',
-	  V: 'lightGreen',
-	  N: 'purple',
-	  Y: 'lightBlue',
-	  M: 'lightGreen2',
-	  D: 'red',
-	  E: 'lightPurple',
-	  H: 'blue',
-	  G: 'lightOrange',
-	  K: 'darkPurple',
-	  L: 'green',
-	  P: 'orange',
-	  '-': 'gray',
-	  Q: 'violet',
-	  R: 'darkBlue',
-	  W: 'lightBlue',
-	  F: 'green',
-	  I: 'green',
-	};
-	
-	// Guarda o tamanho do elemento que contem o maior nome
-	let maiorTamanhoNome = 0;
-	
-	/*
-	if(outputClustal.trim() !== ''){
-		console.log('[debug] iniciando visualizador...');
-		sequenceAlignmentViewer(outputClustal.trim());
-	};
-	*/
-	
-	// Função principal
-	function sequenceAlignmentViewer(sequencesText){
-	  // Divide o texto "sequencesText" pelo separador ">"
-	  let sequencesArr = sequencesText.split('&gt;');
-	
-	  let formattedSequencesArr = [];
-	    
-	  sequencesArr.forEach((seq, i) => {
-	    if(i !== 0){
-	      let sequence = seq.split('\n');
-	  
-	      let auxArr = [];
-	      auxArr.push(sequence[0].trim());
-	      auxArr.push(sequence[1].trim());
-	  
-	      formattedSequencesArr.push(auxArr);
-	    };
-	  });
-
-	  if(sequenceAlignmentViewerContainer.hasChildNodes()){
-	    while(sequenceAlignmentViewerContainer.hasChildNodes()){
-	      sequenceAlignmentViewerContainer
-	        .removeChild(sequenceAlignmentViewerContainer.firstChild);
-	    };
-	
-	    maiorTamanhoNome = 0;
-	    contDelayNome = 0;
-	
-	    formattedSequencesArr.forEach(seq => {
-	      displaySequencesHtml(seq);
-	    });
-	  } else{
-	    formattedSequencesArr.forEach(seq => {
-	      displaySequencesHtml(seq);
-	    });
-	  }
-	
-	  definirTamanhoNome();
-	};
-	
-	// Mostra a sequencia no HTML
-	function displaySequencesHtml(sequence){
-	  console.log(sequence);
-	
-	  // sequenceContainer
-	  let sequenceContainer = document.createElement('div');
-	  sequenceContainer.classList.add('sequenceContainer');
-	
-	  // nome
-	  let nome = document.createElement('p');
-	  nome.classList.add('nome');
-	  nome.innerText = sequence[0];
-	  sequenceContainer.appendChild(nome);
-	  
-	  /*
-	  // variasLetras
-	  let variasLetras = document.createElement('div');
-	  variasLetras.classList.add('variasLetras');
-	
-	  let letrasSeparadas = sequence[1].split('');
-	  //letrasSeparadasParaConsensus.push(letrasSeparadas);
-	  
-	  letrasSeparadas.forEach(word => {
-	    let span = document.createElement('span');
-	    span.classList.add(colors[word]);
-	    span.innerText = word;
-	    variasLetras.appendChild(span);
-	  });
-	
-	  sequenceContainer.appendChild(variasLetras);
-	  */
-	  
-	  // sequencia
-	  let sequencia = document.createElement('bold');
-	  sequencia.classList.add('sequencia');
-	  sequencia.innerText = sequence[1];
-	  
-	  sequenceContainer.appendChild(sequencia);
-	
-	  //console.log(sequenceContainer);
-	
-	  sequenceAlignmentViewerContainer.appendChild(sequenceContainer);
-	
-	
-	
-	  // Pega o tamanho do maior nome  
-	  let posNome = nome.getBoundingClientRect();
-	
-	  if(posNome.width > maiorTamanhoNome){
-	    maiorTamanhoNome = posNome.width;
-	  };
-	};
-	
-	// Defini o tamanho dos elementos da classe "nome"
-	function definirTamanhoNome(){
-	  let allNomeElements = document.querySelectorAll('.nome');
-	
-	  allNomeElements.forEach(element => {
-	    element.style.width = `${maiorTamanhoNome*1.5}px`;
-	  });
-	};
-	
-	
-	
-	const exampleClustalwBttn = document.querySelector('.exampleClustalwBttn');
-	exampleClustalwBttn.addEventListener('click', () => {
-	  fetch('./static/dados/example/atpA_2.fasta')
-	    .then(resp => resp.text())
-	    .then(data => document.getElementById('input-manual').innerText = data)
-	  
-	});
-	
-	const exampleResetBttn = document.querySelector('.exampleResetBttn');
-	exampleResetBttn.addEventListener('click', () => {
-	  document.getElementById('input-manual').innerText = '';
-	});
+  	const sequenceAlignmentViewerContainer = document.querySelector('.sequenceAlignmentViewer');
+  	//sequenceAlignmentViewerContainer.innerText = output_clustal_fmt;
+  
+  	
+  	
+  	console.log(output_clustal_fmt);
+  	
+  
+  	//# Display your own sequence alignment
+  	// You must provide your sequences ready-aligned in FASTA format.
+  	
+  	const displayAlignment = document.querySelector('.displayAlignment');
+  	
+  	
+  	
+  	const colors = {
+  	  S: 'red',
+  	  A: 'yellowGreen',
+  	  T: 'orange',
+  	  C: 'yellow',
+  	  V: 'lightGreen',
+  	  N: 'purple',
+  	  Y: 'lightBlue',
+  	  M: 'lightGreen2',
+  	  D: 'red',
+  	  E: 'lightPurple',
+  	  H: 'blue',
+  	  G: 'lightOrange',
+  	  K: 'darkPurple',
+  	  L: 'green',
+  	  P: 'orange',
+  	  '-': 'gray',
+  	  Q: 'violet',
+  	  R: 'darkBlue',
+  	  W: 'lightBlue',
+  	  F: 'green',
+  	  I: 'green',
+  	};
+  	
+  	// Guarda o tamanho do elemento que contem o maior nome
+  	let maiorTamanhoNome = 0;
+  	
+  	/*
+  	if(outputClustal.trim() !== ''){
+  		console.log('[debug] iniciando visualizador...');
+  		sequenceAlignmentViewer(outputClustal.trim());
+  	};
+  	*/
+  	
+  	// Função principal
+  	function sequenceAlignmentViewer(sequencesText){
+  	  // Divide o texto "sequencesText" pelo separador ">"
+  	  let sequencesArr = sequencesText.split('&gt;');
+  	
+  	  let formattedSequencesArr = [];
+  	    
+  	  sequencesArr.forEach((seq, i) => {
+  	    if(i !== 0){
+  	      let sequence = seq.split('\n');
+  	  
+  	      let auxArr = [];
+  	      auxArr.push(sequence[0].trim());
+  	      auxArr.push(sequence[1].trim());
+  	  
+  	      formattedSequencesArr.push(auxArr);
+  	    };
+  	  });
+  
+  	  if(sequenceAlignmentViewerContainer.hasChildNodes()){
+  	    while(sequenceAlignmentViewerContainer.hasChildNodes()){
+  	      sequenceAlignmentViewerContainer
+  	        .removeChild(sequenceAlignmentViewerContainer.firstChild);
+  	    };
+  	
+  	    maiorTamanhoNome = 0;
+  	    contDelayNome = 0;
+  	
+  	    formattedSequencesArr.forEach(seq => {
+  	      displaySequencesHtml(seq);
+  	    });
+  	  } else{
+  	    formattedSequencesArr.forEach(seq => {
+  	      displaySequencesHtml(seq);
+  	    });
+  	  }
+  	
+  	  definirTamanhoNome();
+  	};
+  	
+  	// Mostra a sequencia no HTML
+  	function displaySequencesHtml(sequence){
+  	  console.log(sequence);
+  	
+  	  // sequenceContainer
+  	  let sequenceContainer = document.createElement('div');
+  	  sequenceContainer.classList.add('sequenceContainer');
+  	
+  	  // nome
+  	  let nome = document.createElement('p');
+  	  nome.classList.add('nome');
+  	  nome.innerText = sequence[0];
+  	  sequenceContainer.appendChild(nome);
+  	  
+  	  /*
+  	  // variasLetras
+  	  let variasLetras = document.createElement('div');
+  	  variasLetras.classList.add('variasLetras');
+  	
+  	  let letrasSeparadas = sequence[1].split('');
+  	  //letrasSeparadasParaConsensus.push(letrasSeparadas);
+  	  
+  	  letrasSeparadas.forEach(word => {
+  	    let span = document.createElement('span');
+  	    span.classList.add(colors[word]);
+  	    span.innerText = word;
+  	    variasLetras.appendChild(span);
+  	  });
+  	
+  	  sequenceContainer.appendChild(variasLetras);
+  	  */
+  	  
+  	  // sequencia
+  	  let sequencia = document.createElement('bold');
+  	  sequencia.classList.add('sequencia');
+  	  sequencia.innerText = sequence[1];
+  	  
+  	  sequenceContainer.appendChild(sequencia);
+  	
+  	  //console.log(sequenceContainer);
+  	
+  	  sequenceAlignmentViewerContainer.appendChild(sequenceContainer);
+  	
+  	
+  	
+  	  // Pega o tamanho do maior nome  
+  	  let posNome = nome.getBoundingClientRect();
+  	
+  	  if(posNome.width > maiorTamanhoNome){
+  	    maiorTamanhoNome = posNome.width;
+  	  };
+  	};
+  	
+  	// Defini o tamanho dos elementos da classe "nome"
+  	function definirTamanhoNome(){
+  	  let allNomeElements = document.querySelectorAll('.nome');
+  	
+  	  allNomeElements.forEach(element => {
+  	    element.style.width = `${maiorTamanhoNome*1.5}px`;
+  	  });
+  	};
+  	
+  	
+  	
+  	const exampleClustalwBttn = document.querySelector('.exampleClustalwBttn');
+  	
+  	let clustalwExampleData = '';
+  	fetch('./static/dados/example/atpA_2.fasta')
+  	  .then(resp => resp.text())
+  	  .then(data => {
+        clustalwExampleData = data;
+  	  })
+  	  .catch(error => console.log(error));
+  	
+  	exampleClustalwBttn.addEventListener('click', () => {
+  	  //document.getElementById('input-manual').innerText = `>atp ${clustalwExampleData.split('>atp')[1]}`;
+  	  document.getElementById('input-manual').innerText = `${clustalwExampleData.substring(4).replace([0], 'atp')}`;
+  	});
+  	
+  	const exampleResetBttn = document.querySelector('.exampleResetBttn');
+  	exampleResetBttn.addEventListener('click', () => {
+  	  document.getElementById('input-manual').innerText = '';
+  	});
+  	
+  	//==================================================================
+  	const selectBttn1 = document.getElementById('selectBttn1');
+    const optionsList1 = document.getElementById('optionsList1');
+    const optionListBttn = document.querySelectorAll('.optionListBttn');
+    
+    selectBttn1.addEventListener('click', () => {
+      optionsList1.classList.toggle('showOptionsList');
+    });
+    
+    optionsList1.addEventListener('mouseleave', () => {
+      optionsList1.classList.remove('showOptionsList');
+    });
+    
+    optionListBttn.forEach(bttn => {
+      bttn.addEventListener('click', () => {
+        optionsList1.classList.remove('showOptionsList');
+        selectBttn1.innerText = bttn.innerText;
+      });
+    });
+    
+    
+    //==================================================================
+  	const selectBttn2 = document.getElementById('selectBttn2');
+    const optionsList2 = document.getElementById('optionsList2');
+    const optionListBttn2 = document.querySelectorAll('.optionListBttn2');
+    
+    selectBttn2.addEventListener('click', () => {
+      optionsList2.classList.toggle('showOptionsList');
+    });
+    
+    optionsList2.addEventListener('mouseleave', () => {
+      optionsList2.classList.remove('showOptionsList');
+    });
+    
+    optionListBttn2.forEach(bttn => {
+      bttn.addEventListener('click', () => {
+        optionsList2.classList.remove('showOptionsList');
+        selectBttn2.innerText = bttn.innerText;
+      });
+    });
+    
+    
+    
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   </script>
 </body>
 </html>

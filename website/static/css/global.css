@@ -1,9 +1,15 @@
-*{
+*,
+*::after,
+*::before{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
   text-decoration: none;
+}
+
+pre{
+  font-family: Monospace;
 }
 
 :root{
@@ -17,12 +23,19 @@
   --color-bttn: #ADC178;
 
   --padding: 2rem;
+  
+  --theme-1: #DDE5B6;
+  --theme-2: #3A4D09;
+  --theme-3: #C6CF9A;
+  --theme-4: #ADC178;
+  
+  --box-shadow-1: 0 2px .5rem #0004;
 }
 
 body{
   font-size: 1.6rem;
   width: 100%;
-  height: 100vh;
+  /*height: 100vh;*/
   padding-top: 4.5rem;
 }
 

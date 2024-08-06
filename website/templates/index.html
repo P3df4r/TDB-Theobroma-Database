@@ -12,6 +12,26 @@
   <script src="../static/js/navbar.js" defer></script>
   
   <style>
+  
+  ::-webkit-scrollbar{
+	  width: .7rem;
+	  height: .7rem;
+	}
+	
+	/* Barra de scroll */
+	::-webkit-scrollbar-thumb{
+	  background-color: var(--main-color);
+	  border-radius: 4rem;
+	}
+	
+	/* Barra de scroll com hover */
+	::-webkit-scrollbar-thumb:hover{
+	  background-color: var(--color-bttn);
+	}
+  
+  
+  
+  
 	.lastPapersWrapper{
 		width: 100%;
 		max-width: 90rem;
@@ -90,6 +110,12 @@
   		display: none;
   	}
   	
+  	.temp{
+  	  height: 2rem;
+  	  border: 2px solid transparent;
+  	}
+  	
+  	
   	@keyframes loadingAnimation{
   		to{
   			transform: rotate(360deg);
@@ -106,9 +132,8 @@
     </div>
     <a class="tdbLogo" onclick="redirectPage(this)">
       <figure>
-        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
       </figure>
-      <h2>TDB</h2>
     </a>
     <ul class='navbarTools'>
       <li>
@@ -177,16 +202,42 @@
             <figure>
                 <img src='../static/icons/description_icon.svg' alt="Icon of section Genus Description" />
             </figure>
-            <h2>Genus Description</h2>
+            <h2>Database Description</h2>
         </div>
         <div class='descriptionAbout'>
             <figure>
-                <img src='../static/icons/tree_icon.svg' alt="Ícone de uma árvore" />
+                <img src='../static/imgs/icon-cacau.svg' alt="Ícone de um cacau" />
             </figure>
             <p>
                 The theobroma database stores publicly available biological data from the Theobroma family, derived from the T. cacao and T. grandiflorum species. In addition, it provides tools for comparing species present in the database and data submitted by the user.
             </p>
         </div>
+        <!--<ul>
+          <li>
+            <strong>Scientific name:</strong> Theobroma grandiflorum;
+          </li>
+          <li>
+            <strong>Native names:</strong> "Cupuaçu" (Pará), 
+            "pupu or pupuaçu" (Maranhão), 
+            "cocoa-cupuaçu" (Bahia) or "cupu" (Pará and Acre);
+          </li>
+          <li>
+            <strong>Flowers:</strong> Simple and remain on their branches;
+          </li>
+          <li>
+            <strong>Fruits:</strong> Spherical or ovoid-shaped, up to 25 cm long;
+          </li>
+          <li>
+            <strong>Flowering:</strong> January to May;
+          </li>
+          <li>
+            <strong>Fructification:</strong> The fruit has a hard and smooth peel, 
+            and a dark brown color;
+          </li>
+          <li>
+            <strong>Uses:</strong> Ice creams, juices, vitamins, sweets, etc.
+          </li>
+        </ul>-->
         <a href="#" target='_blank'>Learn More</a>
     </section>
     <section class='publications'>
@@ -197,15 +248,27 @@
             <h2>Group publications</h2>
         </div>
         <div class='publicationsContent'>
-            <figure>
-                <img src='../static/icons/file_icon.svg' alt="Ícone do botão para o DOI da publicação" />
-            </figure>
-            <p>
-                Comparative analyses of Theobroma cacao and T. grandiflorum 
-                mitogenomes reveal conserved gene content embedded within 
-                complex and plastic structures
-            </p>
-            <ul>
+            <div>
+                <figure>
+                    <img src='../static/icons/file_icon.svg' alt="Ícone do botão para o DOI da publicação" />
+                </figure>
+                <p>
+                    Comparative analyses of Theobroma cacao and T. grandiflorum 
+                    mitogenomes reveal conserved gene content embedded within 
+                    complex and plastic structures
+                </p>
+                <a href="https://doi.org/10.1016/j.gene.2022.146904" target='_blank'>Learn More</a>
+            </div>
+            <div>
+                <figure>
+                    <img src='../static/icons/file_icon.svg' alt="Ícone do botão para o DOI da publicação" />
+                </figure>
+                <p>
+                    Genomic decoding of Theobroma grandiflorum (cupuassu) at chromosomal scale: evolutionary insights for horticultural innovation 
+                </p>
+                <a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giae027/7688282" target='_blank'>Learn More</a>
+            </div>
+            <!--<ul>
                 <li>DE ABREU, Vinicius A.C.</li>
                 <li>MOYSÉS, Rafael A.</li>
                 <li>SILVA, Saura R.</li>
@@ -213,9 +276,34 @@
                 <li>DOMINGUES, Douglas S.</li>
                 <li>MIRANDA, Vitor F.O.</li>
                 <li>VARANI, Alessandro M</li>
+            </ul>-->
+        </div>
+           <!--<div class='publicationsContent1'>
+            <figure>
+                <img src='../static/icons/file_icon.svg' alt="Ícone do botão para o DOI da publicação" />
+            </figure>
+            <p>
+                Genomic decoding of Theobroma grandiflorum (cupuassu) at chromosomal scale: Evolutionary insights for horticultural innovation
+            </p>
+            <ul>
+                <li>MOYSÉS, Rafael A.</li>
+                <li>DE ABREU, Vinicius A.C.</li>
+                <li>OLIVEIRA, Rafaely P.</li>
+                <li>ALMEIDA, João V. A.</li>
+                <li>OLIVEIRA, Mauro, M.</li>
+                <li>SILVA, Saura R.</li>
+                <li>PASCHOAL, Alexandre R.</li>
+                <li>ALMEIDA, Sintia S.</li>
+                <li>SOUZA, Pedro A. F.</li>
+                <li>FERRO, Jesus A.</li>
+                <li>MIRANDA, Vitor F.O.</li>
+                <li>FIGUEIRA, Antonio</li>
+                <li>DOMINGUES, Douglas S.</li>
+                <li>VARANI, Alessandro M</li>
             </ul>
         </div>
-        <a href="https://doi.org/10.1016/j.gene.2022.146904" target='_blank'>Learn More</a>
+        <a href="https://doi.org/10.1016/j.gene.2022.146904" target='_blank'>Learn More</a>-->
+
     </section>
     
     <section class="lastPapersWrapper">
@@ -236,7 +324,14 @@
 	       
 	    </section>
     </section>
+    
+    <div class="temp"></div>
+    
+   
+    
   </section>
+  
+
   
   <script type="text/javascript">
 	const lastPapers = document.querySelector('.lastPapers');

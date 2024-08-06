@@ -139,9 +139,8 @@
     </div>
     <a class="tdbLogo" href="/index.html">
       <figure>
-        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
       </figure>
-      <h2>TDB</h2>
     </a>
     <ul class='navbarTools'>
       <li>
@@ -416,7 +415,7 @@
 
     <script type='module'>
        
-        import config_criollo from '../static/dados/Criollo_new/config.json' assert { type: "json" }
+        import config_criollo from '../static/dados/Criollo_new/config.json' with { type: "json" };
 
 		const { createElement } = React;
 		const { render } = ReactDOM;
@@ -536,7 +535,7 @@
 
     <script type='module'>
         
-        import config_matina from '../static/dados/Matina_new/config.json' assert { type: "json" }
+        import config_matina from '../static/dados/Matina_new/config.json' with { type: "json" };
     
 		const { createElement } = React;
 		const { render } = ReactDOM;
@@ -582,6 +581,7 @@
                 let stopFormatado = formatter.format(event.target.dataset.location_stop)
 
                 const new_loc = event.target.dataset.chr + ":" + startFormatado + '..'  + stopFormatado
+                console.log(new_loc)
                 stateMatina.session.view.navToLocString(new_loc, "Matina")
             }
         }
@@ -599,7 +599,7 @@
 
     <script type='module'>
         
-        import config_C1074 from '../static/dados/C1074/config.json' assert { type: "json" }
+        import config_C1074 from '../static/dados/C1074/config.json' with { type: "json" };
     
 		const { createElement } = React;
 		const { render } = ReactDOM;
@@ -662,7 +662,7 @@
     
     <script type='module'>
         
-        import config_C1074P from '../static/dados/C1074P/config.json' assert { type: "json" }
+        import config_C1074P from '../static/dados/C1074P/config.json' with { type: "json" };
     
 		const { createElement } = React;
 		const { render } = ReactDOM;
@@ -727,7 +727,7 @@
 
     <script type='module'>
         
-        import config_C174 from '../static/dados/C174/config.json' assert { type: "json" }
+        import config_C174 from '../static/dados/C174/config.json' with { type: "json" };
     
 		const { createElement } = React;
 		const { render } = ReactDOM;
@@ -789,7 +789,7 @@
 
     <script type='module'>
         
-        import config_C174P from '../static/dados/C174P/config.json' assert { type: "json" }
+        import config_C174P from '../static/dados/C174P/config.json' with { type: "json" };
 		
         const { createElement } = React;
 		const { render } = ReactDOM;

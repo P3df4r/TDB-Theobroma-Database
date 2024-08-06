@@ -1,0 +1,256 @@
+.navbar{
+	width: 100%;
+	height: 4.5rem;
+	background-color: var(--main-color);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1.5rem;
+	gap: 1rem;
+	border-bottom: 1px solid var(--white);
+	position: fixed;
+	z-index: 3;
+}
+
+.tdbLogo{
+	display: flex;
+	align-items: center;
+	gap: .1rem;
+}
+
+.tdbLogo figure{
+	width: 2.4rem;
+	display: flex;
+}
+
+.tdbLogo figure img{
+	width: 100%;
+}
+
+.tdbLogo h2{
+	font-size: 2.1rem;
+	color: var(--secondary-color);
+}
+
+.navbarTools{
+	width: 100%;
+	height: calc(100% - 4.5rem);
+	position: fixed;
+	left: -100vw;
+	top: 4.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: #C6CF9A;
+	gap: 1.5rem;
+	font-size: 2.5rem;
+	font-weight: bold;
+	transition: left .4s ease;
+	list-style: none;
+}
+
+.navbarTools li{
+	position: relative;
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.navbarTools li a{
+	color: var(--secondary-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+	border-radius: 1rem;
+	width: 100%;
+	max-width: 35rem;
+	height: 6rem;
+	transition: background-color .5s ease;
+}
+
+.navbarTools li a:hover{
+	background-color: var(--color-bttn);
+}
+
+.toolsBttn{
+	color: var(--secondary-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+	border-radius: 1.3rem;
+	padding: .2rem 0;
+	cursor: pointer;
+	width: 100%;
+	max-width: 35rem;
+	height: 6rem;
+}
+
+.navbarTools li a img,
+.toolsBttn img{
+	width: 2.7rem;
+}
+
+.dropDown{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	top: 100%;
+	font-size: 2.5rem;
+	width: 100%;
+	max-width: 30rem;
+	border-radius: 1.5rem;
+	z-index: 2;
+	display: none;
+	overflow: hidden;
+}
+
+.dropDown a{
+	background-color: var(--main-color);
+	border-radius: 0 !important; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+	position: relative;
+	width: 100%;
+	opacity: 0;
+}
+
+.dropDown a:first-child{
+	animation: dropdownLinkAnimation .3s ease-in-out forwards;
+}
+
+.dropDown a:last-child{
+	animation: dropdownLinkAnimation .3s ease-in-out .2s forwards;
+}
+
+.dropDown a img{
+	width: 2rem;
+}
+
+.navbarTools li:hover > .dropDown{
+	display: flex;
+}
+
+.searchBttn{
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.searchBttn input[type="text"]{
+	height: 60%;
+	border: 0;
+	border-radius: 2rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.menuIcon{
+	cursor: pointer;
+	width: 3rem;
+	height: 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.menuBar1,
+.menuBar2,
+.menuBar3{
+	position: absolute;
+	width: 100%;
+	height: .5rem;
+	border-radius: 3rem;
+	background-color: var(--secondary-color);
+	transition: transform .4s ease;
+}
+
+/*=== Navbar animation ===*/
+
+.navbar{
+	top: -4.5rem;
+	opacity: 0;
+	animation: navbarAnimation 1s ease-in-out forwards;
+}
+
+@keyframes navbarAnimation {
+	100%{
+		top: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes dropdownLinkAnimation {
+	0%{
+		transform: translateY(-1.5rem);
+	}
+	100%{
+		transform: translateY(0);
+		opacity: 1;
+	}  
+}
+
+@keyframes dropdownAnimation {
+	100%{
+		border: 1px solid var(--white);
+		border-top: 1px solid transparent;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.navbarTools{
+		width: max-content;
+		height: 4.5rem;
+		background-color: transparent;
+		transform: translateX(0vw) !important;
+		position: static;
+		flex-direction: row;
+		font-size: 2.1rem;
+		gap: 3rem;
+		padding: 0 1rem;
+	}
+
+	.navbarTools li,
+	.dropDown a{
+		height: 100%;
+		padding: .4rem 0;
+	}
+	
+	.navbarTools li a,
+	.toolsBttn{
+		height: 100%;
+		padding: 0 .7rem;
+	}
+
+	.navbarTools li a img,
+	.toolsBttn img{
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.dropDown{
+		width: 20rem;
+		height: 10rem;
+		font-size: 2.1rem;
+		border-radius: 0 0 1.5rem 1.5rem;
+		text-align: center;
+		border: 1px solid transparent;
+		animation: dropdownAnimation 1s ease-in-out forwards;
+	}
+
+	.menuIcon{
+		display: none;
+	}
+}

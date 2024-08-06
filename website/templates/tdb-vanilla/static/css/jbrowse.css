@@ -1,0 +1,132 @@
+.jbrowsePageContainer{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* justify-content: center; */
+	gap: 2rem;
+	padding: 1.5rem 1.5rem 10rem;
+	color: var(--secondary-color);
+}
+
+.jbrowsePageContainer .pageTitle{
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.jbrowsePageContainer .pageTitle figure{
+	width: 2.8rem;
+}
+
+.jbrowsePageContainer .pageTitle figure img{
+	width: 100%;
+}
+
+.jbrowsePageContainer .pageTitle h1{
+	font-size: 3rem;
+}
+
+.families{
+	width: 100%;
+	max-width: 90rem;
+	list-style: none;
+	border-radius: 1.5rem;
+	text-align: center;
+	padding: 1rem;
+	background-color: var(--main-color);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	gap: .8rem;
+}
+
+.families li{
+	width: 100%;
+	max-width: 13rem;
+	border-radius: 1rem;
+	padding: 1.5rem .5rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color .5s ease;
+}
+
+.families li:hover{
+	background-color: var(--color-bttn);
+}
+
+.jbrowseContainer{
+	width: 100%;
+	max-width: 120rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+}
+
+.jbrowseTool{
+	width: 100%;
+}
+
+.jbrowseTool img{
+	width: 100%;
+}
+
+.jbrowseContainer .fig2{
+	width: 70%;
+}
+
+.fig2 img{
+	width: 100%;
+}
+
+/*=== Sections animations ===*/
+
+.jbrowsePageContainer .pageTitle,
+.families,
+.jbrowseContainer{
+	opacity: 0;
+	transform: translateX(-3rem);
+}
+
+.jbrowsePageContainer .pageTitle{
+	animation: sectionAnimation 1s ease-in-out .1s forwards;
+}
+
+.families{
+	animation: sectionAnimation 1s ease-in-out .3s forwards;
+}
+
+.jbrowseContainer{
+	animation: sectionAnimation 1s ease-in-out .6s forwards;
+}
+
+.testeJbrowse{
+	width: 100%;
+	max-width: 120rem;
+}
+
+@keyframes sectionAnimation {
+	100%{
+			opacity: 1;
+			transform: translateX(0);
+	}
+}
+
+@media screen and (min-width: 920px) {
+	.jbrowseContainer{
+			flex-direction: row;
+	}
+
+	.jbrowseContainer .fig2{
+			width: 15rem;
+			cursor: pointer;
+			transition: width .6s ease-in-out;
+	}
+	
+	.fig2:hover{
+			width: 50rem;
+	}
+}

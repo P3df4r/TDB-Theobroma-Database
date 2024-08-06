@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="./static/css/global.csss">
+  <link rel="stylesheet" href="./static/css/navbar.css">
+  <link rel="stylesheet" href="./static/css/home.css">
+  <script src="./static/js/main.js" defer></script>
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuIcon'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="./index.html">
+      <figure>
+        <img src='./static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="./index.html">
+          <img src='./static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='./static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="./pages/blast.html">
+            <img src='./static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="./pages/jbrowse.html">
+            <img src='./static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="./pages/download.html">
+          <img src="./static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="./pages/about.html">
+          <img src='./static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <input 
+        type="text" 
+        name="searchButton" 
+        id="searchButton"
+      />
+    </div>
+  </nav>
+
+  <section class='homePageContainer'>
+    <div class='welcomeMessage'>
+      <h2>Welcome to the</h2>
+      <div>
+        <h1>Theobroma DataBase</h1>
+        <figure>
+          <img src='./static/icons/database_icon.svg' alt="Logo do Theobroma Database" />
+        </figure>
+      </div>
+    </div>
+    <section class='description'>
+        <div class='descriptionTitle'>
+            <figure>
+                <img src='./static/icons/description_icon.svg' alt="Icon of section Genus Description" />
+            </figure>
+            <h2>Genus Description</h2>
+        </div>
+        <div class='descriptionAbout'>
+            <figure>
+                <img src='./static/icons/tree_icon.svg' alt="Ícone de uma árvore" />
+            </figure>
+            <p>
+                The cupuaçu tree, cupuaçueiro or cupu, is native to the Amazon Basin 
+                and is found most often in the north and northeast regions, in the 
+                states of Amapá, Pará, and Amazonas. Its tree can reach an average 
+                height of 10 to 25 meters and in cultivated areas the height varies 
+                from 6 to 10 meters.;
+            </p>
+        </div>
+        <ul>
+          <li>
+            <strong>Scientific name:</strong> Theobroma grandiflorum;
+          </li>
+          <li>
+            <strong>Native names:</strong> "Cupuaçu" (Pará), 
+            "pupu or pupuaçu" (Maranhão), 
+            "cocoa-cupuaçu" (Bahia) or "cupu" (Pará and Acre);
+          </li>
+          <li>
+            <strong>Flowers:</strong> Simple and remain on their branches;
+          </li>
+          <li>
+            <strong>Fruits:</strong> Spherical or ovoid-shaped, up to 25 cm long;
+          </li>
+          <li>
+            <strong>Flowering:</strong> January to May;
+          </li>
+          <li>
+            <strong>Fructification:</strong> The fruit has a hard and smooth peel, 
+            and a dark brown color;
+          </li>
+          <li>
+            <strong>Uses:</strong> Ice creams, juices, vitamins, sweets, etc.
+          </li>
+        </ul>
+        <a href="#" target='_blank'>Learn More</a>
+    </section>
+    <section class='publications'>
+        <div class='publicationsTitle'>
+            <figure>
+                <img src='./static/icons/library_books_icon.svg' alt="Icon of section Group publications" />
+            </figure>
+            <h2>Group publications</h2>
+        </div>
+        <div class='publicationsContent'>
+            <figure>
+                <img src='./static/icons/file_icon.svg' alt="Ícone do botão para o DOI da publicação" />
+            </figure>
+            <p>
+                Comparative analyses of Theobroma cacao and T. grandiflorum 
+                mitogenomes reveal conserved gene content embedded within 
+                complex and plastic structures
+            </p>
+            <ul>
+                <li>DE ABREU, VINICIUS A.C.</li>
+                <li>MOYSÉS ALVES, RAFAEL</li>
+                <li>SILVA, SAURA R.</li>
+                <li>FERRO, JESUS A.</li>
+                <li>DOMINGUES, DOUGLAS S.</li>
+                <li>MIRANDA, VITOR F.O.</li>
+                <li>Varani, Alessandro M</li>
+            </ul>
+        </div>
+        <a href="https://doi.org/10.1016/j.gene.2022.146904" target='_blank'>Learn More</a>
+    </section>
+    <section class='lastPapers'>
+        <div class='lastPapersTitle'>
+            <figure>
+                <img src='./static/icons/file_fill_icon.svg' alt="Ícone dos últimos artigos" />
+                <img src='./static/icons/file_icon.svg' alt="Ícone dos últimos artigos" />
+            </figure>
+            <h2>Last papers</h2>
+        </div>
+        <ul>
+            <li>
+                Implementation of pre-harvest techniques in emerging 
+                agroforestry systems to increase the yield of cocoa tree 
+                (Theobroma cacao L.). DOI: 37020938 Publish Date: 2023 Mar 
+            </li>
+            <li>
+                Assessing the Effectiveness of Chemical Marker Extraction 
+                from Amazonian Plant Cupuassu (Theobroma grandiflorum) by 
+                PSI-HRMS/MS and LC-HRMS/MS. DOI: 36984807 Publish Date: 2023 Mar 1 
+            </li>
+            <li>
+                Mexican Ancestral Foods (Theobroma cacao, Opuntia ficus indica, Persea 
+                americana and Phaseolus vulgaris) Supplementation on Anthropometric, 
+                Lipid and Glycemic Control Variables in Obese Patients: A Systematic Review and 
+                Meta-Analysis. DOI: 36981103 Publish Date: 2023 Mar 10 
+            </li>
+        </ul>
+    </section>
+  </section>
+</body>
+</html>

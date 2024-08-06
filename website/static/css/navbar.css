@@ -20,7 +20,7 @@
 }
 
 .tdbLogo figure{
-	width: 2.4rem;
+	width: 6rem;
 	display: flex;
 }
 
@@ -137,7 +137,6 @@
 }
 
 .searchBttn{
-	width: min(100%, 30rem);
 	display: flex;
 	align-items: center;
 	justify-content: end;
@@ -146,13 +145,16 @@
 .searchBttn form{
 	border-radius: 1rem;
 	position: relative;
+	
+	display: flex;
+	gap: 1rem;
 }
 
 .searchBttn form input[type="text"]{
 	background-color: #FFF;
 	border: 0;
 	border-radius: 1rem;
-	width: 20rem;
+	width: 100%;
 	padding: .7rem;
 }
 

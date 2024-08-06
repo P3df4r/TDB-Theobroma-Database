@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/about.css">
+  
+  <script src="../static/js/navbar.js" defer></script>
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuButton'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="/index.html">
+      <figure>
+        <img src='../static/imgs/logo-tdb-v2.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="/index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="/blast">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="/jbrowse">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+          <a href="/clustalw">
+            <img src='../static/icons/genetic_icon.svg' alt="CLUSTAL tool icon" />
+            CLUSTALW
+          </a>
+		  <a href="/tree">
+            <img src='../static/icons/genetic_icon.svg' alt="TREE tool icon" />
+           FiloTree
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="/download">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="/about">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function">
+    	<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine">
+      </form>
+    </div>
+  </nav>
+
+  <section class='aboutPageContainer'>
+    <div class='pageTitle'>
+      <figure>
+        <img src='../static/icons/info_icon.svg' alt="About icon" />
+      </figure>
+      <h1>About Theobroma DataBase</h1>
+    </div>
+    <p class='text'>
+        The theobroma database stores publicly available biological data from the Theobroma family, derived from the T. cacao and T. grandiflorum species. In addition, it provides tools for comparing species present in the database and data submitted by the user.
+
+        The theobroma database is maintained by the Laboratory of ioinformatics and high performance computing (LaBioCAD), located at the Federal University of Pará (UFPA). In addition, during its first version, it received support from CAPES-FAPESPA, FAPESPA and UNESP.
+    </p>
+    <section class='submissionNewData'>
+        <div class='submissionNewDataTitle'>
+          <figure>
+            <img src='../static/icons/send_icon.svg' alt="Data submission section icon" />
+          </figure>
+          <h2>Submission new data</h2>
+        </div>
+        <p>
+          For send a new data for add or reports 
+          bugs in the database, send a email to:
+        </p>
+        <a href="mailto:pedfar321@gmail.com">pedfar321@gmail.com</a>
+    </section>
+    <section class='contactUs'>
+        <div class='contactUsTitle'>
+          <figure>
+            <img src='../static/icons/mail_icon.svg' alt="Mail icon" />
+          </figure>
+          <h2>Contact us</h2>
+        </div>
+        <ul>
+          <li>
+            <a href="mailto:pedfar321@gmail.com">
+              <img src='../static/icons/contact_email_icon.svg' alt="Contact email icon" />
+              Pedro Augusto
+            </a>
+          </li>
+          <li>
+            <a href="mailto:josemjuiortk@gmail.com">
+              <img src='../static/icons/contact_email_icon.svg' alt="Contact email icon" />
+              José Maria
+            </a>
+          </li>
+          <li>
+            <a href="mailto:vabreu@ufpa.br">
+              <img src='../static/icons/contact_email_icon.svg' alt="Contact email icon" />
+              Vinícius Abreu
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="mailto:crismonteirodev@gmail.com ">
+              <img src='../static/icons/contact_email_icon.svg' alt="Contact email icon" />
+              Cristiano Monteiro
+            </a>
+          </li>
+          <li>
+            <a href="mailto:sintiaalmeida@gmail.com ">
+              <img src='../static/icons/contact_email_icon.svg' alt="Contact email icon" />
+              Sintia Almeida
+            </a>
+          </li>
+          <li>
+            <a href="mailto:alessandro.varani@unesp.br ">
+              <img src='../static/icons/contact_email_icon.svg' alt="Contact email icon" />
+              Alessandro Varani
+            </a>
+          </li>
+        </ul>
+    </section>
+    <section class='collaborators'>
+        <div class='collaboratorsTitle'>
+            <figure>
+                <img src='../static/icons/groups_icon.svg' alt="Collaborators icon" />
+            </figure>
+            <h2>Collaborators</h2>
+        </div>
+        <ul>
+            <li>
+                <img src='../static/imgs/pedro.png' alt="Pedro's photo" />
+                <span class='collaboratorName'>Pedro Augusto</span>
+                <span class='collaboratorFunction'>Full-Stack Developer</span>
+            </li>
+            <li>
+                <img src='../static/imgs/jose.png' alt="Pedro's photo" />
+                <span class='collaboratorName'>José Júnior</span>
+                <span class='collaboratorFunction'>Full-Stack Developer</span>
+            </li>
+            <li>
+                <img class="collaboratorsImg" src='../static/imgs/img-cristiano.png' alt="Cristiano photo" />
+                <span class='collaboratorName'>Cristiano Monteiro</span>
+                <span class='collaboratorFunction'>Frontend Developer</span>
+            </li>
+            <li>
+                <img src='../static/imgs/Vinicius.png' alt="Vinicius photo" />
+                <span class='collaboratorName'>Vinicius Abreu</span></span>
+                <span class='collaboratorFunction'>Advisor</span>
+            </li>
+        </ul>
+    </section>
+    <section class='citeTdb'>
+        <div class='citeTdbTitle'>
+            <figure>
+                <img src='../static/icons/quote_icon.svg' alt="icon of section cite TDB" />
+            </figure>
+            <h2>Cite TDB</h2>
+        </div>
+        <p>
+            If TDB is useful in your research, 
+            please cite TDB in your publications 
+            using XXXXX as reference
+        </p>
+    </section>
+  </section>
+</body>
+</html>

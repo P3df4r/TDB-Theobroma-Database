@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script
+      src="//unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="//unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="//unpkg.com/@jbrowse/react-linear-genome-view/dist/react-linear-genome-view.umd.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <h1>We're using JBrowse Linear Genome View!</h1>
+    <div id="jbrowse_linear_genome_view"></div> 
+            <h1 class="title">Search Results</h1>
+	            <center> 
+                <div id="jbrowse_linear_genome_view"></div>
+                </center>
+    <script>
+        const { createViewState, JBrowseLinearGenomeView } =
+        JBrowseReactLinearGenomeView
+        const { createElement } = React
+        const { render } = ReactDOM
+
+        const state = new createViewState({
+        assembly: {
+            /* assembly */
+        },
+        tracks: [
+            /* tracks */
+        ],
+        configuration: {
+            /* extra configuration */
+        },
+        plugins: [
+            /* runtime plugin definitions */
+        ],
+        defaultSession: {
+            /* default session */
+        },
+        location: '100:10000', // location
+        onChange: () => {
+            /* onChange */
+        },
+        })
+        render(
+        createElement(JBrowseLinearGenomeView, { viewState: state }),
+        document.getElementById('jbrowse_linear_genome_view'),
+        )  
+    </script>
+  </body>
+</html>

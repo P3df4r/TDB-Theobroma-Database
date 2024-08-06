@@ -1,0 +1,556 @@
+    <title>TDB- Theobroma Database</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+    <style>
+        .quarter{
+            width: 195;
+            height: 53;
+        }
+    </style>
+</head>
+<body style="margin:0px 0px;">
+    <section>
+            <!--Aba das ferramentas-->
+            <nav class="navbar" style="padding:0px 0px 0px 0px; background-color: #DDE5B6;  justify-content: center;;">
+            <div class="navbar-brand">
+                <a class="navbar-burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+                <!--Nome do database
+                <h1 class="quarter" style="padding-bottom: 0px; padding-top: 0px;padding-left: 20px; padding-right:30px; background-color: #ADC178; font-size: 20px; border-radius: 30px 50px 50px 30px;">
+                    Theobroma DB
+                </h1>
+                -->
+            
+        
+            <!--Ferramentas-->
+            <center>
+            <div class="navbar-menu" id="nav-links" style="font-size: 15px;  justify-content: center position: absolute;">
+                <div class="navbar-start">
+                    <a class="navbar-item is-active" data-target="home-page" style="padding-bottom: 0px; padding-top: 0px;padding-left: 10px; padding-right:30px; background-color: #ADC178; font-size: 20px; border-radius: 10px 0px 50px 30px;">
+                        Theobroma DB
+                    </a>
+                    <a class="navbar-item active" data-target="blast-page">
+                        BLAST
+                    </a>
+                    <a class="navbar-item active" href="/jbrowse">
+                        JBROWSE2
+                    </a>
+                   <a class="navbar-item active" data-target="download-page">
+                        DOWNLOAD
+                    </a>
+                    <a class="navbar-item active" data-target="submission-page">
+                        SUBMISSION
+                    </a>
+                    <a class="navbar-item active" data-target="contact-page">
+                        ABOUT US
+                    </a>
+		    <div class="navbar-end navbar-item" style="padding: 13px 0px 0px 0px">
+			    <form class="form-inline" method="POST" id="form-search" action="/search_engine">
+                                        <input class="form-control" data-target="Search-page" type="text" name="search_input" placeholder="Search Gene/Genome" aria-label="Search Gene/Genome/Function" style="height: 21px; border-radius: 10px 10px 10px 10px">
+                    					<input class="btn btn-primary" type="submit" value="Search" data-target="search-engine" style="height: 40px; border-radius: 10px 10px 10px 10px">
+                                </form>
+                    </div>
+               </div>
+            </div>
+            </center>
+        </nav>
+    </section>
+    <section class="container is-max-desktop">
+
+    </section>
+    <section class="section">
+        <div class="container is-max-desktop" id="tab-content">
+            <div class="{{ home_classes }}" id="home-page">
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <div class="box" style="width: 150px;">
+                            <figure class="image is-3by5">
+                                <img src="../static/assets/cacau1.png">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="tile is-ancestor">
+                        <div class="tile is-parent">
+                            <div class="tile is-child box is-vertical notification">
+                                <p class="title is-5">Genus Description</p>
+                                <p class="subtitle">The cupuaçu tree, cupuaçueiro or cupu, is native to the Amazon Basin and is found most often in the north and northeast regions, in the states of Amapá, Pará, and Amazonas. Its tree can reach an average height of 10 to 25 meters and in cultivated areas the height varies from 6 to 10 meters.;
+                                </p>
+                                <p class="subtitle">Scientific name: Theobroma grandiflorum; <br>
+                    Native names: <i>"Cupuaçu" (Pará)</i>, <i>"pupu or pupuaçu" (Maranhão)</i>, <i>"cocoa-cupuaçu" (Bahia)</i> or <i>"cupu" (Pará and Acre)</i>; <br>
+                                Flowers: Simple and remain on their branches; <br>
+                                Fruits: Spherical or ovoid-shaped, up to 25 cm long; <br>
+                                Flowering: January to May;<br>
+                    Fructification: The fruit has a hard and smooth peel, and a dark brown color; <br>
+                                Uses: Ice creams, juices, vitamins, sweets, etc.
+                                </p>
+                                <form action="https://www.nature.com/articles/ng.736">
+                                    <button class="button is-primary" style="background-color: #ADC178;" type="submit">Learn More... </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tile is-parent notification box">
+                            <div class="tile is-child box notification">
+                                <p class="title is-4">Group publications</p>
+                                <p class="subtitle is-6">Comparative analyses of Theobroma cacao and T. grandiflorum mitogenomes reveal conserved gene content embedded within complex and plastic structures</p>
+                                <p class="subtitle is-6">DE ABREU, VINICIUS A.C. ; MOYSÉS ALVES, RAFAEL ; SILVA, SAURA R. ; FERRO, JESUS A. ; DOMINGUES, DOUGLAS S. ; MIRANDA, VITOR F.O. ; Varani, Alessandro M</p>
+                                <p class="subtitle is-6">DOI: <a href=https://doi.org/10.1016/j.gene.2022.146904 target="_blank">https://doi.org/10.1016/j.gene.2022.146904 </a></p> 
+                                <p class="title is-4">Last papers...
+                                    <object data="/last_paper" width="100%"></object>
+                                </p>
+                            </div> 
+                        </div>
+                   </div>
+                </div>
+            </div>
+        <div class="is-hidden" id="blast-page">
+                <h1 class="title">BLAST</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="select">
+                        <select name="modoBlast" id="mBlast">
+                            <option value="1">BlastN</option>
+            			    <option value="2">BlastP</option>
+                            <option value="3">BlastX</option>
+                            <option value="4">tBlastN</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <select name="escolhaGenoma" id="genoma">
+            			    <option value="0">Criollo</option>
+                            <option value="1">Matina</option>
+                            <option value="2">C1074</option>
+                            <option value="3">C174</option>
+                            <option value="4">C1074P</option>
+                            <option value="5">C174P</option>
+
+                        </select>
+                    </div>
+                    <br>
+                    <br>
+                    <textarea class="textarea" placeholder="FASTA format" id="nucleotideo" name="nucleotideo" rows="9"></textarea>
+                    <br>
+                    <h3>Ou enviar arquivo</h3>
+                    <br>
+                    <div class="file has-name is-fullwidth">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="file">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Select file
+                                </span>
+                            </span>
+                            <spam class="file-name">
+                                No file selected
+                            </spam>
+                        </label>
+                        <input class="button is-primary" type="submit" value="Blast">
+                    </div>
+                </form>
+            <div id="result-blast">
+                <input type="file" id="blastinput" />
+                <div id="blast-multiple-alignments"></div>
+                <div id="blast-alignments-table"></div>
+                <div id="blast-single-alignment"></div>
+            </div>
+        </div>
+        <div class="is-hidden" id="download-page">
+                <h2 class="title">Download</h2>
+				<p class="subtitle"> &nbsp; </p>
+<p class="subtitle">Criollo (NCBI): <a href="https://www.ncbi.nlm.nih.gov/nuccore/342240206?report=fasta"> Link </a> </p>
+			    <p class="subtitle">Matina (NCBI): <a href="https://www.ncbi.nlm.nih.gov/nuccore/508078138?report=fasta"> Link  </a> </p>
+			    <p class="subtitle">C1074: <a href=./../static/dados/Criollo_new/Criollo.fasta> Link </a> </p>
+			    <p class="subtitle">C174: <a href="http://155.248.231.140:4000/down/TbQNtDLHVLyH"> Link  </a> </p>
+			    <p class="subtitle">Criollo (New Annotation): <a href="http://155.248.231.140:4000/down/r0i8ra6UrusX"> Link  </a> </p>
+			    <p class="subtitle">Matina (New Annotation): <a href="http://155.248.231.140:4000/down/w5LJLJvnXwi8"> Link  </a> </p>
+           </div>
+
+	   <div class="is-hidden" id="contact-page">
+                <h1 class="title">Contact us</h1>
+                                <p class="subtitle"> &nbsp; </p>
+                                <address>
+                                    <p class="subtitle">Pedro Augusto: <a href="mailto:pedfar321@gmail.com">pedfar321@gmail.com</a> </p>
+        	            		    <p class="subtitle">José Maria: <a href="mailto:josemjuniortk@gmail.com">josemjuiortk@gmail.com</a> </p>
+		    	                    <p class="subtitle">Vinícius Abreu: <a href="mailto:vabreu@ufpa.br">vabreu@ufpa.br</a></p>
+                                </address>
+            </div>
+
+        <div class="is-hidden" id="submission-page">
+            <h1 class="title">Submission new data</h1>
+                <p class="subtitle"> &nbsp; </p>
+                <p class="subtitle">For send a new data for add or reports bugs in the database, send a email to:  <a href="mailto:pedfar321@gmail.com">pedfar321@gmail.com</a> </p> 
+        </div>
+
+        <div class="{{ search_classes }}" id="search-engine"> 
+            <h1 class="title">Search Results</h1>
+	            <center> 
+                <div id="dataTable2"></div>
+                <div class="detalhada_class" id="detalhada" hidden="true">
+                    <div id="botaoback">
+                        <button type="hidden" style="box-shadow: rgba(27, 31, 35, .1) 0 1px 0; border-radius: 6px; border: 1px solid rgba(27, 31, 35, .15); background-color: #2ea44f; color: #fff; width: 100px; margin: 0 905px 0 0" onclick="escondertab2()">Back</button>
+                    </div>
+                    <div id="popupTable"></div>
+                    <div>
+                            <table style="width: 75%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 10px;">
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Chromossome</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col1">col1</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Software</th>
+                                    <td style="padding: 8px;" id="col2">col2</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Function</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col3">col3</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Start</th>
+                                    <td style="padding: 8px;" id="col4">col4</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Stop</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col5">col5</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">IG</th>
+                                    <td style="padding: 8px;" id="col6">col6</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Lecture</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col7">col7</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">3_prime_partial</th>
+                                    <td style="padding: 8px;" id="col8">col8</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">5_prime_partial</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col9">col9</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">ID</th>
+                                    <td style="padding: 8px;" id="col10">col10</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Name</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col11">col11</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Parent</th>
+                                    <td style="padding: 8px;" id="col12">col12</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Anticodon</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col13">col13</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Cacao</th>
+                                    <td style="padding: 8px;" id="col14">col14</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Cazy</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col15">col15</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Classification</th>
+                                    <td style="padding: 8px;" id="col16">col16</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">COG</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col17">col17</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Description</th>
+                                    <td style="padding: 8px;" id="col18">col18</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Domains</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col19">col19</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Ec_number</th>
+                                    <td style="padding: 8px;" id="col20">col20</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">FPKM</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col21">col21</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Gene Ontology</th>
+                                    <td style="padding: 8px;" id="col22">col22</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Identity</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col23">col23</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Ltr Identity</th>
+                                    <td style="padding: 8px;" id="col24">col24</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Method</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col25">col25</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Motif</th>
+                                    <td style="padding: 8px;" id="col26">col26</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">NLR</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col27">col27</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Note</th>
+                                    <td style="padding: 8px;" id="col28">col28</td>
+                                </tr>
+                                 <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">PFAM</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col29">col29</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">PlantTFDB</th>
+                                    <td style="padding: 8px;" id="col30">col30</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">PlantiSMASH</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col31">col31</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">PrgDBproduct</th>
+                                    <td style="padding: 8px;" id="col32">col32</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Product</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col33">col33</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Pseudogene</th>
+                                    <td style="padding: 8px;" id="col34">col34</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Sequence Ontology</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col35">col35</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">tIR</th>
+                                    <td style="padding: 8px;" id="col36">col36</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">tSD</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col37">col37</td>
+                                </tr>
+                                 <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Tair10</th>
+                                    <td style="padding: 8px;" id="col38">col38</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Topology</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col39">col39</td>
+                                </tr>
+                                 <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px;">Tpm</th>
+                                    <td style="padding: 8px;" id="col40">col40</td>
+                                </tr>
+                                <tr style="border: 1px solid #dee2e6; ">
+                                    <th style="padding: 8px; background-color: rgba(0, 0, 0, .05);">Tsd</th>
+                                    <td style="padding: 8px; background-color: rgba(0, 0, 0, .05);" id="col41">col41</td>
+                                </tr>
+                            </table>
+                    </div>
+                </div>
+ 
+                </center>
+        </div>
+    </div>
+    </section>
+
+    <script src="/static/javascript/index.js"></script>
+    
+<script>
+    new gridjs.Grid({
+        columns: [
+            {name: "Chromossome", hidden: false},
+            {name: "Software", hidden: true},
+            {name: "Function", hidden: false},
+            {name: "Start", hidden: true},
+            {name: "Stop", hidden: true},
+            {name: "IG", hidden: true},
+            {name: "Lecture", hidden: true},
+            {name: "3_prime_partial", hidden: true},
+            {name: "5_prime_partial", hidden: true},
+            {name: "ID", hidden: false, width: "20%"},
+            {name: "Name", hidden:false},
+            {name: "Parent", hidden: true},
+            {name: "Anticodon", hidden: true},
+            {name: "Cacao", hidden: true},
+            {name: "Cazy", hidden: true},
+            {name: "Classification", hidden: true},
+            {name: "Cog", hidden: true},
+            {name: "Description", hidden: false},
+            {name: "Domains", hidden: true},
+            {name: "ec_number", hidden: true},
+            {name: "Fpkm", hidden: true},
+            {name: "Gene_ontology", hidden: true},
+            {name: "Identity", hidden: true},
+            {name: "Ltr_identity", hidden: true},
+            {name: "Method", hidden: true},
+            {name: "Motif", hidden: true},
+            {name: "Nlr", hidden: true},
+            {name: "Note", hidden: true},
+            {name: "Pfam", hidden: true},
+            {name: "PlantTFDB", hidden: true},
+            {name: "PlantiSMASH", hidden: true},
+            {name: "PrgDB", hidden: true},
+            {name: "Product", hidden: true},
+            {name: "Pseudogene", hidden: true},
+            {name: "sequence_ontology", hidden: true},
+            {name: "tIR", hidden: true},
+            {name: "tSD", hidden: true},
+            {name: "Tair10", hidden: true},
+            {name: "Topology", hidden: true},
+            {name: "Tpm", hidden: true},
+            {name: "Tsd", hidden: true},
+            {name: "Details", hidden:false, width:"12%" , formatter: (cell,row) => {return gridjs.html(`<button type="button" onclick="teste('${row.cells.map(cell => cell.data)}')">Click Me!</button>`)}},    
+        ], 
+        pagination: {limit: 10},
+        resizable: true,
+        search: true,
+        sort: true,
+        fixedHeader: true, 
+        width: '100%',
+        data: {{results|safe}} 
+    }).render(document.getElementById("dataTable2"));
+    console.log( {{results|safe}} )
+    
+    let linhasArmazenadas = []
+
+    const popupGrid = new gridjs.Grid();
+
+    function escondertab1(){
+        document.getElementById("dataTable2").hidden = true;
+        document.getElementById("detalhada").hidden = false;
+        document.getElementById("popupTable").hidden = true
+    }
+
+    function escondertab2(){
+        document.getElementById("dataTable2").hidden = false;
+        document.getElementById("detalhada").hidden = true;
+    }
+        
+    function esconderblast1(){
+
+    }
+
+    function esconderblast2(){
+
+    }
+        
+    function back(){
+        document.getElementById("botaoback").hidden = true;
+    }
+
+    function teste(click_dados) {
+        linhasArmazenadas.push(click_dados);
+        const myArray = click_dados.split(",");
+        console.log(myArray);
+        for (var i = 0; i < 41; i++) {
+            let numbe = parseInt(i) + parseInt(1);
+            console.log(numbe);
+            let coluna = "col" + numbe;
+            console.log(coluna);
+            console.log(document.getElementById(coluna).innerHTML);
+            document.getElementById(coluna).innerHTML = myArray[i];
+            console.log(Object.keys(myArray).length);
+        }
+
+        // Criar uma nova instância do GridJS para a tabela de popup
+
+        popupGrid.updateConfig({
+            columns: [
+                {name: "Chromossome", hidden: false},
+                {name: "Software", hidden: false},
+                {name: "Function", hidden: false},
+                {name: "Start", hidden: false},
+                {name: "Stop", hidden: false},
+                {name: "IG", hidden: true},
+                {name: "Lecture", hidden: true},
+                {name: "3_prime_partial", hidden: true},
+                {name: "5_prime_partial", hidden: true},
+                {name: "ID", hidden: false, width: "14%"},
+                {name: "Name", hidden:false},
+                {name: "Parent", hidden: true},
+                {name: "Anticodon", hidden: true},
+                {name: "Cacao", hidden: true},
+                {name: "Cazy", hidden: true},
+                {name: "Classification", hidden: false},
+                {name: "Cog", hidden: true},
+                {name: "Description", hidden: false},
+                {name: "Domains", hidden: true},
+                {name: "ec_number", hidden: true},
+                {name: "Fpkm", hidden: true},
+                {name: "Gene_ontology", hidden: true},
+                {name: "Identity", hidden: true},
+                {name: "Ltr_identity", hidden: true},
+                {name: "Method", hidden: true},
+                {name: "Motif", hidden: true},
+                {name: "Nlr", hidden: true},
+                {name: "Note", hidden: true},
+                {name: "Pfam", hidden: true},
+                {name: "PlantTFDB", hidden: true},
+                {name: "PlantiSMASH", hidden: true},
+                {name: "PrgDBproduct", hidden: true},
+                {name: "Pseudogene", hidden: true},
+                {name: "sequence_ontology", hidden: true},
+                {name: "tIR", hidden: true},
+                {name: "tSD", hidden: true},
+                {name: "Tair10", hidden: true},
+                {name: "Topology", hidden: true},
+                {name: "Tpm", hidden: true},
+                {name: "Tsd", hidden: true},
+            ],
+    
+        data: [myArray]
+            
+        }).render(document.getElementById("popupTable")).forceRender();
+        escondertab1();
+        console.log(myArray);
+    }
+
+</script>
+
+    <script>
+
+        new gridjs.Grid({
+            columns: [{name: "chr"}, {name: "gene"}, {name: "exon"}, {name: "intron"}, {name: "transposon"}, {name: "mRNA"}, {name: "rRNA"}, {name: "tRNA"}, {name: "CDS"}],
+            width: '80%',
+            data: {{counts|safe}}
+        }).render(document.getElementById("datatable_e"));
+        console.log({{counts|safe}})
+    </script>
+
+
+<script type="text/javascript" src="../static/node/node_modules/biojs-vis-blasterjs/lib/html2canvas.js"></script>
+<script type="text/javascript" src="../static/node/node_modules/biojs-vis-blasterjs/build/blasterjs.js"></script>
+<script type="text/javascript">
+        //import blasterjs from "biojs-vis-blasterjs"
+        var blasterjs = require("biojs-vis-blasterjs");
+        var instance = new blasterjs({
+            input: "blastinput",
+            multipleAlignments: "blast-multiple-alignments",
+            alignmentsTable: "blast-alignments-table",
+            singleAlignment: "blast-single-alignment"
+        });    
+</script>
+
+
+</body></html>

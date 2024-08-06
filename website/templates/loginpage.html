@@ -1,14 +1,171 @@
-<html>
-  <title>ACESSO RESTRITO</title>
-  <h1>Acesso Restrito</h1>
-  <center>
-  <form method='POST'>
-    </br>Nome de usuário
-    <input type='text' name='username'></input>
-    </br>Senha
-    <input type='password' name='pw'></input>
-    </br>
-    <input type='submit' name='submit'></input>
-  </form>
-</center>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB - Login</title>
+  <style type="text/css" media="all">
+    *, *::after, *::before{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    
+    :root{
+      font-size: 62.5%;
+    
+      --color-white: #FFF;
+    
+      --color-type-1: #DDE5B6;
+      --color-type-2: #AAB673;
+      --color-type-2-hover: #9aa763;
+    
+      --box-shadow-1: 0 3px .5rem #0003;
+    }
+    
+    body{
+      width: 100%;
+      height: 100vh;
+      font-size: 1.6rem;
+    }
+    
+    .copyright{
+      color: var(--color-white);
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+    
+      position: fixed;
+      bottom: .7rem;
+    }
+    
+    .navbar{
+      width: 97%;
+      padding: 1.3rem 2rem;
+      background-color: var(--color-type-1);
+      border-radius: 5rem;
+      box-shadow: var(--box-shadow-1);
+    
+      display: flex;
+      align-items: center;
+      gap: 2.3rem;
+    
+      position: fixed;
+      top: 1rem;
+      z-index: 1;
+    }
+    
+    .navlogoTdb{
+      width: 7rem;
+      display: flex;
+      margin-right: auto;
+    }
+    
+    .navlogoTdb img{
+      width: 100%;
+    }
+    
+    .navList{
+      list-style: none;
+    
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .navList li a{
+      color: var(--color-white);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    .search{
+      border: 0px solid red;
+    }
+    
+    .search button[type='button']{
+      border: 0;
+      background-color: transparent;
+      display: flex;
+    }
+    
+    
+    .sectionTitle{
+      color: var(--color-type-2);
+    }
+    
+    
+    /*====================================================================*/
+  </style>
+  <link rel="stylesheet" href="../static/css/loginpage.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <section class="loginContainer">
+    <div class="loginFormWrapper">
+      <figure class="loginLogo">
+        <img src="../static/imgs/logo-tdb-v2.svg" alt="Logo do TheobromaDataBase">
+      </figure>
+      <h1 class="loginTitle">Acesso restrito</h1>
+      <form method="post" class="loginForm">
+        <div class='loginInputWrapper'>
+          <label for="username">Nome de usuário</label>
+          <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário" required>
+        </div>
+        <div class='loginInputWrapper'>
+          <label for="pw">Senha</label>
+          <div class="pwInput">
+            <input type="password" name="pw" id="pw" placeholder="Digite sua senha" required>
+            <button class="showPwBttn" type="button">
+              <i class="eyeIcon showIcon" data-lucide="eye"></i>
+              <i class="eyeOffIcon" data-lucide="eye-off"></i>
+            </button>
+          </div>
+        </div>
+        <!-- <input
+          class="formSubmitBttn" 
+          type="submit" 
+          name="submit" 
+          value="Enviar"
+        > -->
+
+        <button 
+          class="formSubmitBttn"
+          type="submit"
+        >
+          Enviar
+        </button>
+      </form>
+    </div>
+    <span class="copyright">&copy; TDB 2024</span>
+  </section>
+
+  <script>
+    lucide.createIcons();
+    
+    const formSubmitBttn = document.querySelector('.formSubmitBttn');
+
+    const usernameInput = document.getElementById('username');
+    const pwInput = document.getElementById('pw');
+
+    //formSubmitBttn.addEventListener('click', () => {});
+    const eyeIcon = document.querySelector('.eyeIcon');
+    const eyeOffIcon = document.querySelector('.eyeOffIcon');
+    const showPwBttn = document.querySelector('.showPwBttn');
+    
+    showPwBttn.addEventListener('click', () => {
+      if(pwInput.type === 'password'){
+        pwInput.type = 'text';
+        eyeIcon.classList.toggle('showIcon');
+        eyeOffIcon.classList.toggle('showIcon');
+      } else{
+        pwInput.type = 'password';
+        eyeIcon.classList.toggle('showIcon');
+        eyeOffIcon.classList.toggle('showIcon');
+      };
+    });
+    
+    
+  </script>
+</body>
 </html>

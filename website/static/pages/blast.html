@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDB</title>
+  <link rel="stylesheet" href="../static/css/global.css">
+  <link rel="stylesheet" href="../static/css/navbar.css">
+  <link rel="stylesheet" href="../static/css/blast.css">
+</head>
+<body>
+  <nav class='navbar'>
+    <div class='menuIcon'>
+      <div class='menuBar1'></div>
+      <div class='menuBar2'></div>
+      <div class='menuBar3'></div>
+    </div>
+    <a class="tdbLogo" href="../index.html">
+      <figure>
+        <img src='../static/icons/database_icon.svg' alt="Ícone do Theobroma DataBase" />
+      </figure>
+      <h2>TDB</h2>
+    </a>
+    <ul class='navbarTools'>
+      <li>
+        <a href="../index.html">
+          <img src='../static/icons/home_fill_icon.svg' alt="Ícone de início" />
+          Home
+        </a>
+      </li>
+      <li>
+        <span class='toolsBttn'>
+          <img src='../static/icons/tools_icon.svg' alt="Ícone de ferramentas" />
+          Tools
+        </span>
+        <div class='dropDown'>
+          <a href="./blast.html">
+            <img src='../static/icons/genetic_icon.svg' alt="BLAST tool icon " />
+            BLAST
+          </a>
+          <a href="./jbrowse.html">
+            <img src='../static/icons/genetic_icon.svg' alt="JBROWSE tool icon" />
+            JBROWSE
+          </a>
+        </div>
+      </li>
+      <li>
+        <a href="./download.html">
+          <img src="../static/icons/download_icon.svg" alt="Ícone de download" />
+          Download
+        </a>
+      </li>
+      <li>
+        <a href="./about.html">
+          <img src='../static/icons/info_icon.svg' alt="Ícone de informações" />
+          About
+        </a>
+      </li>
+    </ul>
+    <div class='searchBttn'>
+      <input 
+        type="text" 
+        name="searchButton" 
+        id="searchButton"
+      />
+    </div>
+  </nav>
+
+  <section class='blastPageContainer'>
+    <div class='pageTitle'>
+        <figure>
+            <img src='../static/icons/blast_icon.svg' alt="Blast tool page icon" />
+        </figure>
+        <h1>BLAST</h1>
+    </div>
+    <div class='options'>
+        <div class='option1'>
+            BlastN
+            <figure>
+                <img src='../static/icons/expand_more_icon.svg' alt="expand more" />
+            </figure>
+        </div>
+        <div class='option2'>
+            Criollo
+            <figure>
+                <img src='../static/icons/expand_more_icon.svg' alt="expand more" />
+            </figure>
+        </div>
+    </div>
+    <div class='fastaFormat'>
+        <span>FASTA format</span>
+    </div>
+    <div class='uploadFileBox'>
+        <figure>
+            <img src='../static/icons/upload_icon.svg' alt="Upload file box" />
+        </figure>
+        <h2>Optional: Upload file</h2>
+        <span>Drag or click to upload</span>
+    </div>
+  
+    <div class='blastContainer'>
+        <input type="file" id="blastinput" />
+        <div id="blast-multiple-alignments"></div>
+        <div id="blast-alignments-table"></div>
+        <div id="blast-single-alignment"></div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,70 @@
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.pageTitle{
+  font-size: 3rem;
+  animation: gridAnimation 1s ease-in-out .1s forwards;
+}
+
+.containerGrid{
+  max-width: 80vw;
+  animation: gridAnimation 1s ease-in-out .6s forwards;
+}
+
+.searchGrid{
+  width: 50%;
+  animation: gridAnimation 1s ease-in-out .3s forwards;
+}
+
+.searchGrid input{
+  border: 1px solid var(--main-color) !important;
+  border-radius: 2rem !important;
+  color: var(--secondary-color) !important;
+  width: 100%;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+}
+
+
+.th{
+  background: var(--main-color) !important;
+  color: var(--secondary-color) !important;
+  font-size: 1.8rem;
+}
+
+.td{
+  background: #dde5b63b !important;
+  color: var(--secondary-color) !important;
+}
+
+.footer{
+  background: var(--main-color) !important;
+  color: var(--secondary-color) !important;
+  font-size: 1.8rem;
+}
+
+.pageTitle,
+.containerGrid,
+.searchGrid{
+  opacity: 0;
+  transform: translateX(-3rem);
+}
+
+@keyframes gridAnimation {
+  100%{
+      opacity: 1;
+      transform: translateX(0);
+  }
+}

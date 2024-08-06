@@ -159,6 +159,17 @@
   background-color: var(--color-bttn);
 }
 
+
+
+.selectGroup{
+  display: flex;
+  gap: 1rem;
+}
+
+
+
+
+
 @keyframes sectionAnimation {
   100%{
       opacity: 1;
