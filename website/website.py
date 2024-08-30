@@ -205,7 +205,9 @@ def blast():
 @app.route('/search_engine', methods=['POST'])
 def search_engine():
     busca = request.form.get("search_input")
-    client = MongoClient("mongodb://172.17.0.2:27017")
+    container = client.containers.get('theobroma_mongodb')
+    ip_add = container.attrs['NetworkSettings']['IPAddress']
+    client = MongoClient(ip_add)
     db = client.test
     result = []
     i = 0
