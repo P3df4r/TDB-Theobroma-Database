@@ -31,14 +31,14 @@ wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.15.0/ncbi-blast-2.1
 tar -xf ncbi-blast-2.15.0+-x64-linux.tar.gz
 
 echo -------------------------------------Preparando Genomas---------------------------------------------------
-mkdir /website/static/dados/
-mkdir /website/static/dados/Criollo_new
-cp pre* /website/static/dados/Criollo_new/
-mkdir ../website/static/dados/Matina_new
-cp pre* /website/static/dados/Matina_new/
-mkdir /website/static/dados/C1074
-cp pre* /website/static/dados/C1074/
-mkdir /website/static/blast_db
+mkdir website/static/dados/
+mkdir website/static/dados/Criollo_new
+cp pre* website/static/dados/Criollo_new/
+mkdir website/static/dados/Matina_new
+cp pre* website/static/dados/Matina_new/
+mkdir website/static/dados/C1074
+cp pre* website/static/dados/C1074/
+mkdir website/static/blast_db
 
 #BAIXANDO, DESCOMPACTANDO E RENOMEANDO GENOMAS E ANOTAÇÕES
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/403/535/GCA_000403535.1_Theobroma_cacao_20110822/GCA_000403535.1_Theobroma_cacao_20110822_genomic.fna.gz
@@ -108,25 +108,25 @@ bash website/static/dados/C1074/pre-database.sh C1074
 
 echo ------------------------------------Preparando Jbrowse2--------------------------------------------------
 npm install -g @jbrowse/cli
-jbrowse add-assembly ./website/static/dados/Criollo_new/Criollo.fasta --load inPlace
-jbrowse add-track ./website/static/dados/Criollo_new/Criollo.gff --load inPlace
-cp config.json /website/static/dados/Criollo_new/.
+jbrowse add-assembly website/static/dados/Criollo_new/Criollo.fasta --load inPlace
+jbrowse add-track website/static/dados/Criollo_new/Criollo.gff --load inPlace
+cp config.json website/static/dados/Criollo_new/.
 #sed 's/Criollo.fasta/website/static/dados/Criollo_new/Criollo.fasta/g' /website/static/dados/Criollo_new/config.json > /website/static/dados/Criollo_new/config1.json
 #sed 's/Criollo.fasta.fai/../static/dados/Criollo_new/Criollo.fasta.fai/g' /website/static/dados/Criollo_new/config1.json > /website/static/dados/Criollo_new/config2.json
 #sed 's/Criollo.gff/../static/dados/Criollo_new/Criollo.gff/g' /website/static/dados/Criollo_new/config2.json > /website/static/dados/Criollo_new/config.json
 rm config.json
 
-jbrowse add-assembly /website/static/dados/Matina_new/Matina.fasta --load inPlace
-jbrowse add-track /website/static/dados/Matina_new/Matina.gff --load inPlace
-cp config.json /website/static/dados/Matina_new/.
+jbrowse add-assembly website/static/dados/Matina_new/Matina.fasta --load inPlace
+jbrowse add-track website/static/dados/Matina_new/Matina.gff --load inPlace
+cp config.json website/static/dados/Matina_new/.
 #sed 's/Matina.fasta/../static/dados/Matina_new/Matina.fasta/g' /website/static/dados/Matina_new/config.json > /website/static/dados/Matina_new/config1.json
 #sed 's/Matina.fasta.fai/../static/dados/Matina_new/Matina.fasta.fai/g' /website/static/dados/Matina_new/config1.json > /website/static/dados/Matina_new/config2.json
 #sed 's/Matina.gff/../static/dados/Matina_new/Matina.gff/g' /website/static/dados/Matina_new/config2.json > /website/static/dados/Matina_new/config.json
 rm config.json
 
-jbrowse add-assembly /website/static/dados/C1074/C1074.fasta --load inPlace
-jbrowse add-track /website/static/dados/C1074/C1074.gff --load inPlace
-cp config.json /website/static/dados/C1074/.
+jbrowse add-assembly website/static/dados/C1074/C1074.fasta --load inPlace
+jbrowse add-track website/static/dados/C1074/C1074.gff --load inPlace
+cp config.json website/static/dados/C1074/.
 #sed 's/C1074.fasta/../static/dados/C1074/C1074.fasta/g' /website/static/dados/C1074/config.json > /website/static/dados/C1074/config1.json
 #sed 's/C1074.fasta.fai/../static/dados/C1074/C1074.fasta.fai/g' /website/static/dados/C1074/config1.json > /website/static/dados/C1074/config2.json
 #sed 's/C1074.gff/../static/dados/C1074/C1074.gff/g' /website/static/dados/C1074/config2.json > /website/static/dados/C1074/config.json
