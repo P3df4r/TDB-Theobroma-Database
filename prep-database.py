@@ -25,7 +25,7 @@ def collect_data(file, terms, out):
         for b in terms:
             marcador = False
             for a in range(len(mod) - 1):
-                print('comparando {} com {}'.format(b,mod[a]))
+                #print('comparando {} com {}'.format(b,mod[a]))
                 if mod[a].find('=') == -1 and mod[a] not in data_temp:
                     data_temp.append(mod[a])
                     marcador = True
@@ -38,7 +38,6 @@ def collect_data(file, terms, out):
                 data_temp.append('No information')
         #print(terms)
         #print(data_temp)
-        break
         out.write(','.join(data_temp) + '\n')
 
 with open(input_filename, 'r') as input_file, open(input_filename, 'r') as file_temp, open(output_filename, 'w') as output_file:
