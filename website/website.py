@@ -16,6 +16,7 @@ import time
 import json
 from pymongo import MongoClient
 from Bio import Entrez
+import docker
 
 
 HOST_ADDR="localhost"
@@ -205,6 +206,7 @@ def blast():
 @app.route('/search_engine', methods=['POST'])
 def search_engine():
     busca = request.form.get("search_input")
+    client = docker.DockerClient()
     container = client.containers.get('theobroma_mongodb')
     ip_add = container.attrs['NetworkSettings']['IPAddress']
     client = MongoClient(ip_add)
