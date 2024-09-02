@@ -16,7 +16,6 @@ import time
 import json
 from pymongo import MongoClient
 from Bio import Entrez
-import docker
 
 
 HOST_ADDR="localhost"
