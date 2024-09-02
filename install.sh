@@ -86,11 +86,15 @@ cp Criollo.gff website/static/dados/Criollo_new/.
 cp C1074.gff website/static/dados/C1074/.
 
 samtools faidx website/static/dados/Criollo_new/Criollo.fasta -o website/static/dados/Criollo_new/Criollo.fasta.fai
-bash website/static/dados/Criollo_new/pre-database.sh Criollo
+cd website/static/dados/Criollo_new/
+bash pre-database.sh Criollo
 samtools faidx website/static/dados/Matina_new/Matina.fasta -o website/static/dados/Matina_new/Matina.fasta.fai
-bash website/static/dados/Matina_new/pre-database.sh Matina
+cd website/static/dados/Criollo_new/
+bash pre-database.sh Matina
 samtools faidx website/static/dados/C1074/C1074.fasta -o website/static/dados/C1074/C1074.fasta.fai
-bash website/static/dados/C1074/pre-database.sh C1074
+cd website/static/dados/Criollo_new/
+bash pre-database.sh C1074
+cd
 
 
 echo ------------------------------------Preparando Jbrowse2--------------------------------------------------
