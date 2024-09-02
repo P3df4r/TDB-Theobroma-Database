@@ -15,4 +15,4 @@ docker network connect --ip 10.10.36.122 tdb_net theobroma_mongodb
 docker network connect --ip 10.10.36.123 tdb_net TheobromaDB
 docker exec -d TheobromaDB bash install.sh
 bash copy_containers.sh
-docker exec -d TheobromaDB python3 website/website.py
+#docker exec -d TheobromaDB python3 website/website.py
