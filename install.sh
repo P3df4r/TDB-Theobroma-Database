@@ -109,5 +109,3 @@ jbrowse add-assembly website/static/dados/C1074/C1074.fasta --load inPlace
 jbrowse add-track website/static/dados/C1074/C1074.gff --load inPlace
 cp config.json website/static/dados/C1074/.
 rm config.json
-
-python3 website/website.py
