@@ -206,9 +206,7 @@ def blast():
 @app.route('/search_engine', methods=['POST'])
 def search_engine():
     busca = request.form.get("search_input")
-    client = docker.DockerClient()
-    container = client.containers.get('theobroma_mongodb')
-    ip_add = container.attrs['NetworkSettings']['IPAddress']
+    ip_add = "172.17.0.200"
     client = MongoClient(ip_add)
     db = client.test
     result = []
